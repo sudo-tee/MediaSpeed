@@ -1,7 +1,7 @@
 {
   "name": "media-speed",
   "version": "0.0.1",
-  "description": "An experimental mini media server like plex/emby. It tries to be fast and light easy.",
+  "description": "An experimental mini media server like plex/emby. It tries to be fast light and easy.",
   "author": "Francis Bélanger",
   "license": "MIT",
   "engines": {

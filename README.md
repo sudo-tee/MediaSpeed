@@ -1,6 +1,6 @@
 # MediaSpeed
 
-An experimental mini media server like plex/emby. It tries to be fast and light easy.
+An experimental mini media server like plex/emby. It tries to be fast light and easy.
 
 MediaSpeed was inspired by this cool little node media server:
 
