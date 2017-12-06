@@ -1,6 +1,6 @@
+/* eslint-disable no-useless-constructor */
 import { createController } from 'awilix-koa'
-import BaseRestApi from "./base-api";
-
+import BaseRestApi from './base-api'
 
 class MovieRestApi extends BaseRestApi {
   constructor(movieService) {

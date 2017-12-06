@@ -15,7 +15,6 @@ To create libraries you need to post them with the API
 The Scanner does not start automatically, I will add an API endpoint soon, It can only be triggered by API
 
 
-
 ## Media Directory structure
 
 MediaSpeed tries to work with any directory structure, but it work best of you follow these simple rules
