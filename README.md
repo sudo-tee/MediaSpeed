@@ -100,6 +100,6 @@ MIT.
 
 # references
 
-[koa-es7-boilerplate]: https://github.com/jeffijoe/koa-es7-boilerplate
-[Remote-MediaServer]: https://github.com/OwenRay/Remote-MediaServer
-[node-mongo-querystring]: https://github.com/Turistforeningen/node-mongo-querystring
+[koa-es7-boilerplate](https://github.com/jeffijoe/koa-es7-boilerplate)
+[Remote-MediaServer](https://github.com/OwenRay/Remote-MediaServer)
+[node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring)
