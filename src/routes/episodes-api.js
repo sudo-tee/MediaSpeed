@@ -12,7 +12,7 @@ class TvRestApi extends BaseRestApi {
 // See the `awilix-router-core` docs for info:
 // https://github.com/jeffijoe/awilix-router-core
 export default createController(TvRestApi)
-  .prefix('/api/tv')
+  .prefix('/api/tv/episodes')
   .get('', 'find')
   .get('/:id', 'get')
   .post('', 'create')

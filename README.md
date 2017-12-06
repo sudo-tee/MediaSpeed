@@ -62,11 +62,11 @@ Each GET api uses [node-mongo-querystring](https://github.com/Turistforeningen/n
 - <code>DELETE</code> /api/movies
 
 ### Tv Shows Resource
-- <code>GET</code>    /api/tv [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
-- <code>GET</code>    /api/tv/:uid
-- <code>POST</code>   /api/tv
-- <code>PUD</code>    /api/tv
-- <code>DELETE</code> /api/tv
+- <code>GET</code>    /api/tv/episodes [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
+- <code>GET</code>    /api/tv/episodes/:uid
+- <code>POST</code>   /api/tv/episodes
+- <code>PUD</code>    /api/tv/episodes
+- <code>DELETE</code> /api/tv/episodes
 
 
 ## To start the project
