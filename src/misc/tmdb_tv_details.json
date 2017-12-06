@@ -1,0 +1,1264 @@
+{
+  "backdrop_path": "/nGsNruW3W27V6r4gkyc3iiEGsKR.jpg",
+  "created_by": [
+    {
+      "id": 160172,
+      "name": "Chuck Lorre",
+      "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+    },
+    {
+      "id": 163528,
+      "name": "Bill Prady",
+      "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+    }
+  ],
+  "episode_run_time": [
+    22
+  ],
+  "first_air_date": "2007-09-24",
+  "genres": [
+    {
+      "id": 35,
+      "name": "Comedy"
+    }
+  ],
+  "homepage": "http://www.cbs.com/shows/big_bang_theory/",
+  "id": 1418,
+  "in_production": true,
+  "languages": [
+    "en"
+  ],
+  "last_air_date": "2017-11-30",
+  "name": "The Big Bang Theory",
+  "networks": [
+    {
+      "id": 16,
+      "name": "CBS"
+    }
+  ],
+  "number_of_episodes": 252,
+  "number_of_seasons": 11,
+  "origin_country": [
+    "US"
+  ],
+  "original_language": "en",
+  "original_name": "The Big Bang Theory",
+  "overview": "The Big Bang Theory is centered on five characters living in Pasadena, California: roommates Leonard Hofstadter and Sheldon Cooper; Penny, a waitress and aspiring actress who lives across the hall; and Leonard and Sheldon's equally geeky and socially awkward friends and co-workers, mechanical engineer Howard Wolowitz and astrophysicist Raj Koothrappali. The geekiness and intellect of the four guys is contrasted for comic effect with Penny's social skills and common sense.",
+  "popularity": 244.113911,
+  "poster_path": "/ooBGRQBdbGzBxAVfExiO8r7kloA.jpg",
+  "production_companies": [
+    {
+      "name": "Warner Bros. Television",
+      "id": 1957
+    },
+    {
+      "name": "Chuck Lorre Productions",
+      "id": 35504
+    }
+  ],
+  "seasons": [
+    {
+      "air_date": null,
+      "episode_count": 12,
+      "id": 3732,
+      "poster_path": "/cULNyA0aNTtA94NaXSscPSBNSzG.jpg",
+      "season_number": 0
+    },
+    {
+      "air_date": "2007-09-24",
+      "episode_count": 17,
+      "id": 3738,
+      "poster_path": "/zqAL2rav7Tg8uwDtLurqZVN3mtr.jpg",
+      "season_number": 1
+    },
+    {
+      "air_date": "2008-09-22",
+      "episode_count": 23,
+      "id": 3733,
+      "poster_path": "/2NBwUBZ4clwj6qO9fBinfxiB0dR.jpg",
+      "season_number": 2
+    },
+    {
+      "air_date": "2009-09-21",
+      "episode_count": 23,
+      "id": 3734,
+      "poster_path": "/j64iUb52W2IYE9qV9pLi5tFq8IE.jpg",
+      "season_number": 3
+    },
+    {
+      "air_date": "2010-09-23",
+      "episode_count": 24,
+      "id": 3735,
+      "poster_path": "/hM2TYCmOVXop1xhLA1Mbqyg60ze.jpg",
+      "season_number": 4
+    },
+    {
+      "air_date": "2011-09-22",
+      "episode_count": 24,
+      "id": 3736,
+      "poster_path": "/l08Z8ihAsTRPEuOehbwk4axg3cu.jpg",
+      "season_number": 5
+    },
+    {
+      "air_date": "2012-09-27",
+      "episode_count": 24,
+      "id": 3737,
+      "poster_path": "/2Rsb94mlt4OHhiO2UWatDOhnBqv.jpg",
+      "season_number": 6
+    },
+    {
+      "air_date": "2013-09-25",
+      "episode_count": 24,
+      "id": 3739,
+      "poster_path": "/j1FU0qKHx1F8FVBmK5DBOTrhsAr.jpg",
+      "season_number": 7
+    },
+    {
+      "air_date": "2014-09-22",
+      "episode_count": 24,
+      "id": 62016,
+      "poster_path": "/71669CxKEeyqtItFH6mFHKxPh3y.jpg",
+      "season_number": 8
+    },
+    {
+      "air_date": "2015-09-21",
+      "episode_count": 24,
+      "id": 70493,
+      "poster_path": "/eKDvR1vYLCE08K1h0KUfHNliD8T.jpg",
+      "season_number": 9
+    },
+    {
+      "air_date": "2016-09-19",
+      "episode_count": 24,
+      "id": 80035,
+      "poster_path": "/dz2Mq1bpjBFiTOJbomCEP59kqJV.jpg",
+      "season_number": 10
+    },
+    {
+      "air_date": "2017-09-25",
+      "episode_count": 9,
+      "id": 91000,
+      "poster_path": "/zubwQ0aZ7tQxQ6nttMwnxhzrEDt.jpg",
+      "season_number": 11
+    }
+  ],
+  "status": "Returning Series",
+  "type": "Scripted",
+  "vote_average": 6.9,
+  "vote_count": 2199,
+  "season/1": {
+    "_id": "5256cfbc19c2956ff60a042f",
+    "air_date": "2007-09-24",
+    "episodes": [
+      {
+        "air_date": "2007-09-24",
+        "crew": [
+          {
+            "credit_id": "5256cfee19c2956ff60a280c",
+            "department": "Directing",
+            "gender": null,
+            "id": 157437,
+            "job": "Director",
+            "name": "James Burrows",
+            "profile_path": "/lTcRumFOm6HkfOyPuUElV4l4n4r.jpg"
+          },
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": null,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": null,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          },
+          {
+            "credit_id": "55881d379251416818001c2b",
+            "department": "Costume & Make-Up",
+            "gender": null,
+            "id": 1480308,
+            "job": "Hairstylist",
+            "name": "Janice Zoladz",
+            "profile_path": null
+          },
+          {
+            "credit_id": "558819ffc3a36836ea006145",
+            "department": "Production",
+            "gender": null,
+            "id": 1480289,
+            "job": "Co-Producer",
+            "name": "Joe Bella",
+            "profile_path": null
+          },
+          {
+            "credit_id": "55881a1492514179f6003f6e",
+            "department": "Production",
+            "gender": null,
+            "id": 1232374,
+            "job": "Producer",
+            "name": "Michael Collier",
+            "profile_path": null
+          },
+          {
+            "credit_id": "55881a269251411efc000f6e",
+            "department": "Production",
+            "gender": null,
+            "id": 1480291,
+            "job": "Associate Producer",
+            "name": "Toti Levine",
+            "profile_path": null
+          }
+        ],
+        "episode_number": 1,
+        "guest_stars": [
+          {
+            "character": "Kurt",
+            "credit_id": "5256cfc919c2956ff60a0c8f",
+            "gender": 0,
+            "id": 1118085,
+            "name": "Brian Patrick Wade",
+            "order": 0,
+            "profile_path": "/gCyndJAgEhL2CTbtFHieO7MICbb.jpg"
+          }
+        ],
+        "name": "Pilot",
+        "overview": "Brilliant physicist roommates Leonard and Sheldon meet their new neighbor Penny, who begins showing them that as much as they know about science, they know little about actual living.",
+        "id": 64766,
+        "production_code": "276023",
+        "season_number": 1,
+        "still_path": "/rxWlBXZhGWhumbLB8gAHyyW3ITD.jpg",
+        "vote_average": 6.403,
+        "vote_count": 36
+      },
+      {
+        "air_date": "2007-10-01",
+        "crew": [
+          {
+            "credit_id": "5256cfec19c2956ff60a2724",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1216558,
+            "job": "Writer",
+            "name": "Robert Cohen",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": 0,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 2,
+        "guest_stars": [],
+        "name": "The Big Bran Hypothesis",
+        "overview": "Leonard volunteers to sign for a package in an attempt to make a good impression on Penny, but when he enlists Sheldon for help, his attempt at chivalry goes terribly awry.",
+        "id": 64777,
+        "production_code": "3T6601",
+        "season_number": 1,
+        "still_path": "/5Itgr82yyAEtwegAZgMm30UqJXK.jpg",
+        "vote_average": 6.571,
+        "vote_count": 28
+      },
+      {
+        "air_date": "2007-10-08",
+        "crew": [
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": 0,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 3,
+        "guest_stars": [
+          {
+            "character": "Leslie Winkle",
+            "credit_id": "5256d00519c2956ff60a3ab6",
+            "gender": 1,
+            "id": 3282,
+            "name": "Sara Gilbert",
+            "order": 6,
+            "profile_path": "/pNimJ9cfqe9OeOLFl0k1pXkQ7SY.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfee19c2956ff60a27a4",
+            "gender": 0,
+            "id": 98802,
+            "name": "Allen Nabors",
+            "order": 2,
+            "profile_path": "/bLBY5dM5uTn7AOkMAYdbmf998Jb.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfed19c2956ff60a2776",
+            "gender": 0,
+            "id": 1224129,
+            "name": "Sherry Weston",
+            "order": 1,
+            "profile_path": null
+          }
+        ],
+        "name": "The Fuzzy Boots Corollary",
+        "overview": "Leonard asks a woman out after he finds out that Penny is seeing someone.",
+        "id": 64765,
+        "production_code": "3T6602",
+        "season_number": 1,
+        "still_path": "/eDyDC7cwKz9ZTA4CX44eKuHjPgZ.jpg",
+        "vote_average": 6.559,
+        "vote_count": 17
+      },
+      {
+        "air_date": "2007-10-14",
+        "crew": [
+          {
+            "credit_id": "5256cfe819c2956ff60a2618",
+            "department": "Directing",
+            "gender": 2,
+            "id": 122853,
+            "job": "Director",
+            "name": "Bob Koherr",
+            "profile_path": "/qI6mjASTJiyNpHz9k9oU0I8CuCT.jpg"
+          },
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": 0,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 4,
+        "guest_stars": [
+          {
+            "character": "Mary Cooper",
+            "credit_id": "55980153c3a36855e000134a",
+            "gender": 1,
+            "id": 12133,
+            "name": "Laurie Metcalf",
+            "order": 107,
+            "profile_path": "/unMMIT60eoBM2sN2nyR7EZ2BvvD.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfc219c2956ff60a0837",
+            "gender": 0,
+            "id": 88949,
+            "name": "Mark Harelik",
+            "order": 0,
+            "profile_path": "/yn7Pw7t5YOEimhXsUtdM3vmvuWG.jpg"
+          }
+        ],
+        "name": "The Luminous Fish Effect",
+        "overview": "Sheldon's getting fired forces him to explore what life has to offer outside physics, leaving Leonard to take drastic action to snap his friend out of his funk.",
+        "id": 64762,
+        "production_code": "3T6603",
+        "season_number": 1,
+        "still_path": "/bk8aIjAyS6XDG3I3otseP0jaR4x.jpg",
+        "vote_average": 7.8,
+        "vote_count": 15
+      },
+      {
+        "air_date": "2007-10-22",
+        "crew": [
+          {
+            "credit_id": "5256cfe919c2956ff60a2664",
+            "department": "Directing",
+            "gender": null,
+            "id": 1215073,
+            "job": "Director",
+            "name": "Andrew D. Weyman",
+            "profile_path": null
+          }
+        ],
+        "episode_number": 5,
+        "guest_stars": [
+          {
+            "character": "Leslie Winkle",
+            "credit_id": "5256d00519c2956ff60a3ab6",
+            "gender": null,
+            "id": 3282,
+            "name": "Sara Gilbert",
+            "order": 6,
+            "profile_path": "/pNimJ9cfqe9OeOLFl0k1pXkQ7SY.jpg"
+          }
+        ],
+        "name": "The Hamburger Postulate",
+        "overview": "Fearing he's wasting his time on Penny, Leonard ends up making a connection with Leslie.",
+        "id": 64763,
+        "production_code": "3T6604",
+        "season_number": 1,
+        "still_path": "/zO3CSyb13PQyzWICp4mmZEUeExp.jpg",
+        "vote_average": 7.25,
+        "vote_count": 14
+      },
+      {
+        "air_date": "2007-10-29",
+        "crew": [
+          {
+            "credit_id": "5256cfec19c2956ff60a2724",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1216558,
+            "job": "Writer",
+            "name": "Robert Cohen",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 6,
+        "guest_stars": [
+          {
+            "character": "",
+            "credit_id": "5256cfec19c2956ff60a26f8",
+            "gender": null,
+            "id": 1224128,
+            "name": "Rachel Cannon",
+            "order": 3,
+            "profile_path": "/yAcZiKmf0T4NJsTsgdnQ6Z7S4SR.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfea19c2956ff60a26c6",
+            "gender": null,
+            "id": 1224127,
+            "name": "Erin Allin O'Reilly",
+            "order": 1,
+            "profile_path": "/x35MI7gldVHupb6MPnRrjyT0seu.jpg"
+          },
+          {
+            "character": "Kurt",
+            "credit_id": "5256cfc919c2956ff60a0c8f",
+            "gender": null,
+            "id": 1118085,
+            "name": "Brian Patrick Wade",
+            "order": 0,
+            "profile_path": "/6y0Hd1xLC5Nitedg2GQ90DtxxDb.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfe919c2956ff60a269a",
+            "gender": null,
+            "id": 1213604,
+            "name": "Kimberly Kevon Williams",
+            "order": 0,
+            "profile_path": "/uN0DjN4TAVuj45oxbsBEMqVkOKa.jpg"
+          }
+        ],
+        "name": "The Middle Earth Paradigm",
+        "overview": "Penny hosts a Hallowe'en party, putting Leonard, Sheldon, Wolowitz, and Koothrappali through a new test of their social skills.",
+        "id": 64764,
+        "production_code": "3T6605",
+        "season_number": 1,
+        "still_path": "/4P20QdmB6QL8aa0b8dKR8sHK1iW.jpg",
+        "vote_average": 6.909,
+        "vote_count": 11
+      },
+      {
+        "air_date": "2007-11-05",
+        "crew": [
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": 0,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          },
+          {
+            "credit_id": "55881d5192514179f6003ffd",
+            "department": "Costume & Make-Up",
+            "gender": 0,
+            "id": 1480309,
+            "job": "Makeup Artist",
+            "name": "Beth O'Rourke",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 7,
+        "guest_stars": [
+          {
+            "character": "",
+            "credit_id": "5256cfee19c2956ff60a2850",
+            "gender": null,
+            "id": 42297,
+            "name": "Brooke D'Orsay",
+            "order": 0,
+            "profile_path": "/EOVVzdsInYY7HFjUmvWIRyL8bS.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfc119c2956ff60a0789",
+            "gender": null,
+            "id": 1212530,
+            "name": "Carol Ann Susi",
+            "order": 0,
+            "profile_path": "/dKQBWud7URYzfXZa6L8GzNRWbjp.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfee19c2956ff60a28f6",
+            "gender": null,
+            "id": 20904,
+            "name": "James Hong",
+            "order": 1,
+            "profile_path": "/8k4RrDRsqkvJDePU8ciMOOx5Zso.jpg"
+          }
+        ],
+        "name": "The Dumpling Paradox",
+        "overview": "With Wolowitz AWOL with one of her friends, Penny's recruited to fill in for him on the guys' Halo team",
+        "id": 64767,
+        "production_code": "3T6606",
+        "season_number": 1,
+        "still_path": "/4y5rvzPZF5ukM3vtktqWTp9MhyH.jpg",
+        "vote_average": 7.5,
+        "vote_count": 12
+      },
+      {
+        "air_date": "2007-11-12",
+        "crew": [
+          {
+            "credit_id": "5256cfec19c2956ff60a2724",
+            "department": "Writing",
+            "gender": null,
+            "id": 1216558,
+            "job": "Writer",
+            "name": "Robert Cohen",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cff119c2956ff60a29ea",
+            "department": "Directing",
+            "gender": null,
+            "id": 151192,
+            "job": "Director",
+            "name": "Ted Wass",
+            "profile_path": "/535bPPjQnHPxlfNQA8UmWgwqyWj.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": null,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          }
+        ],
+        "episode_number": 8,
+        "guest_stars": [
+          {
+            "character": "Dr. Koothrappali",
+            "credit_id": "547cdbac9251412d7c003b1f",
+            "gender": null,
+            "id": 58511,
+            "name": "Brian George",
+            "order": 78,
+            "profile_path": "/g0bVyXsHDhRhd5WuQwRQDv2TkG9.jpg"
+          },
+          {
+            "character": "Lalita Gupta",
+            "credit_id": "547cd9dcc3a3685af300301a",
+            "gender": null,
+            "id": 1224130,
+            "name": "Sarayu Rao",
+            "order": 78,
+            "profile_path": "/bS0NHNU5CDqwAC6FBu86hFMMx0K.jpg"
+          },
+          {
+            "character": "Mrs. Koothrappali",
+            "credit_id": "5256d00619c2956ff60a3ca6",
+            "gender": null,
+            "id": 61081,
+            "name": "Alice Amter",
+            "order": 14,
+            "profile_path": "/4E9f0lK8u91WpS9tEZfZFWyCxcz.jpg"
+          }
+        ],
+        "name": "The Grasshopper Experiment",
+        "overview": "Raj's parents set him up on a blind date, but just when he discovers he can talk to her, she shows interest in Sheldon.",
+        "id": 64769,
+        "production_code": "3T6607",
+        "season_number": 1,
+        "still_path": "/rbVfuB7vBrrXygo0d8qhk9FhmAd.jpg",
+        "vote_average": 6.6,
+        "vote_count": 15
+      },
+      {
+        "air_date": "2008-03-17",
+        "crew": [
+          {
+            "credit_id": "5256cfc219c2956ff60a0899",
+            "department": "Writing",
+            "gender": null,
+            "id": 1217292,
+            "job": "Writer",
+            "name": "Stephen Engel",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cff219c2956ff60a2a3c",
+            "department": "Directing",
+            "gender": null,
+            "id": 155649,
+            "job": "Director",
+            "name": "Joel Murray",
+            "profile_path": "/euFBBlZ7Q8clCJE3VYPutQR35R7.jpg"
+          },
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": null,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": null,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": null,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          }
+        ],
+        "episode_number": 9,
+        "guest_stars": [],
+        "name": "The Cooper-Hofstadter Polarization",
+        "overview": "When they're invited to present at a physics conference, Sheldon's reluctance to share the credit leads to a tiff between him and  Leonard, and Penny's intervention only exacerbates the situation.",
+        "id": 64770,
+        "production_code": "3T6608",
+        "season_number": 1,
+        "still_path": "/8MvMEvZzZPBkgQZIVk9KvF8nLH5.jpg",
+        "vote_average": 7.3,
+        "vote_count": 10
+      },
+      {
+        "air_date": "2008-03-24",
+        "crew": [
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          },
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 10,
+        "guest_stars": [
+          {
+            "character": "Toby Loobenfeld",
+            "credit_id": "547cd95892514123ef001c36",
+            "gender": null,
+            "id": 132078,
+            "name": "DJ Qualls",
+            "order": 76,
+            "profile_path": "/foe0XuHIgVHsnrMBYlgYtsR3Z2V.jpg"
+          }
+        ],
+        "name": "The Loobenfeld Decay",
+        "overview": "Leonard and Sheldon each lie to avoid seeing Penny's concert, but Sheldon's is a bit too complicated for his own good.",
+        "id": 64650,
+        "production_code": "3T6609",
+        "season_number": 1,
+        "still_path": "/6dssfbhNv1g3FFqKWKJhNqaqSQH.jpg",
+        "vote_average": 7.364,
+        "vote_count": 11
+      },
+      {
+        "air_date": "2008-03-31",
+        "crew": [
+          {
+            "credit_id": "5256cfc219c2956ff60a0899",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1217292,
+            "job": "Writer",
+            "name": "Stephen Engel",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          },
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 11,
+        "guest_stars": [
+          {
+            "character": "",
+            "credit_id": "5256cfc119c2956ff60a0789",
+            "gender": null,
+            "id": 1212530,
+            "name": "Carol Ann Susi",
+            "order": 0,
+            "profile_path": "/dKQBWud7URYzfXZa6L8GzNRWbjp.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfea19c2956ff60a26c6",
+            "gender": null,
+            "id": 1224127,
+            "name": "Erin Allin O'Reilly",
+            "order": 1,
+            "profile_path": "/x35MI7gldVHupb6MPnRrjyT0seu.jpg"
+          }
+        ],
+        "name": "The Pancake Batter Anomaly",
+        "overview": "With his friends knowing how sour he acts when sick—and avoiding him as a result—Sheldon is nursed by Penny, who hasn't a clue what she's in for.",
+        "id": 64768,
+        "production_code": "3T6610",
+        "season_number": 1,
+        "still_path": "/q0E0GNUMHWZDNKbygCjKJGiFc9G.jpg",
+        "vote_average": 7.375,
+        "vote_count": 12
+      },
+      {
+        "air_date": "2008-04-14",
+        "crew": [
+          {
+            "credit_id": "5256cfc219c2956ff60a0899",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1217292,
+            "job": "Writer",
+            "name": "Stephen Engel",
+            "profile_path": null
+          },
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 12,
+        "guest_stars": [
+          {
+            "character": "",
+            "credit_id": "5256cff419c2956ff60a2afe",
+            "gender": null,
+            "id": 1224131,
+            "name": "Emma Degerstedt",
+            "order": 0,
+            "profile_path": "/xgyEp8yjTQW8Rp9dvvJEeMOZRPI.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cfc219c2956ff60a0837",
+            "gender": null,
+            "id": 88949,
+            "name": "Mark Harelik",
+            "order": 0,
+            "profile_path": "/iiWjqkiQc9StJjC0KTSjg5AZFSa.jpg"
+          },
+          {
+            "character": "",
+            "credit_id": "5256cff419c2956ff60a2b46",
+            "gender": null,
+            "id": 72421,
+            "name": "Joel Brooks",
+            "order": 2,
+            "profile_path": "/asd8C26nyYeA5RCnakTa78roBzS.jpg"
+          }
+        ],
+        "name": "The Jerusalem Duality",
+        "overview": "With Sheldon rattled over meeting Dennis, a 15-year-old physicist who's smarter than he, Leonard helps him look for a way to debunk Dennis's research.",
+        "id": 64774,
+        "production_code": "3T6611",
+        "season_number": 1,
+        "still_path": "/zxQA3r7tOSJKNfe7S5hU02OIl9z.jpg",
+        "vote_average": 6.273,
+        "vote_count": 11
+      },
+      {
+        "air_date": "2008-04-21",
+        "crew": [
+          {
+            "credit_id": "5256cfec19c2956ff60a2724",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1216558,
+            "job": "Writer",
+            "name": "Robert Cohen",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfc219c2956ff60a0899",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1217292,
+            "job": "Writer",
+            "name": "Stephen Engel",
+            "profile_path": null
+          },
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 13,
+        "guest_stars": [
+          {
+            "character": "",
+            "credit_id": "5256cfc219c2956ff60a0837",
+            "gender": null,
+            "id": 88949,
+            "name": "Mark Harelik",
+            "order": 0,
+            "profile_path": "/iiWjqkiQc9StJjC0KTSjg5AZFSa.jpg"
+          },
+          {
+            "character": "Leslie Winkle",
+            "credit_id": "5256d00519c2956ff60a3ab6",
+            "gender": null,
+            "id": 3282,
+            "name": "Sara Gilbert",
+            "order": 6,
+            "profile_path": "/pNimJ9cfqe9OeOLFl0k1pXkQ7SY.jpg"
+          }
+        ],
+        "name": "The Bat Jar Conjecture",
+        "overview": "Sheldon finds himself booted from the gang's Physics Bowl team and replaced with Leslie, so he forms his own team, hoping to prove he's superior.",
+        "id": 64775,
+        "production_code": "3T6612",
+        "season_number": 1,
+        "still_path": "/w1Et8tW5En8a2ieEWRlolAVkyED.jpg",
+        "vote_average": 6.792,
+        "vote_count": 12
+      },
+      {
+        "air_date": "2008-04-28",
+        "crew": [
+          {
+            "credit_id": "5256cfc219c2956ff60a0899",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1217292,
+            "job": "Writer",
+            "name": "Stephen Engel",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": 0,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          },
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 14,
+        "guest_stars": [
+          {
+            "character": "",
+            "credit_id": "5256cff219c2956ff60a2ab0",
+            "gender": null,
+            "id": 1214036,
+            "name": "Andrew Walker",
+            "order": 0,
+            "profile_path": null
+          }
+        ],
+        "name": "The Nerdvana Annihilation",
+        "overview": "When delivery of another collectible leads to Penny's lashing out at Leonard, he decides it's time to give up his habit, much to his friends' protestation.",
+        "id": 64773,
+        "production_code": "3T6613",
+        "season_number": 1,
+        "still_path": "/sktEOfZVIBnyW6MeZlGXbcdp6vO.jpg",
+        "vote_average": 6.75,
+        "vote_count": 10
+      },
+      {
+        "air_date": "2008-05-05",
+        "crew": [
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          },
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 15,
+        "guest_stars": [],
+        "name": "The Pork Chop Indeterminacy",
+        "overview": "The rest of the gang fall for Sheldon's twin sister, and Leonard's plan to win her heart is derailed when Sheldon declares he'll be the one to decide who can date her.",
+        "id": 64771,
+        "production_code": "3T6614",
+        "season_number": 1,
+        "still_path": "/qBlf2PEd6RDGnyOip6ZPJ825AMw.jpg",
+        "vote_average": 6.773,
+        "vote_count": 11
+      },
+      {
+        "air_date": "2008-05-12",
+        "crew": [
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 16,
+        "guest_stars": [],
+        "name": "The Peanut Reaction",
+        "overview": "Penny wants to throw a surprise party for Leonard, but Sheldon's indulgence at an electronics store throws her off-track.",
+        "id": 64772,
+        "production_code": "3T6615",
+        "season_number": 1,
+        "still_path": "/jnI6qR3y9Hfn7hA1uCUJhYMkIAv.jpg",
+        "vote_average": 6.654,
+        "vote_count": 13
+      },
+      {
+        "air_date": "2008-05-19",
+        "crew": [
+          {
+            "credit_id": "5256cfbc19c2956ff60a0483",
+            "department": "Writing",
+            "gender": 2,
+            "id": 160172,
+            "job": "Writer",
+            "name": "Chuck Lorre",
+            "profile_path": "/btpYlMV71sjQXrV142I9kogEINI.jpg"
+          },
+          {
+            "credit_id": "5256cfc119c2956ff60a0745",
+            "department": "Writing",
+            "gender": 0,
+            "id": 1218744,
+            "job": "Writer",
+            "name": "Lee Aronsohn",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbd19c2956ff60a04f0",
+            "department": "Writing",
+            "gender": 0,
+            "id": 163528,
+            "job": "Writer",
+            "name": "Bill Prady",
+            "profile_path": "/duXUvo8JtivQR0BHiXHGQwoNYB4.jpg"
+          },
+          {
+            "credit_id": "55881945c3a3682746007d4f",
+            "department": "Production",
+            "gender": 0,
+            "id": 1236113,
+            "job": "Co-Executive Producer",
+            "name": "David Litt",
+            "profile_path": null
+          },
+          {
+            "credit_id": "5256cfbe19c2956ff60a0548",
+            "department": "Directing",
+            "gender": 2,
+            "id": 1212114,
+            "job": "Director",
+            "name": "Mark Cendrowski",
+            "profile_path": "/6fS4LbfIf27UcyciWLqhEAYD82B.jpg"
+          }
+        ],
+        "episode_number": 17,
+        "guest_stars": [
+          {
+            "character": "",
+            "credit_id": "5256cfee19c2956ff60a28f6",
+            "gender": null,
+            "id": 20904,
+            "name": "James Hong",
+            "order": 1,
+            "profile_path": "/8k4RrDRsqkvJDePU8ciMOOx5Zso.jpg"
+          }
+        ],
+        "name": "The Tangerine Factor",
+        "overview": "Penny's break-up spurs Leonard to summon the courage to ask her out, and each goes to Sheldon for advice on their upcoming date.",
+        "id": 64776,
+        "production_code": "3T6616",
+        "season_number": 1,
+        "still_path": "/3RCfgXjtRcWRt1ci7RIYi3JzJQ9.jpg",
+        "vote_average": 6.917,
+        "vote_count": 12
+      }
+    ],
+    "name": "Season 1",
+    "overview": "University physicists Leonard and Sheldon know whether to use an integral or a differential to solve the area under a curve. But they don't have a clue about girls. Or dating. Or clothes. Or parties. Or having fun. Or, basically, life. So when a pretty blonde named Penny moves in the apartment across the hall, the guys decide to get an education outside of the classroom. Boys, you have a lot to learn.",
+    "poster_path": "/zqAL2rav7Tg8uwDtLurqZVN3mtr.jpg",
+    "season_number": 1
+  }
+}

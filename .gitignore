@@ -1,0 +1,10 @@
+node_modules
+dist
+*.log
+.idea
+coverage
+.nyc_output
+config.json
+media.db
+todo
+src/bin/test.js
