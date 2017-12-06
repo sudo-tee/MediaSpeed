@@ -10,6 +10,11 @@ https://github.com/OwenRay/Remote-MediaServer
 
 Right now MediaSpeed is only a scraper/indexer with a rest API, there is no gui
 
+To create libraries you need to post them with the API
+
+The Scanner does not start automatically, I will add an API endpoint soon, It can only be triggered by API
+
+
 
 ## Media Directory structure
 
