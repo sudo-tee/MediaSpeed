@@ -1,5 +1,5 @@
-import {createContainer, Lifetime, ResolutionMode, asValue, asFunction, asClass} from 'awilix'
-import {logger} from './logger'
+import { createContainer, Lifetime, ResolutionMode, asValue, asFunction, asClass } from 'awilix';
+import { logger } from './logger';
 import movieDbApi from '../lib/moviedb';
 import database from '../lib/database';
 import config from '../../config.json';
@@ -21,8 +21,7 @@ const modulesToLoad = [
     ['lib/extended-info-providers/*-provider.js', Lifetime.SCOPED],
     // Stores will be singleton (1 instance per process).
     // This is just for demo purposes, you can do whatever you want.
-    ['stores/*.js', Lifetime.SINGLETON],
-
+    ['stores/*.js', Lifetime.SINGLETON]
 ];
 
 /**
@@ -52,6 +51,6 @@ export async function configureContainer() {
         .register('db', await asValue(db))
         .register('libraryScanner', asClass(libraryScanner))
         .register('directoryScanner', asClass(recursiveDirectoryReader)) // Replace something that will retreive only new files
-        .register('movieNameExtractor', asValue({extract: tnp}))
-        .register('episodeNameExtractor', asValue({extract: (episode) => epinfer.process(episode).getData()}))
+        .register('movieNameExtractor', asValue({ extract: tnp }))
+        .register('episodeNameExtractor', asValue({ extract: episode => epinfer.process(episode).getData() }));
 }

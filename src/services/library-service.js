@@ -1,4 +1,4 @@
-import {BadRequest} from 'fejl'
+import { BadRequest } from 'fejl';
 import BaseService from './base-service';
 import fs from 'fs';
 
@@ -10,9 +10,8 @@ const types = ['movie', 'episode'];
  * Library Service.
  */
 export default class LibraryService extends BaseService {
-
     constructor(libraryStore) {
-        super(libraryStore, props)
+        super(libraryStore, props);
     }
 
     assertInput(data) {

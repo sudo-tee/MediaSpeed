@@ -3,7 +3,6 @@
 // This way our services could be used in any type of app, not
 // just over HTTP.
 export default class BaseRestApi {
-
     constructor(service) {
         this.service = service;
     }
@@ -27,4 +26,4 @@ export default class BaseRestApi {
     async remove(ctx) {
         ctx.noContent(await this.service.remove(ctx.params.id));
     }
-};
+}

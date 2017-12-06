@@ -1,5 +1,4 @@
 export default class MovieTmdbInfoProvider {
-
     constructor(movieDbApi) {
         this.movieDbApi = movieDbApi;
     }
@@ -7,11 +6,10 @@ export default class MovieTmdbInfoProvider {
     async execute(movie) {
         const movieInfo = await this.getMovieInfo(movie);
 
-        return {...movie, ...movieInfo}
+        return { ...movie, ...movieInfo };
     }
 
     async getMovieInfo(item) {
-
         console.log('fetching information for ' + item.title);
 
         let shows = await this.searchMovie(item.title);
@@ -23,7 +21,7 @@ export default class MovieTmdbInfoProvider {
 
         let movieDetails = await this.getMovieDetails(item.tmdb_movie_id);
 
-        return {...item, ...movieDetails};
+        return { ...item, ...movieDetails };
     }
 
     // @todo memoize
@@ -35,16 +33,16 @@ export default class MovieTmdbInfoProvider {
                 year: year
             });
         } catch (err) {
-            return {}
+            return {};
         }
-
     }
 
     // @todo memoize
     async getMovieDetails(movieId) {
         console.log('no cache getMovieDetails', movieId);
 
-        return this.movieDbApi.request('/movie/{id}', 'GET', {id: encodeURIComponent(movieId)});
-
+        return this.movieDbApi.request('/movie/{id}', 'GET', {
+            id: encodeURIComponent(movieId)
+        });
     }
 }

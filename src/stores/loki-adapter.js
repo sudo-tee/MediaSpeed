@@ -1,6 +1,5 @@
 import MongoQS from 'mongo-querystring';
 export default class LokiAdapter {
-
     constructor(logger, db, collectionName) {
         this.logger = logger;
         this.db = db;
@@ -15,7 +14,7 @@ export default class LokiAdapter {
     }
 
     async get(uid) {
-        return this.db.getCollection(this.collectionName).findOne({uid: uid});
+        return this.db.getCollection(this.collectionName).findOne({ uid: uid });
     }
 
     async create(data) {
@@ -26,7 +25,7 @@ export default class LokiAdapter {
     async update(uid, data) {
         const doc = await this.get(uid);
         this.logger.debug(`Updated ${this.collectionName} ${uid}`, data);
-        const merged = {...data, ...doc};
+        const merged = { ...data, ...doc };
         return this.db.getCollection(this.collectionName).update(merged);
     }
 

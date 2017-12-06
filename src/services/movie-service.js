@@ -1,8 +1,9 @@
-import {BadRequest} from 'fejl'
-import BaseService from "./base-service";
+import { BadRequest } from 'fejl';
+import BaseService from './base-service';
 
 // Prevent overposting.
-const props = ['type',
+const props = [
+    'type',
     'uid',
     'library_uid',
     'filePath',
@@ -33,7 +34,8 @@ const props = ['type',
     'tagline',
     'video',
     'vote_average',
-    'vote_count'];
+    'vote_count'
+];
 
 export default class MovieService extends BaseService {
     constructor(movieStore) {

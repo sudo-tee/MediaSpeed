@@ -1,5 +1,5 @@
-import { NotFound, BadRequest } from 'fejl'
-import { pick } from 'lodash'
+import { NotFound, BadRequest } from 'fejl';
+import { pick } from 'lodash';
 
 // Prefab assert function.
 const assertId = BadRequest.makeAssert('No id given');
@@ -24,20 +24,20 @@ export default class BaseService {
 
     async find(params) {
         const result = await this.store.find(params);
-        return result.map(this.filterProperties, this)
+        return result.map(this.filterProperties, this);
     }
 
     async get(uid) {
         assertId(uid);
 
-        return this.filterProperties(await this.store
-            .get(uid)
-            .then(NotFound.makeAssert(`Library with id "${uid}" not found`)));
+        return this.filterProperties(
+            await this.store.get(uid).then(NotFound.makeAssert(`Library with id "${uid}" not found`))
+        );
     }
 
     async create(data) {
         this.assertInput(data);
-        return this.store.create(this.filterProperties(data))
+        return this.store.create(this.filterProperties(data));
     }
 
     async update(id, data) {
@@ -48,12 +48,12 @@ export default class BaseService {
 
         // Prevent overposting.
         const picked = this.filterProperties(data);
-        return this.store.update(id, picked)
+        return this.store.update(id, picked);
     }
 
     async remove(uid) {
         // Make sure the library exists by calling `get`.
         await this.get(uid);
-        return this.store.remove(uid)
+        return this.store.remove(uid);
     }
 }

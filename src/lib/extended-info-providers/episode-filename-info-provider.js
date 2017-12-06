@@ -12,11 +12,14 @@ export default class EpisodeFilenameInfoProvider {
         const showName = episodeInfo.series.replace(/ +(?= )/g, '');
         const seasonNumber = episodeInfo.season || 1;
         const seasonUid = shorthash.unique(path.dirname(episode.episode.filePath) + seasonNumber);
-        const showUid = shorthash.unique(EpisodeFilenameInfoProvider.getShowFolder(episode.episode.filePath, library.path) + showName);
+        const showUid = shorthash.unique(
+            EpisodeFilenameInfoProvider.getShowFolder(episode.episode.filePath, library.path) + showName
+        );
 
         return {
             episode: {
-                ...episode.episode, ...{
+                ...episode.episode,
+                ...{
                     season_uid: seasonUid,
                     show_uid: showUid,
                     type: 'episode',
@@ -27,26 +30,28 @@ export default class EpisodeFilenameInfoProvider {
                 }
             },
             show: {
-                ...episode.show, ...{
+                ...episode.show,
+                ...{
                     uid: showUid,
                     type: 'show',
                     name: showName
                 }
             },
             season: {
-                ...episode.season, ...{
+                ...episode.season,
+                ...{
                     uid: seasonUid,
                     type: 'season',
-                    season_number: episodeInfo.season || 1,
+                    season_number: episodeInfo.season || 1
                 }
             }
-        }
+        };
     }
 
     static getShowFolder(episodeFilePath, libraryRoot) {
         let showFolder = path.dirname(path.dirname(episodeFilePath));
 
-        if(showFolder.length < libraryRoot.length) {
+        if (showFolder.length < libraryRoot.length) {
             return libraryRoot;
         }
 

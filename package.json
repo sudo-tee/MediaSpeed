@@ -84,7 +84,9 @@
   },
   "prettier": {
     "singleQuote": true,
-    "semi": false
+    "semi": true,
+    "tabWidth": 4,
+    "printWidth": 120
   },
   "lint-staged": {
     "*.js": [
