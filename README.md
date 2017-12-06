@@ -19,7 +19,7 @@ MediaSpeed tries to work with any directory structure, but it work best of you f
 
 The movie naming convention should be `Movie (year).extension` eg: `FooBar (2017).mkv`
 
-Let's say we have movie a named FooBar, theses 3 structure should work
+Let's say we have movie a named FooBar, theses 2 structure should work
 
 ``` 
 /my/library/FooBar (2017).mkv
