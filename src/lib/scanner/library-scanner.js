@@ -20,37 +20,47 @@ export default class LibraryScanner {
     }
 
     async scan(library) {
-        try {
-            console.log('scanning ' + library.path);
+        console.log('scanning ' + library.path);
 
-            library.last_update = Date.now();
-            await this.libraryService.update(library.uid, library);
+        library.last_update = Date.now();
 
-            if (library.type === 'movie') return this.scanMovies(library);
-            if (library.type === 'episode') return this.scanEpisodes(library);
-        } catch (err) {
-            this.logger.debug('Unable to scan');
+        if (library.type === 'movie') {
+            return this.scanMovies(library);
         }
+
+        if (library.type === 'episode') {
+            return this.scanEpisodes(library);
+        }
+
+        await this.libraryService.update(library.uid, library);
     }
 
     async scanMovies(library) {
         const newMoviesFiles = await this.directoryScanner.getNewFiles(library.path);
         return Promise.all(
-            newMoviesFiles.map(async path =>
-                this.movieService.create(await this.movieInfoProvider.execute(path, library))
-            )
+            newMoviesFiles.map(async path => this.createMovie(await this.movieInfoProvider.execute(path, library)))
         );
     }
 
     async scanEpisodes(library) {
         const newEpisodeFiles = await this.directoryScanner.getNewFiles(library.path);
-
         return Promise.all(
             newEpisodeFiles.map(async path => this.createEpisode(await this.episodeInfoProvider.execute(path, library)))
         );
     }
 
     async createEpisode(episode) {
-        this.episodeService.create(episode.episode);
+        let alreadyExist = await this.episodeService.tryGet(episode.episode.uid);
+        if (!alreadyExist) {
+            return this.episodeService.create(episode.episode);
+        }
+    }
+
+    async createMovie(movie) {
+        let alreadyExist = await this.movieService.tryGet(movie.uid);
+
+        if (!alreadyExist) {
+            return this.movieService.create(movie);
+        }
     }
 }

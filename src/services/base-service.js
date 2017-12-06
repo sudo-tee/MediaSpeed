@@ -29,10 +29,24 @@ export default class BaseService {
 
     async get(uid) {
         assertId(uid);
+        const ret = await this.store.get(uid);
 
-        return this.filterProperties(
-            await this.store.get(uid).then(NotFound.makeAssert(`Library with id "${uid}" not found`))
-        );
+        if (!ret) {
+            NotFound.makeAssert(`Entity with id "${uid}" not found`);
+        }
+
+        return this.filterProperties(ret);
+    }
+
+    async tryGet(uid) {
+        assertId(uid);
+        const ret = await this.store.get(uid);
+
+        if (!ret) {
+            return null;
+        }
+
+        return this.filterProperties(ret);
     }
 
     async create(data) {
