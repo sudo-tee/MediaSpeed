@@ -42,7 +42,8 @@ export default class EpisodeFilenameInfoProvider {
                 ...{
                     uid: seasonUid,
                     type: 'season',
-                    season_number: episodeInfo.season || 1
+                    season_number: seasonNumber,
+                    show_uid: showUid
                 }
             }
         };

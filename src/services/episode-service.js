@@ -26,8 +26,8 @@ export default class EpisodeService extends BaseService {
         super(episodeStore, props);
     }
 
-    async assertInput(data) {
-        BadRequest.assert(data, 'No todo payload given');
+    assertInput(data) {
+        BadRequest.assert(data, 'No episode payload given');
         BadRequest.assert(data.uid, 'uid is required');
         BadRequest.assert(data.name, 'name is required');
         BadRequest.assert(data.filePath, 'filepath is required');

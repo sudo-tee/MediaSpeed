@@ -61,12 +61,30 @@ Each GET api uses [node-mongo-querystring](https://github.com/Turistforeningen/n
 - <code>PUD</code>    /api/movies
 - <code>DELETE</code> /api/movies
 
-### Tv Shows Resource
+### Episodes Shows Resource
 - <code>GET</code>    /api/tv/episodes [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
 - <code>GET</code>    /api/tv/episodes/:uid
 - <code>POST</code>   /api/tv/episodes
 - <code>PUD</code>    /api/tv/episodes
 - <code>DELETE</code> /api/tv/episodes
+
+### Shows Resource
+- <code>GET</code>    /api/tv/shows [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
+- <code>GET</code>    /api/tv/shows/:uid
+- <code>GET</code>    /api/tv/shows/:uid/seasons `Gets all the seasons of a show`               
+- <code>GET</code>    /api/tv/shows/:uid/seasons/:sid `Gets a season for a show the seasons of a show by uid or by number`
+- <code>GET</code>    /api/tv/shows/:uid/seasons/:sid/episodes `Gets episodes for a season in show`
+- <code>GET</code>    /api/tv/shows/:uid/episodes `Gets all episodes for a show`
+- <code>POST</code>   /api/tv/shows
+- <code>PUD</code>    /api/tv/shows
+- <code>DELETE</code> /api/tv/shows
+
+### Seasons Resource
+- <code>GET</code>    /api/tv/seasons [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
+- <code>GET</code>    /api/tv/seasons/:uid
+- <code>POST</code>   /api/tv/seasons
+- <code>PUD</code>    /api/tv/seasons
+- <code>DELETE</code> /api/tv/seasons
 
 
 ## To start the project

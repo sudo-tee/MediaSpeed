@@ -9,22 +9,22 @@ export default class LokiAdapter {
     async find(query) {
         const qs = new MongoQS();
         const actualQuery = qs.parse(query);
-        this.logger.debug(`Finding ${this.collectionName} by ${actualQuery}`);
+        this.logger.debug(`Finding ${this.collectionName} by ${JSON.stringify(actualQuery)}`);
         return this.db.getCollection(this.collectionName).find(actualQuery);
     }
 
     async get(uid) {
-        return this.db.getCollection(this.collectionName).findOne({ uid: uid });
+        return this.db.getCollection(this.collectionName).by('uid', uid);
     }
 
     async create(data) {
-        this.logger.debug(`Created new ${this.collectionName}`, data);
+        this.logger.debug(`Created new ${this.collectionName} ${data.uid}`);
         return this.db.getCollection(this.collectionName).insert(data);
     }
 
     async update(uid, data) {
         const doc = await this.get(uid);
-        this.logger.debug(`Updated ${this.collectionName} ${uid}`, data);
+        this.logger.debug(`Updated ${this.collectionName} ${uid}`);
         const merged = { ...data, ...doc };
         return this.db.getCollection(this.collectionName).update(merged);
     }

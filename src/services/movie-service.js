@@ -42,8 +42,8 @@ export default class MovieService extends BaseService {
         super(movieStore, props);
     }
 
-    async assertInput(data) {
-        BadRequest.assert(data, 'No todo payload given');
+    assertInput(data) {
+        BadRequest.assert(data, 'No movie payload given');
         BadRequest.assert(data.uid, 'uid is required');
         BadRequest.assert(data.title, 'title is required');
         BadRequest.assert(data.filePath, 'filepath is required');
