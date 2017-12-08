@@ -1,6 +1,7 @@
 import { BadRequest } from 'fejl';
 import BaseService from './base-service';
 import fs from 'fs';
+import shorthash from 'shorthash';
 
 // Prevent overposting.
 const props = ['uid', 'name', 'path', 'type', 'last_update'];
@@ -12,6 +13,14 @@ const types = ['movie', 'episode'];
 export default class LibraryService extends BaseService {
     constructor(libraryStore) {
         super(libraryStore, props);
+    }
+
+    async create(data) {
+        console.log(data);
+        BadRequest.assert(fs.existsSync(data.path), 'path does not exist');
+        data.uid = data.uid || shorthash.unique(data.path);
+        this.assertInput(data);
+        return this.store.create(this.filterProperties(data));
     }
 
     assertInput(data) {

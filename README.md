@@ -12,7 +12,7 @@ Right now MediaSpeed is only a scraper/indexer with a rest API, there is no gui
 
 To create libraries you need to post them with the API
 
-The Scanner does not start automatically, I will add an API endpoint soon, It can only be triggered by API
+The Scanner does not start automatically, It can only be triggered by API
 
 
 ## Media Directory structure
@@ -53,6 +53,8 @@ Each GET api uses [node-mongo-querystring](https://github.com/Turistforeningen/n
 - <code>POST</code>   /api/libraries
 - <code>PUD</code>    /api/libraries
 - <code>DELETE</code> /api/libraries
+- <code>POST</code> /api/libraries:id/scan `Start a scan for one specific libraries`
+- <code>POST</code> /api/libraries/scan   `Start a scan for all libraries`    
 
 ### Movies Resource
 - <code>GET</code>    /api/movies [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support

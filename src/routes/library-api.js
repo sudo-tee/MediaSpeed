@@ -3,8 +3,23 @@ import { createController } from 'awilix-koa';
 import BaseRestApi from './base-api';
 
 class LibraryRestApi extends BaseRestApi {
-    constructor(libraryService) {
+    constructor(libraryService, libraryScanner) {
         super(libraryService);
+
+        this.libraryScanner = libraryScanner;
+    }
+
+    async scan(ctx) {
+        ctx.body = { message: 'ok' };
+
+        try {
+            const query = ctx.params.id ? { uid: ctx.params.id } : {};
+
+            const libraries = await this.service.find(query);
+            Promise.all(libraries.map(async lib => this.libraryScanner.scan(lib)));
+        } catch (err) {
+            console.log('Error occurred while scanning', err);
+        }
     }
 }
 
@@ -17,4 +32,6 @@ export default createController(LibraryRestApi)
     .get('/:id', 'get')
     .post('', 'create')
     .patch('/:id', 'update')
-    .delete('/:id', 'remove');
+    .delete('/:id', 'remove')
+    .post('/:id/scan', 'scan')
+    .post('/scan', 'scan');

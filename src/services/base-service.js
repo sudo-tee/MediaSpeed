@@ -46,7 +46,7 @@ export default class BaseService {
 
     async create(data) {
         this.assertInput(data);
-        return this.store.create(this.filterProperties(data));
+        return this.filterProperties(this.store.create(data));
     }
 
     async update(id, data) {
