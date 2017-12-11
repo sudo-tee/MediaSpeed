@@ -18,7 +18,13 @@ const props = [
     'vote_average',
     'vote_count',
     'show_uid',
-    'season_uid'
+    'season_uid',
+    'width',
+    'height',
+    'file_duration',
+    'file_size',
+    'bit_rate',
+    'video_codec'
 ];
 
 export default class EpisodeService extends BaseService {

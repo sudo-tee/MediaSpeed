@@ -55,6 +55,66 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@ffmpeg-installer/darwin-x64@4.0.4":
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/@ffmpeg-installer/darwin-x64/-/darwin-x64-4.0.4.tgz#21da9e291c323c94f2359bebf83093b21cddeb9e"
+
+"@ffmpeg-installer/ffmpeg@^1.0.13":
+  version "1.0.13"
+  resolved "https://registry.yarnpkg.com/@ffmpeg-installer/ffmpeg/-/ffmpeg-1.0.13.tgz#d5f90374d4c70436eef1cc3295eba7df9505aae6"
+  optionalDependencies:
+    "@ffmpeg-installer/darwin-x64" "4.0.4"
+    "@ffmpeg-installer/linux-ia32" "4.0.3"
+    "@ffmpeg-installer/linux-x64" "4.0.3"
+    "@ffmpeg-installer/win32-ia32" "4.0.3"
+    "@ffmpeg-installer/win32-x64" "4.0.2"
+
+"@ffmpeg-installer/linux-ia32@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@ffmpeg-installer/linux-ia32/-/linux-ia32-4.0.3.tgz#897ae8e41f107607ad3b92e4d1406b984c9b6a03"
+
+"@ffmpeg-installer/linux-x64@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@ffmpeg-installer/linux-x64/-/linux-x64-4.0.3.tgz#6beaad7648b88b9cff2dd12b9266bd8e1dcbed27"
+
+"@ffmpeg-installer/win32-ia32@4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@ffmpeg-installer/win32-ia32/-/win32-ia32-4.0.3.tgz#0fd675d1c159b8fba294faad485ebb8157f6537f"
+
+"@ffmpeg-installer/win32-x64@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ffmpeg-installer/win32-x64/-/win32-x64-4.0.2.tgz#288bd7480354695c30d02a945f24889a5982d9ff"
+
+"@ffprobe-installer/darwin-x64@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ffprobe-installer/darwin-x64/-/darwin-x64-4.0.2.tgz#874ae9f0af34a2e8a62f627d1d241aeb941c2dcc"
+
+"@ffprobe-installer/ffprobe@^1.0.8":
+  version "1.0.8"
+  resolved "https://registry.yarnpkg.com/@ffprobe-installer/ffprobe/-/ffprobe-1.0.8.tgz#60ee255d3993b861a46f23c4dbf04a767e0c4854"
+  optionalDependencies:
+    "@ffprobe-installer/darwin-x64" "4.0.2"
+    "@ffprobe-installer/linux-ia32" "4.0.2"
+    "@ffprobe-installer/linux-x64" "4.0.2"
+    "@ffprobe-installer/win32-ia32" "4.0.1"
+    "@ffprobe-installer/win32-x64" "4.0.1"
+
+"@ffprobe-installer/linux-ia32@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ffprobe-installer/linux-ia32/-/linux-ia32-4.0.2.tgz#9de54f3e8599b2b81acb9d07482f1a2fb510ea13"
+
+"@ffprobe-installer/linux-x64@4.0.2":
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/@ffprobe-installer/linux-x64/-/linux-x64-4.0.2.tgz#49aa6d1ed63e4cba73b76981fdb00e19580df4aa"
+
+"@ffprobe-installer/win32-ia32@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@ffprobe-installer/win32-ia32/-/win32-ia32-4.0.1.tgz#c5f33e24b487d3105a018e09d1e6a506b86398fa"
+
+"@ffprobe-installer/win32-x64@4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@ffprobe-installer/win32-x64/-/win32-x64-4.0.1.tgz#039b8292673402d75615d047d0995d39293a1d70"
+
 "@koa/cors@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@koa/cors/-/cors-2.2.1.tgz#c06a1c34d787e3cee79c0d4c20e8952d1b6d75c5"
@@ -256,15 +316,15 @@ async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
-async@^1.4.0, async@^1.5.2:
-  version "1.5.2"
-  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
-
-async@^2.1.4:
+async@>=0.2.9, async@^2.1.4:
   version "2.6.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.6.0.tgz#61a29abb6fcc026fea77e56d1c6ec53a795951f4"
   dependencies:
     lodash "^4.14.0"
+
+async@^1.4.0, async@^1.5.2:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
 asynckit@^0.4.0:
   version "0.4.0"
@@ -1802,6 +1862,13 @@ flat-cache@^1.2.1:
     del "^2.0.2"
     graceful-fs "^4.1.2"
     write "^0.2.1"
+
+fluent-ffmpeg@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/fluent-ffmpeg/-/fluent-ffmpeg-2.1.2.tgz#c952de2240f812ebda0aa8006d7776ee2acf7d74"
+  dependencies:
+    async ">=0.2.9"
+    which "^1.1.1"
 
 follow-redirects@^1.2.5:
   version "1.2.6"
@@ -4599,7 +4666,7 @@ which-module@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/which-module/-/which-module-2.0.0.tgz#d9ef07dce77b9902b8a3a8fa4b31c3e3f7e6e87a"
 
-which@^1.2.10, which@^1.2.12, which@^1.2.9:
+which@^1.1.1, which@^1.2.10, which@^1.2.12, which@^1.2.9:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/which/-/which-1.3.0.tgz#ff04bdfc010ee547d780bec38e1ac1c2777d253a"
   dependencies:

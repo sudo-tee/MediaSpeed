@@ -11,6 +11,9 @@ import movieScanner from './scanner/movie-scanner';
 import episodeScanner from './scanner/episode-scanner';
 import EventEmitter from 'events';
 import camelCase from 'camel-case';
+import ffmpeg from '@ffmpeg-installer/ffmpeg';
+import ffprobe from '@ffprobe-installer/ffprobe';
+import ffmpegApi from '../lib/ffmpeg';
 
 /**
  * Using Awilix, the following files and folders (glob patterns)
@@ -58,7 +61,10 @@ export async function configureContainer() {
         .register('directoryScanner', asClass(recursiveDirectoryReader)) // Replace something that will retreive only new files
         .register('movieNameExtractor', asValue({ extract: tnp }))
         .register('episodeNameExtractor', asValue({ extract: episode => epinfer.process(episode).getData() }))
-        .register('eventEmitter', asClass(EventEmitter).singleton());
+        .register('eventEmitter', asClass(EventEmitter).singleton())
+        .register('ffmpeg', asValue(ffmpeg))
+        .register('ffprobe', asValue(ffprobe))
+        .register('ffmpegApi', asFunction(ffmpegApi));
 
     // Bootstrap info Providers so they can use the events at any time
     const result = container.listModules(['./lib/extended-info-providers/*.js'], { cwd: `${__dirname}/..` });

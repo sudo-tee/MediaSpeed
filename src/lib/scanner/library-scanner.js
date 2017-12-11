@@ -30,7 +30,6 @@ export default class LibraryScanner {
         for (const index in newMoviesFiles) {
             const path = newMoviesFiles[index];
 
-            // @todo migrate to MovieScanner
             await this.movieScanner.execute(path, library);
         }
     }

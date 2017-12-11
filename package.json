@@ -19,6 +19,8 @@
     "precommit": "lint-staged"
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.0.13",
+    "@ffprobe-installer/ffprobe": "^1.0.8",
     "@koa/cors": "^2.2.1",
     "awilix": "^2.10.0",
     "awilix-koa": "^1.0.2",
@@ -27,6 +29,7 @@
     "camel-case": "^3.0.0",
     "epinfer": "^1.1.4",
     "fejl": "^1.0.2",
+    "fluent-ffmpeg": "^2.1.2",
     "keyblade": "^0.3.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",

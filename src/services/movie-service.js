@@ -32,9 +32,14 @@ const props = [
     'spoken_languages',
     'status',
     'tagline',
-    'video',
     'vote_average',
-    'vote_count'
+    'vote_count',
+    'width',
+    'height',
+    'file_duration',
+    'file_size',
+    'bit_rate',
+    'video_codec'
 ];
 
 export default class MovieService extends BaseService {
