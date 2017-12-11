@@ -9,18 +9,20 @@ export default class LibraryScanner {
     }
 
     async scan(library) {
-        this.logger.info('scanning ' + library.path);
+        this.logger.info('Scanning ' + library.path);
 
         library.last_update = Date.now();
         await this.libraryService.update(library.uid, library);
 
         if (library.type === 'movie') {
-            return this.scanMovies(library);
+            await this.scanMovies(library);
         }
 
         if (library.type === 'episode') {
-            return this.scanEpisodes(library);
+            await this.scanEpisodes(library);
         }
+
+        this.logger.info('Finished scanning ' + library.path);
     }
 
     async scanMovies(library) {
@@ -38,7 +40,6 @@ export default class LibraryScanner {
         for (const index in newEpisodeFiles) {
             const path = newEpisodeFiles[index];
 
-            // @todo rename EpisodeScanner
             await this.episodeScanner.execute(path, library);
         }
     }

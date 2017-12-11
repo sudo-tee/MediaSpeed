@@ -2,10 +2,11 @@ import memoize from 'memoized-decorator';
 import EventsEnum from '../events-enum';
 
 export default class MovieTmdbInfoProvider {
-    constructor(movieDbApi, logger, eventEmitter) {
+    constructor(movieDbApi, logger, eventEmitter, movieService) {
         this.movieDbApi = movieDbApi;
         this.logger = logger;
         this.eventEmitter = eventEmitter;
+        this.movieService = movieService;
 
         this.eventEmitter.on(EventsEnum.MOVIE_CREATED, movie => this.execute(movie));
     }
@@ -13,7 +14,9 @@ export default class MovieTmdbInfoProvider {
     async execute(movie) {
         const movieInfo = await this.getMovieInfo(movie);
 
-        return { ...movie, ...movieInfo };
+        movie = { ...movie, ...movieInfo };
+
+        this.movieService.update(movie.uid, movie);
     }
 
     async getMovieInfo(movie) {
