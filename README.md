@@ -2,9 +2,11 @@
 
 An experimental mini media server like plex/emby. It tries to be fast light and easy.
 
-MediaSpeed was inspired by this cool little node media server:
+MediaSpeed was inspired by this cool little node media servers:
 
 https://github.com/OwenRay/Remote-MediaServer
+
+https://github.com/jansmolders86/mediacenterjs
 
 ## Status
 
@@ -127,5 +129,7 @@ MIT.
 [koa-es7-boilerplate](https://github.com/jeffijoe/koa-es7-boilerplate)
 
 [Remote-MediaServer](https://github.com/OwenRay/Remote-MediaServer)
+
+[MediaCenterJS](https://github.com/jansmolders86/mediacenterjs)
 
 [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring)

@@ -1,5 +1,6 @@
 import memoize from 'memoized-decorator';
 import { pick } from 'lodash';
+import EventsEnum from '../events-enum';
 
 const showFields = [
     'backdrop_path',
@@ -44,66 +45,74 @@ const episodeFields = [
 ];
 
 export default class EpisodeTmdbInfoProvider {
-    constructor(movieDbApi) {
+    constructor(movieDbApi, eventEmitter, episodeService, showService, seasonService, logger) {
         this.movieDbApi = movieDbApi;
+        this.eventEmitter = eventEmitter;
+        this.episodeService = episodeService;
+        this.showService = showService;
+        this.seasonService = seasonService;
+        this.logger = logger;
+
+        this.eventEmitter.on(EventsEnum.EPISODE_CREATED, (episode, season, show) =>
+            this.execute(episode, season, show)
+        );
     }
 
-    async execute(episode) {
-        const episodeInfo = await this.getepisodeInfo(episode);
+    async execute(episode, season, show) {
+        const episodeInfo = await this.updateExtendedInfo(episode, season, show);
 
         return { ...episode, ...episodeInfo };
     }
 
-    async getepisodeInfo(episode) {
-        console.log('fetching information for ' + episode.episode.show_name);
+    async updateExtendedInfo(episode, season, show) {
+        try {
+            let searchDetails = await this.searchEpisode(episode.show_name);
+            const showDetails = await this.getEpisodeDetails(searchDetails.id, episode.season_number);
+            const seasonDetails = this.getSeasonDetails(showDetails, episode.season_number);
+            const episodeDetails = seasonDetails['episodes'][episode.episode_number - 1];
 
-        let shows = await this.searchEpisode(episode.episode.show_name);
-
-        if (!shows.results.length) {
-            return episode;
-        }
-
-        const showDetails = await this.getEpisodeDetails(shows.results[0].id, episode.episode.season_number);
-        const seasonDetails = this.getSeasonDetails(showDetails, episode.episode.season_number);
-        const episodeDetails = seasonDetails['episodes'][episode.episode.episode_number - 1];
-
-        return {
-            show: {
-                ...episode.show,
-                ...pick(showDetails, showFields),
-                ...{ tmdb_id: showDetails.id }
-            },
-            episode: {
-                ...episode.episode,
+            episode = {
+                ...episode,
                 ...pick(episodeDetails, episodeFields),
                 ...{ tmdb_id: episodeDetails.id }
-            },
-            season: {
-                ...episode.season,
+            };
+
+            show = {
+                ...show,
+                ...pick(showDetails, showFields),
+                ...{ tmdb_id: showDetails.id }
+            };
+
+            season = {
+                ...season,
                 ...pick(seasonDetails, seasonFields),
                 ...{ tmdb_id: seasonDetails.id }
-            }
-        };
+            };
+
+            this.episodeService.update(episode.uid, episode);
+            this.showService.update(show.uid, show);
+            this.seasonService.update(season.uid, season);
+        } catch (err) {
+            this.logger.debug(err);
+            return episode;
+        }
     }
 
     @memoize
     async searchEpisode(title) {
-        console.log('no cache searchepisode', title);
-        try {
-            return this.movieDbApi.request('/search/tv?query={query}', 'GET', {
-                query: encodeURIComponent(title)
-            });
-        } catch (err) {
-            return {};
-        }
+        this.logger.debug('no cache searchEpisode', title);
+
+        return this.movieDbApi.searchTv({
+            query: title
+        });
     }
 
     @memoize
     async getEpisodeDetails(showId, season) {
-        console.log('no cache getepisodeDetails', showId, season);
+        this.logger.debug('no cache getEpisodeDetails', showId, season);
 
-        return this.movieDbApi.request('/tv/{id}?append_to_response={append_to_response}', 'GET', {
-            id: encodeURIComponent(showId),
+        return this.movieDbApi.tvInfo({
+            id: showId,
             append_to_response: 'season/' + season
         });
     }

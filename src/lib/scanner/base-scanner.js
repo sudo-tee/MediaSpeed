@@ -1,7 +1,7 @@
 import path from 'path';
 import shorthash from 'shorthash';
 
-export default class BaseInfoProvider {
+export default class BaseScanner {
     execute(filePath, library) {
         return {
             uid: shorthash.unique(filePath),

@@ -6,8 +6,11 @@ import config from '../../config.json';
 import recursiveDirectoryReader from './scanner/recursive-directory-reader';
 import tnp from 'torrent-name-parser';
 import epinfer from 'epinfer';
-
 import libraryScanner from './scanner/library-scanner';
+import movieScanner from './scanner/movie-scanner';
+import episodeScanner from './scanner/episode-scanner';
+import EventEmitter from 'events';
+import camelCase from 'camel-case';
 
 /**
  * Using Awilix, the following files and folders (glob patterns)
@@ -18,7 +21,7 @@ const modulesToLoad = [
     // This means that each request gets a separate instance
     // of a service.
     ['services/*.js', Lifetime.SCOPED],
-    ['lib/extended-info-providers/*-provider.js', Lifetime.SCOPED],
+    ['lib/extended-info-providers/*-provider.js', Lifetime.SINGLETON],
     // Stores will be singleton (1 instance per process).
     // This is just for demo purposes, you can do whatever you want.
     ['stores/*.js', Lifetime.SINGLETON]
@@ -37,7 +40,7 @@ export async function configureContainer() {
         resolutionMode: ResolutionMode.CLASSIC
     };
 
-    return createContainer(opts)
+    const container = createContainer(opts)
         .loadModules(modulesToLoad, {
             // `modulesToLoad` paths should be relative
             // to this file's parent directory.
@@ -49,8 +52,17 @@ export async function configureContainer() {
         .register('movieDbApiKey', asValue(config.moviedb_api_key))
         .register('movieDbApi', asFunction(movieDbApi).singleton())
         .register('db', await asValue(db))
-        .register('libraryScanner', asClass(libraryScanner))
+        .register('libraryScanner', asClass(libraryScanner).singleton())
+        .register('movieScanner', asClass(movieScanner))
+        .register('episodeScanner', asClass(episodeScanner))
         .register('directoryScanner', asClass(recursiveDirectoryReader)) // Replace something that will retreive only new files
         .register('movieNameExtractor', asValue({ extract: tnp }))
-        .register('episodeNameExtractor', asValue({ extract: episode => epinfer.process(episode).getData() }));
+        .register('episodeNameExtractor', asValue({ extract: episode => epinfer.process(episode).getData() }))
+        .register('eventEmitter', asClass(EventEmitter).singleton());
+
+    // Bootstrap info Providers so they can use the events at any time
+    const result = container.listModules(['./lib/extended-info-providers/*.js'], { cwd: `${__dirname}/..` });
+    result.forEach(result => container.resolve(camelCase(result.name)));
+
+    return container;
 }

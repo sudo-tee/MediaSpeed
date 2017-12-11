@@ -1,6 +1,13 @@
+import memoize from 'memoized-decorator';
+import EventsEnum from '../events-enum';
+
 export default class MovieTmdbInfoProvider {
-    constructor(movieDbApi) {
+    constructor(movieDbApi, logger, eventEmitter) {
         this.movieDbApi = movieDbApi;
+        this.logger = logger;
+        this.eventEmitter = eventEmitter;
+
+        this.eventEmitter.on(EventsEnum.MOVIE_CREATED, movie => this.execute(movie));
     }
 
     async execute(movie) {
@@ -9,40 +16,36 @@ export default class MovieTmdbInfoProvider {
         return { ...movie, ...movieInfo };
     }
 
-    async getMovieInfo(item) {
-        console.log('fetching information for ' + item.title);
-
-        let shows = await this.searchMovie(item.title);
-
-        if (!shows.results.length) {
-            return item;
-        }
-        item.tmdb_movie_id = shows.results[0].id;
-
-        let movieDetails = await this.getMovieDetails(item.tmdb_movie_id);
-
-        return { ...item, ...movieDetails };
-    }
-
-    // @todo memoize
-    async searchMovie(title, year) {
-        console.log('no cache searchMovie', title);
+    async getMovieInfo(movie) {
+        // console.log('fetching information for ' + item.title);
         try {
-            return this.movieDbApi.request('/search/movie?query={query}&year={year}', 'GET', {
-                query: encodeURIComponent(title),
-                year: year
-            });
+            let movieResult = await this.searchMovie(movie.title);
+            movie.tmdb_movie_id = movieResult.id;
+
+            let movieDetails = await this.getMovieDetails(movie.tmdb_movie_id);
+
+            return { ...movie, ...movieDetails };
         } catch (err) {
-            return {};
+            return movie;
         }
     }
 
-    // @todo memoize
-    async getMovieDetails(movieId) {
-        console.log('no cache getMovieDetails', movieId);
+    @memoize
+    async searchMovie(title, year) {
+        this.logger.debug('no cache searchMovie', title);
 
-        return this.movieDbApi.request('/movie/{id}', 'GET', {
-            id: encodeURIComponent(movieId)
+        return this.movieDbApi.searchMovie({
+            query: title,
+            year: year
+        });
+    }
+
+    @memoize
+    async getMovieDetails(movieId) {
+        this.logger.debug('no cache getMovieDetails', movieId);
+
+        return this.movieDbApi.movieInfo({
+            id: movieId
         });
     }
 }

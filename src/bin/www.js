@@ -2,6 +2,9 @@ import { createServer } from '../lib/server';
 import { env } from '../lib/env';
 import { logger } from '../lib/logger';
 
+process.on('unhandledRejection', (reason, p) => {
+    console.log('Unhandled Rejection at:', p, 'reason:', reason);
+});
 createServer().then(
     app =>
         app.listen(env.PORT, () => {

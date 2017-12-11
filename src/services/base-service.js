@@ -29,7 +29,9 @@ export default class BaseService {
 
     async get(uid) {
         assertId(uid);
-        const ret = await this.store.get(uid).then(NotFound.makeAssert(`Library with id "${uid}" not found`));
+        const ret = await this.store
+            .get(uid)
+            .then(NotFound.makeAssert(`${this.store.collectionName} with id "${uid}" not found`));
         return this.filterProperties(ret);
     }
 
@@ -46,12 +48,12 @@ export default class BaseService {
 
     async create(data) {
         this.assertInput(data);
-        return this.filterProperties(this.store.create(data));
+        return this.filterProperties(await this.store.create(data));
     }
 
     async update(id, data) {
         assertId(id);
-        BadRequest.assert(data, 'No library payload given');
+        BadRequest.assert(data, 'No payload given');
 
         await this.get(id);
 

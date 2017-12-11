@@ -18,7 +18,7 @@ export default class LokiAdapter {
     }
 
     async create(data) {
-        this.logger.debug(`Created new ${this.collectionName} ${data.uid}`);
+        this.logger.debug(`Creating new ${this.collectionName} ${data.uid}`);
         return this.db.getCollection(this.collectionName).insert(data);
     }
 
@@ -31,7 +31,7 @@ export default class LokiAdapter {
 
     async remove(uid) {
         const doc = await this.get(uid);
-        this.logger.debug(`Removed ${this.collectionName} ${uid}`);
+        this.logger.debug(`Removing ${this.collectionName} ${uid}`);
         return this.db.getCollection('movies').update(doc);
     }
 }
