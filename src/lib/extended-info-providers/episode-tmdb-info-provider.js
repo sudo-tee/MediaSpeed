@@ -89,9 +89,13 @@ export default class EpisodeTmdbInfoProvider {
                 ...{ tmdb_id: seasonDetails.id }
             };
 
-            this.episodeService.update(episode.uid, episode);
-            this.showService.update(show.uid, show);
-            this.seasonService.update(season.uid, season);
+            await this.episodeService.update(episode.uid, episode);
+            await this.showService.update(show.uid, show);
+            await this.seasonService.update(season.uid, season);
+
+            this.eventEmitter.emit(EventsEnum.TMDB_INFO_UPDATED, episode);
+            this.eventEmitter.emit(EventsEnum.TMDB_INFO_UPDATED, show);
+            this.eventEmitter.emit(EventsEnum.TMDB_INFO_UPDATED, season);
         } catch (err) {
             this.logger.debug(err);
             return episode;

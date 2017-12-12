@@ -16,7 +16,8 @@ export default class MovieTmdbInfoProvider {
 
         movie = { ...movie, ...movieInfo };
 
-        this.movieService.update(movie.uid, movie);
+        await this.movieService.update(movie.uid, movie);
+        this.eventEmitter.emit(EventsEnum.TMDB_INFO_UPDATED, movie);
     }
 
     async getMovieInfo(movie) {

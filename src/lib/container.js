@@ -14,6 +14,7 @@ import camelCase from 'camel-case';
 import ffmpeg from '@ffmpeg-installer/ffmpeg';
 import ffprobe from '@ffprobe-installer/ffprobe';
 import ffmpegApi from '../lib/ffmpeg';
+import imageDownloader from 'image-downloader';
 
 /**
  * Using Awilix, the following files and folders (glob patterns)
@@ -64,7 +65,9 @@ export async function configureContainer() {
         .register('eventEmitter', asClass(EventEmitter).singleton())
         .register('ffmpeg', asValue(ffmpeg))
         .register('ffprobe', asValue(ffprobe))
-        .register('ffmpegApi', asFunction(ffmpegApi));
+        .register('ffmpegApi', asFunction(ffmpegApi))
+        .register('imageDownloader', asValue(imageDownloader))
+        .register('imageDestinationFolder', asValue(`${__dirname}/../../cache/images`));
 
     // Bootstrap info Providers so they can use the events at any time
     const result = container.listModules(['./lib/extended-info-providers/*.js'], { cwd: `${__dirname}/..` });

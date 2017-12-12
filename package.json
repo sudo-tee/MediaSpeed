@@ -30,6 +30,7 @@
     "epinfer": "^1.1.4",
     "fejl": "^1.0.2",
     "fluent-ffmpeg": "^2.1.2",
+    "image-downloader": "^3.3.0",
     "keyblade": "^0.3.2",
     "koa": "^2.3.0",
     "koa-bodyparser": "^4.2.0",
