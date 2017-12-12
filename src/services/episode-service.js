@@ -24,7 +24,8 @@ const props = [
     'file_duration',
     'file_size',
     'bit_rate',
-    'video_codec'
+    'video_codec',
+    'screenshot_path'
 ];
 
 export default class EpisodeService extends BaseService {
