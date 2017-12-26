@@ -15,6 +15,8 @@ import ffmpeg from '@ffmpeg-installer/ffmpeg';
 import ffprobe from '@ffprobe-installer/ffprobe';
 import ffmpegApi from '../lib/ffmpeg';
 import imageDownloader from 'image-downloader';
+import basicStreamer from './streamer/basic-streamer';
+import ffmpegStreamer from './streamer/ffmpeg-streamer';
 
 /**
  * Using Awilix, the following files and folders (glob patterns)
@@ -67,7 +69,9 @@ export async function configureContainer() {
         .register('ffprobe', asValue(ffprobe))
         .register('ffmpegApi', asFunction(ffmpegApi))
         .register('imageDownloader', asValue(imageDownloader))
-        .register('imageDestinationFolder', asValue(`${__dirname}/../../cache/images`));
+        .register('imageDestinationFolder', asValue(`${__dirname}/../../cache/images`))
+        .register('ffmpegStreamer', asClass(ffmpegStreamer))
+        .register('basicStreamer', asClass(basicStreamer));
 
     // Bootstrap info Providers so they can use the events at any time
     const result = container.listModules(['./lib/extended-info-providers/*.js'], { cwd: `${__dirname}/..` });

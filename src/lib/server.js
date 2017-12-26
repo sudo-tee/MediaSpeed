@@ -54,5 +54,6 @@ export async function createServer() {
     });
 
     logger.debug('Server created, ready to listen', { scope: 'startup' });
+
     return server;
 }

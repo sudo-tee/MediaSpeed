@@ -41,7 +41,7 @@ export default class FFMpegImageProvider {
                     timestamps: ['50%'],
                     filename: media.uid + '_screenshot.jpg',
                     folder: this.imageDestinationFolder,
-                    size: '360x240'
+                    size: '640x?'
                 })
                 .on('end', () => {
                     resolve(media.uid + '_screenshot.jpg');

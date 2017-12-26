@@ -10,6 +10,8 @@ https://github.com/jansmolders86/mediacenterjs
 
 ## Status
 
+Everything is still very experimental
+
 Right now MediaSpeed is only a scraper/indexer with a rest API, there is no gui
 
 To create libraries you need to post them with the API
@@ -89,6 +91,15 @@ Each GET api uses [node-mongo-querystring](https://github.com/Turistforeningen/n
 - <code>POST</code>   /api/tv/seasons
 - <code>PUD</code>    /api/tv/seasons
 - <code>DELETE</code> /api/tv/seasons
+
+### Stream media file
+- <code>GET</code>    /stream/movie/:uid `Range seekable raw stream for a movie` 
+- <code>GET</code>    /stream/episode/:uid `Range seekable raw stream for an episode` 
+- <code>GET</code>    /stream/transcode/movie/:uid `Experimental live ffmpeg transcoding` 
+- <code>GET</code>    /stream/transcode/episode/:uid `Experimental live ffmpeg transcoding` 
+
+#### Transcoding
+Right the transcoding is very basic and is not to clever. you can seek through a video by adding the `q` parameter like so `?q=2973.84760964912` it will seek the video file to this timestamp (It will mess up the progress bar in the apps).
 
 
 ## To start the project
