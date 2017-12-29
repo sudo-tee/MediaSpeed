@@ -8,5 +8,6 @@ config.json
 media.db
 todo
 src/bin/test.js
+src/bin/test*.js
 cache
 cache/*
