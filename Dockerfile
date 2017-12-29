@@ -1,7 +1,12 @@
 FROM mhart/alpine-node:8
 
 RUN mkdir -p /code
-VOLUME ["/media"]
+RUN mkdir -p /data
+
+ENV DATA_FOLDER /data
+
+VOLUME ["/media", "/data"]
+
 WORKDIR /code
 ADD . /code
 RUN npm install -g -s --no-progress yarn && \

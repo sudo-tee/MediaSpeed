@@ -2,7 +2,6 @@ import { createContainer, Lifetime, ResolutionMode, asValue, asFunction, asClass
 import { logger } from './logger';
 import movieDbApi from '../lib/moviedb';
 import database from '../lib/database';
-import config from '../../config.json';
 import recursiveDirectoryReader from './scanner/recursive-directory-reader';
 import tnp from 'torrent-name-parser';
 import epinfer from 'epinfer';
@@ -44,20 +43,26 @@ const modulesToLoad = [
  */
 export async function configureContainer() {
     const opts = {
-        // Classic means Awilix will look at function parameter
-        // names rather than passing a Proxy.
         resolutionMode: ResolutionMode.CLASSIC
     };
+
     // @todo create a bootstrap sequence
-    const dataFolder = config.data_folder || path.join(process.env.HOME, '.media_speed');
+    const dataFolder = process.env.DATA_FOLDER || path.join(process.env.HOME, '.media_speed');
     const imagesFolder = path.join(dataFolder, 'cache', 'images');
     const transcodingTempFolder = path.join(dataFolder, 'cache', 'transcoding_temp');
     await fsExtra.ensureDir(dataFolder);
     await fsExtra.ensureDir(imagesFolder);
     await fsExtra.ensureDir(transcodingTempFolder);
 
-    const db = await database(dataFolder);
+    const configFile = path.join(dataFolder, 'config.json');
 
+    if (!fsExtra.existsSync(configFile)) {
+        await fsExtra.copy(`${__dirname}/../../config.json.dist`, path.join(dataFolder, 'config.json'));
+    }
+
+    const config = JSON.parse(await fsExtra.readFile(configFile, 'utf8'));
+
+    const db = await database(dataFolder);
     const container = createContainer(opts)
         .loadModules(modulesToLoad, {
             // `modulesToLoad` paths should be relative
@@ -86,7 +91,7 @@ export async function configureContainer() {
         .register('basicStreamer', asClass(basicStreamer))
 
         // Config Elements
-        .register('movieDbApiKey', asValue(process.env.MOVIE_DB_API_KEY || config.moviedb_api_key))
+        .register('movieDbApiKey', asValue(config.moviedb_api_key))
         .register('dataFolder', asValue(dataFolder))
         .register('imageDestinationFolder', asValue(imagesFolder))
         .register('transcodingTempFolder', asValue(transcodingTempFolder));

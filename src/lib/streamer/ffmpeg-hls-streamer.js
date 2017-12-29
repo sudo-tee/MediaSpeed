@@ -44,7 +44,7 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .addOption('-bsf:v', 'h264_mp4toannexb')
                 .addOption('-pix_fmt', 'yuv420p')
                 .addOption('-metadata', 'provider_name=Media Speed')
-                .addOption('-metadata', 'service_name=' + this.media.title)
+                .addOption('-metadata', 'service_name=' + (this.media.title || this.media.name))
                 .addOption('-map_chapters', -1)
                 .addOption('-map_metadata', -1)
                 .addOption('-preset', 'ultrafast')
@@ -79,12 +79,10 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
     }
 
     getStream(segment) {
-        // @todo prevent infinite Loop (3 retry) and segment not greatert than total.
+        // @todo prevent infinite Loop (3 retry) and segment not greater than total.
         return new Promise((resolve, reject) => {
-            this.duration = 3895.789;
-
-            this.numberOfFullSegment = Math.floor(this.duration / this.segmentTime);
-            this.segmentDuration = this.duration / this.numberOfFullSegment;
+            this.numberOfFullSegment = Math.floor(this.media.file_duration / this.segmentTime);
+            this.segmentDuration = this.media.file_duration / this.numberOfFullSegment;
             const seekTime = this.segmentDuration * segment;
 
             let str = stream.PassThrough();
