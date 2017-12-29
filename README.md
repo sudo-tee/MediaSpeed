@@ -21,7 +21,7 @@ The Scanner does not start automatically, It can only be triggered by API
 
 ## Media Directory structure
 
-MediaSpeed tries to work with any directory structure, but it work best of you follow these simple rules
+MediaSpeed tries to work with any directory structure, but it work best if you follow these simple rules
 
 ### Movies
 
@@ -97,9 +97,13 @@ Each GET api uses [node-mongo-querystring](https://github.com/Turistforeningen/n
 - <code>GET</code>    /stream/episode/:uid `Range seekable raw stream for an episode` 
 - <code>GET</code>    /stream/transcode/movie/:uid `Experimental live ffmpeg transcoding` 
 - <code>GET</code>    /stream/transcode/episode/:uid `Experimental live ffmpeg transcoding` 
+- <code>GET</code>    /stream/hls/movie/:uid `Experimental live ffmpeg hls transcoding` 
+- <code>GET</code>    /stream/hls/episode/:uid `Experimental live ffmpeg hls transcoding` 
 
 #### Transcoding
 Right the transcoding is very basic and is not to clever. you can seek through a video by adding the `q` parameter like so `?q=2973.84760964912` it will seek the video file to this timestamp (It will mess up the progress bar in the apps).
+
+Hls transcoding provide a more native way of seeking with segments.
 
 
 ## To start the project

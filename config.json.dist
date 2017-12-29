@@ -1,3 +1,4 @@
 {
-  "moviedb_api_key": ""
+  "moviedb_api_key": "",
+  "data_folder":  false /* defaults to  ~/.media_speed */
 }

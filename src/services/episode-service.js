@@ -36,7 +36,7 @@ export default class EpisodeService extends BaseService {
     assertInput(data) {
         BadRequest.assert(data, 'No episode payload given');
         BadRequest.assert(data.uid, 'uid is required');
-        BadRequest.assert(data.name, 'name is required');
+        BadRequest.assert(data.name, 'name is required'); // @todo change to title..
         BadRequest.assert(data.filePath, 'filepath is required');
         BadRequest.assert(data.fileName, 'filename does not exist');
         BadRequest.assert(data.episode_number, 'episode_number does not exist');

@@ -17,6 +17,10 @@ import ffmpegApi from '../lib/ffmpeg';
 import imageDownloader from 'image-downloader';
 import basicStreamer from './streamer/basic-streamer';
 import ffmpegStreamer from './streamer/ffmpeg-streamer';
+import ffmpegHlsStreamer from './streamer/ffmpeg-hls-streamer';
+import M3u8Generator from './streamer/m3u8-generator';
+import fsExtra from 'fs-extra';
+import path from 'path';
 
 /**
  * Using Awilix, the following files and folders (glob patterns)
@@ -46,6 +50,14 @@ export async function configureContainer() {
         resolutionMode: ResolutionMode.CLASSIC
     };
 
+    // @todo create a bootstrap sequence
+    const dataDir = config.data_folder || path.join(process.env.HOME, '.media_speed');
+    const imagesFolder = path.join(dataDir, 'cache', 'images');
+    const transcodingTempFolder = path.join(dataDir, 'cache', 'transcoding_temp');
+    await fsExtra.ensureDir(dataDir);
+    await fsExtra.ensureDir(imagesFolder);
+    await fsExtra.ensureDir(transcodingTempFolder);
+
     const container = createContainer(opts)
         .loadModules(modulesToLoad, {
             // `modulesToLoad` paths should be relative
@@ -55,7 +67,6 @@ export async function configureContainer() {
             formatName: 'camelCase'
         })
         .register('logger', asValue(logger))
-        .register('movieDbApiKey', asValue(config.moviedb_api_key))
         .register('movieDbApi', asFunction(movieDbApi).singleton())
         .register('db', await asValue(db))
         .register('libraryScanner', asClass(libraryScanner).singleton())
@@ -69,9 +80,15 @@ export async function configureContainer() {
         .register('ffprobe', asValue(ffprobe))
         .register('ffmpegApi', asFunction(ffmpegApi))
         .register('imageDownloader', asValue(imageDownloader))
-        .register('imageDestinationFolder', asValue(`${__dirname}/../../cache/images`))
+        .register('m3u8Generator', asClass(M3u8Generator))
         .register('ffmpegStreamer', asClass(ffmpegStreamer))
-        .register('basicStreamer', asClass(basicStreamer));
+        .register('ffmpegHlsStreamer', asClass(ffmpegHlsStreamer).singleton())
+        .register('basicStreamer', asClass(basicStreamer))
+
+        // Config Elements
+        .register('movieDbApiKey', asValue(config.moviedb_api_key))
+        .register('imageDestinationFolder', asValue(imagesFolder))
+        .register('transcodingTempFolder', asValue(transcodingTempFolder));
 
     // Bootstrap info Providers so they can use the events at any time
     const result = container.listModules(['./lib/extended-info-providers/*.js'], { cwd: `${__dirname}/..` });
