@@ -50,7 +50,6 @@ export async function configureContainer() {
     };
     // @todo create a bootstrap sequence
     const dataFolder = config.data_folder || path.join(process.env.HOME, '.media_speed');
-
     const imagesFolder = path.join(dataFolder, 'cache', 'images');
     const transcodingTempFolder = path.join(dataFolder, 'cache', 'transcoding_temp');
     await fsExtra.ensureDir(dataFolder);
@@ -87,7 +86,7 @@ export async function configureContainer() {
         .register('basicStreamer', asClass(basicStreamer))
 
         // Config Elements
-        .register('movieDbApiKey', asValue(config.moviedb_api_key))
+        .register('movieDbApiKey', asValue(process.env.MOVIE_DB_API_KEY || config.moviedb_api_key))
         .register('dataFolder', asValue(dataFolder))
         .register('imageDestinationFolder', asValue(imagesFolder))
         .register('transcodingTempFolder', asValue(transcodingTempFolder));
