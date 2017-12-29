@@ -43,20 +43,21 @@ const modulesToLoad = [
  * @return {Object} The container.
  */
 export async function configureContainer() {
-    const db = await database();
     const opts = {
         // Classic means Awilix will look at function parameter
         // names rather than passing a Proxy.
         resolutionMode: ResolutionMode.CLASSIC
     };
-
     // @todo create a bootstrap sequence
-    const dataDir = config.data_folder || path.join(process.env.HOME, '.media_speed');
-    const imagesFolder = path.join(dataDir, 'cache', 'images');
-    const transcodingTempFolder = path.join(dataDir, 'cache', 'transcoding_temp');
-    await fsExtra.ensureDir(dataDir);
+    const dataFolder = config.data_folder || path.join(process.env.HOME, '.media_speed');
+
+    const imagesFolder = path.join(dataFolder, 'cache', 'images');
+    const transcodingTempFolder = path.join(dataFolder, 'cache', 'transcoding_temp');
+    await fsExtra.ensureDir(dataFolder);
     await fsExtra.ensureDir(imagesFolder);
     await fsExtra.ensureDir(transcodingTempFolder);
+
+    const db = await database(dataFolder);
 
     const container = createContainer(opts)
         .loadModules(modulesToLoad, {
@@ -87,6 +88,7 @@ export async function configureContainer() {
 
         // Config Elements
         .register('movieDbApiKey', asValue(config.moviedb_api_key))
+        .register('dataFolder', asValue(dataFolder))
         .register('imageDestinationFolder', asValue(imagesFolder))
         .register('transcodingTempFolder', asValue(transcodingTempFolder));
 
