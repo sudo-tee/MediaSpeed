@@ -1,7 +1,7 @@
 import recursive from 'recursive-readdir';
 import path from 'path';
 
-const FILES_BLACKLIST = ['.DS_Store', '.git', ignoreNonVideoFiles];
+const FILES_BLACKLIST = ['.DS_Store', '.git', '.', '..', '.*', ignoreNonVideoFiles];
 const ALLOWED_MEDIA_EXTENSIONS = [
     '.mkv',
     '.mp4',

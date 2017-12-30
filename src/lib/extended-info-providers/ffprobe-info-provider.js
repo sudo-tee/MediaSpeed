@@ -23,8 +23,9 @@ export default class FFProbeInfoProvider {
         this.logger.debug('Fetching ffmpeg infos from media ' + media.fileName);
         return new Promise((resolve, reject) => {
             this.ffmpegApi.ffprobe(media.filePath, (err, metadata) => {
-                if (err || !metadata || !metadata.format) {
+                if (err || !metadata || !metadata.format || !metadata.streams) {
                     this.logger.debug('Could not get ffmpeg infos from media ' + media.fileName);
+                    reject(media.fileName);
                 }
 
                 media.width = metadata.streams[0].width;
