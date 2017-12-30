@@ -48,6 +48,7 @@
     "palin": "^2.2.0",
     "recursive-readdir": "^2.2.1",
     "shorthash": "0.0.2",
+    "throttled-queue": "^1.0.5",
     "torrent-name-parser": "^0.6.5",
     "yenv": "^1.0.6"
   },

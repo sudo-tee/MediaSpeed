@@ -20,19 +20,15 @@ import ffmpegHlsStreamer from './streamer/ffmpeg-hls-streamer';
 import M3u8Generator from './streamer/m3u8-generator';
 import fsExtra from 'fs-extra';
 import path from 'path';
+import throttledQueue from 'throttled-queue';
 
 /**
  * Using Awilix, the following files and folders (glob patterns)
  * will be loaded.
  */
 const modulesToLoad = [
-    // Services should be scoped to the request.
-    // This means that each request gets a separate instance
-    // of a service.
     ['services/*.js', Lifetime.SCOPED],
     ['lib/extended-info-providers/*-provider.js', Lifetime.SINGLETON],
-    // Stores will be singleton (1 instance per process).
-    // This is just for demo purposes, you can do whatever you want.
     ['stores/*.js', Lifetime.SINGLETON]
 ];
 
@@ -89,6 +85,7 @@ export async function configureContainer() {
         .register('ffmpegStreamer', asClass(ffmpegStreamer))
         .register('ffmpegHlsStreamer', asClass(ffmpegHlsStreamer).singleton())
         .register('basicStreamer', asClass(basicStreamer))
+        .register('throttledQueue', asValue(throttledQueue))
 
         // Config Elements
         .register('movieDbApiKey', asValue(config.moviedb_api_key))

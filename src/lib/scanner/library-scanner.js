@@ -1,11 +1,12 @@
 export default class LibraryScanner {
-    constructor(directoryScanner, movieScanner, episodeScanner, movieService, libraryService, logger) {
+    constructor(directoryScanner, movieScanner, episodeScanner, movieService, libraryService, logger, throttledQueue) {
         this.directoryScanner = directoryScanner;
         this.movieScanner = movieScanner;
         this.episodeScanner = episodeScanner;
         this.movieService = movieService;
         this.libraryService = libraryService;
         this.logger = logger;
+        this.queue = throttledQueue(3, 1000, true);
     }
 
     async scan(library) {
@@ -30,7 +31,7 @@ export default class LibraryScanner {
         for (const index in newMoviesFiles) {
             const path = newMoviesFiles[index];
 
-            await this.movieScanner.execute(path, library);
+            this.queue(async () => this.movieScanner.execute(path, library));
         }
     }
 
@@ -39,7 +40,7 @@ export default class LibraryScanner {
         for (const index in newEpisodeFiles) {
             const path = newEpisodeFiles[index];
 
-            await this.episodeScanner.execute(path, library);
+            this.queue(async () => this.episodeScanner.execute(path, library));
         }
     }
 }

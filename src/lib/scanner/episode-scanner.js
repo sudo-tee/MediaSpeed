@@ -16,8 +16,13 @@ export default class EpisodeScanner extends BaseScanner {
     async execute(filename, library) {
         // @todo From constructor
         const currentEpisode = super.execute(filename, library);
-
         const episodeInfo = this.episodeNameExtractor.extract(currentEpisode.fileName);
+
+        if (episodeInfo._score === 0) {
+            console.log('Cannot parse', filename);
+            return;
+        }
+
         const showName = episodeInfo.series.replace(/ +(?= )/g, '');
         const seasonNumber = episodeInfo.season || 1;
         const seasonUid = shorthash.unique(path.dirname(currentEpisode.filePath) + seasonNumber);
