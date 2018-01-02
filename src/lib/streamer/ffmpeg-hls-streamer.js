@@ -38,7 +38,7 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
             this.command
                 .input(this.media.filePath)
                 .videoCodec('libx264')
-                .audioCodec('aac')
+                .audioCodec('libmp3lame')
                 .format('segment')
                 .setStartTime(seekTime || 0)
                 .addOption('-bsf:v', 'h264_mp4toannexb')
@@ -49,8 +49,6 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .addOption('-map_metadata', -1)
                 .addOption('-preset', 'ultrafast')
                 .addOption('-strict', 'experimental')
-                .addOption('-deadline', 'realtime')
-                .addOption('-max_delay', '5000000')
                 .addOption('-avoid_negative_ts', 'disabled')
                 .addOption('-start_at_zero')
                 .addOption('-segment_time', 3)
@@ -59,20 +57,24 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .addOption('-segment_start_number', startSegment || 0)
                 .addOption('-segment_list_size', 0)
                 .addOption('-crf', '23')
-                .addOption('-maxrate 4430944')
-                .addOption('-bufsize 8861888')
+                .addOption('-maxrate', 3206404)
+                .addOption('-b:v', 3206404)
+                .addOption('-bufsize', 6412808)
+                .addOption('-max_delay', 5000000)
+                .addOption('-threads', 0)
                 .addOption('-force_key_frames', 'expr:if(isnan(prev_forced_t),eq(t,t),gte(t,prev_forced_t+3))')
-                // .addOption('-vf', "scale=trunc(min(max(iw\\,ih*dar)\\,1920)/2)*2:trunc(ow/dar/2)*2")
                 .addOption('-segment_list_type', 'm3u8')
-                .addOption('-segment_list', path.join(this.transcodingTempFolder, this.media.uid, 'index.m3u8')) // change this...
+                .addOption('-segment_list', path.join(this.transcodingTempFolder, this.media.uid, 'index.m3u8'))
                 .addOption('-copyts')
                 .on('error', function(err, stdout, stderr) {
-                    reject(err.message);
+                    console.log(err.message, stdout, stderr);
                 })
                 .on('start', async () => {
                     setTimeout(() => resolve(true), 4000);
                 })
-                .on('progress', function(progress) {})
+                .on('progress', function(progress) {
+                    console.log(progress.percent);
+                })
                 .output(path.join(this.transcodingTempFolder, this.media.uid, 'index%d.ts'))
                 .run();
         });
