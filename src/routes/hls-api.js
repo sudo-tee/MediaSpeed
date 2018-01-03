@@ -20,7 +20,7 @@ class HlsApi extends StreamApi {
         if (fs.existsSync('/tmp/output/' + id + '.m3u8')) {
             ctx.body = this.m3u8Generator.generate(3, media.file_duration, 'index%d.ts');
         } else {
-            await this.streamer.startTranscoding();
+            await this.streamer.startTranscoding(0, 0);
             ctx.body = this.m3u8Generator.generate(3, media.file_duration, 'index%d.ts');
         }
 
@@ -29,12 +29,12 @@ class HlsApi extends StreamApi {
     }
 
     async stream(ctx, res) {
-        const segment = ctx.params.id;
+        const segment = ctx.params.segment;
         ctx.body = await this.streamer.getStream(segment);
     }
 }
 
 export default createController(HlsApi)
     .prefix('/hls')
-    .get('/:type/:id.m3u8', 'playlist')
-    .get('/:type/index:id.ts', 'stream');
+    .get('/:type/:id/index.m3u8', 'playlist')
+    .get('/:type/:id/index:segment.ts', 'stream');

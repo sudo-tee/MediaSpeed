@@ -26,13 +26,16 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
     async prepareStream(rangeHeaders, media) {
         this.media = media;
         this.headers = {
-            'Content-Type': 'application/x-mpegURL'
+            'Content-Type': 'application/x-mpegURL',
+            'Accept-Ranges': 'none'
         };
 
         await fsExtra.ensureDir(path.join(this.transcodingTempFolder, media.uid));
     }
 
     async startTranscoding(seekTime, startSegment) {
+        let resolved = false;
+        let lastProgress = 0;
         console.log('Transcoding started', seekTime, startSegment);
         return new Promise((resolve, reject) => {
             this.command = this.ffmpegApi();
@@ -40,7 +43,7 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .renice(1)
                 .input(this.media.filePath)
                 .videoCodec('libx264')
-                .audioCodec('libmp3lame')
+                .audioCodec('aac')
                 .format('segment')
                 .setStartTime(seekTime || 0)
                 .addOption('-metadata', 'provider_name=Media Speed')
@@ -64,10 +67,9 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .addOption('-segment_format', 'mpegts')
                 .addOption('-segment_start_number', startSegment || 0)
                 .addOption('-segment_list_size', 0)
+                .addOption('-segment_time_delta', -(SEGMENT_DURATION * startSegment))
                 .addOption('-crf', '23')
-                .addOption('-maxrate', this.media.bit_rate) // mm no ... bad quality
-                .addOption('-b:v', this.media.bit_rate)
-                .addOption('-bufsize', this.media.bit_rate / 2)
+                .addOption('-bufsize', this.media.bit_rate * 2)
                 .addOption('-max_delay', 5000000)
                 .addOption('-threads', 0)
                 .addOption(
@@ -80,11 +82,18 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .on('error', function(err, stdout, stderr) {
                     console.log(err.message, stdout, stderr);
                 })
-                .on('start', async () => {
-                    setTimeout(() => resolve(true), 4000);
+                .on('start', async commandLine => {
+                    console.log('Spawned Ffmpeg with command: ' + commandLine);
+                    lastProgress = seekTime / this.media.file_duration * 100;
+                    resolved = false;
                 })
                 .on('progress', function(progress) {
-                    console.log(progress.percent);
+                    console.log(progress.percent, lastProgress);
+                    if (!resolved && progress.percent - lastProgress >= 0.5) {
+                        console.log('We got at least 0.5%');
+                        resolved = true;
+                        resolve(true);
+                    }
                 })
                 .output(path.join(this.transcodingTempFolder, this.media.uid, 'index%d.ts'))
                 .run();
@@ -108,7 +117,6 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 this.stop();
 
                 await this.startTranscoding(seekTime, segment);
-
                 resolve(this.getStream(segment));
             });
 
