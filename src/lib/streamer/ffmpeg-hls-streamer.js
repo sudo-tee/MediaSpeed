@@ -65,7 +65,7 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .addOption('-segment_start_number', startSegment || 0)
                 .addOption('-segment_list_size', 0)
                 .addOption('-crf', '23')
-                .addOption('-maxrate', this.media.bit_rate)
+                .addOption('-maxrate', this.media.bit_rate) // mm no ... bad quality
                 .addOption('-b:v', this.media.bit_rate)
                 .addOption('-bufsize', this.media.bit_rate / 2)
                 .addOption('-max_delay', 5000000)
@@ -94,11 +94,14 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
     getStream(segment) {
         // @todo prevent infinite Loop (3 retry) and segment not greater than total.
         return new Promise((resolve, reject) => {
-            const seekTime = 3 * segment;
-            const segmentFile = path.join(this.transcodingTempFolder, this.media.uid, 'index' + segment + '.ts');
+            this.numberOfFullSegment = Math.floor(this.media.file_duration / this.segmentTime);
+            this.segmentDuration = this.media.file_duration / this.numberOfFullSegment;
+            const seekTime = this.segmentDuration * segment;
 
             let str = stream.PassThrough();
-            const tsStream = fs.createReadStream(segmentFile);
+            const tsStream = fs.createReadStream(
+                path.join(this.transcodingTempFolder, this.media.uid, 'index' + segment + '.ts')
+            );
 
             tsStream.on('error', async err => {
                 console.log('segment missing', seekTime, segment, err.message);
