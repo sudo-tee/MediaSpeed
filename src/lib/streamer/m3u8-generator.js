@@ -18,17 +18,18 @@ export default class M3u8Generator {
         const numberOfFullSegment = Math.floor(duration / segmentTime) - 1;
 
         let output = `#EXTM3U
-#EXT-X-VERSION:3
 #EXT-X-PLAYLIST-TYPE:VOD
+#EXT-X-VERSION:3
+#EXT-X-TARGETDURATION: ${segmentTime}
 #EXT-X-MEDIA-SEQUENCE:0
-#EXT-X-TARGETDURATION: ${segmentTime}\n`;
+\n`;
 
         for (let i = 0; i < numberOfFullSegment; i++) {
-            output += `#EXTINF:${segmentTime},
+            output += `#EXTINF:${segmentTime}, nodesc
 ${util.format(segmentFormat, i)}\n`;
         }
 
-        output += `#EXTINF:${lastSegmentTime},
+        output += `#EXTINF:${lastSegmentTime}, nodesc
 ${util.format(segmentFormat, numberOfFullSegment)}`;
 
         output += '\n#EXT-X-ENDLIST';

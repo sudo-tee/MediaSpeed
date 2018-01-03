@@ -37,7 +37,7 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
         return new Promise((resolve, reject) => {
             this.command = this.ffmpegApi();
             this.command
-                .renice(2)
+                .renice(1)
                 .input(this.media.filePath)
                 .videoCodec('libx264')
                 .audioCodec('libmp3lame')
@@ -112,10 +112,6 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
             tsStream.on('open', () => {
                 tsStream.pipe(str, { end: true });
                 resolve(str);
-            });
-
-            tsStream.on('end', () => {
-                fs.unlink(segmentFile, () => console.log('Segment:' + segment + ' deleted'));
             });
         });
     }
