@@ -36,6 +36,7 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
     async startTranscoding(seekTime, startSegment) {
         let resolved = false;
         let lastProgress = 0;
+
         console.log('Transcoding started', seekTime, startSegment);
         return new Promise((resolve, reject) => {
             this.command = this.ffmpegApi();
@@ -80,7 +81,7 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
                 .addOption('-segment_list', path.join(this.transcodingTempFolder, this.media.uid, 'index.m3u8'))
                 .addOption('-copyts')
                 .on('error', function(err, stdout, stderr) {
-                    console.log(err.message, stdout, stderr);
+                    console.log(err.message);
                 })
                 .on('start', async commandLine => {
                     console.log('Spawned Ffmpeg with command: ' + commandLine);
@@ -100,12 +101,17 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
         });
     }
 
+    async getPlaylist() {
+        if (!fs.existsSync(path.join(this.transcodingTempFolder, this.media.uid, 'index.m3u8'))) {
+            await this.startTranscoding(0, 0);
+        }
+        return this.m3u8Generator.generate(SEGMENT_DURATION, this.media.file_duration, 'index%d.ts');
+    }
+
     getStream(segment) {
         // @todo prevent infinite Loop (3 retry) and segment not greater than total.
         return new Promise((resolve, reject) => {
-            this.numberOfFullSegment = Math.floor(this.media.file_duration / this.segmentTime);
-            this.segmentDuration = this.media.file_duration / this.numberOfFullSegment;
-            const seekTime = this.segmentDuration * segment;
+            const seekTime = SEGMENT_DURATION * segment;
 
             let str = stream.PassThrough();
             const tsStream = fs.createReadStream(

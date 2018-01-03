@@ -1,7 +1,6 @@
 /* eslint-disable no-useless-constructor */
 import { createController } from 'awilix-koa';
 import StreamApi from './base-stream-api';
-import fs from 'fs';
 
 class HlsApi extends StreamApi {
     constructor(movieService, episodeService, ffmpegHlsStreamer, m3u8Generator) {
@@ -17,13 +16,7 @@ class HlsApi extends StreamApi {
 
         await this.streamer.prepareStream(null, media);
 
-        if (fs.existsSync('/tmp/output/' + id + '.m3u8')) {
-            ctx.body = this.m3u8Generator.generate(3, media.file_duration, 'index%d.ts');
-        } else {
-            await this.streamer.startTranscoding(0, 0);
-            ctx.body = this.m3u8Generator.generate(3, media.file_duration, 'index%d.ts');
-        }
-
+        ctx.body = await this.streamer.getPlaylist();
         ctx.set(this.streamer.getHeaders());
         ctx.status = this.streamer.getStatus();
     }
