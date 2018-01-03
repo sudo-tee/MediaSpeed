@@ -16,17 +16,15 @@ export default class M3u8Generator {
     generate(segmentTime, duration, segmentFormat) {
         const lastSegmentTime = duration % segmentTime;
         const numberOfFullSegment = Math.floor(duration / segmentTime) - 1;
-        const segmentDuration = duration / numberOfFullSegment;
 
         let output = `#EXTM3U
 #EXT-X-VERSION:3
 #EXT-X-PLAYLIST-TYPE:VOD
 #EXT-X-MEDIA-SEQUENCE:0
-#EXT-X-ALLOW-CACHE:YES
-#EXT-X-TARGETDURATION: ${segmentTime + 1}\n`;
+#EXT-X-TARGETDURATION: ${segmentTime}\n`;
 
         for (let i = 0; i < numberOfFullSegment; i++) {
-            output += `#EXTINF:${segmentDuration},
+            output += `#EXTINF:${segmentTime},
 ${util.format(segmentFormat, i)}\n`;
         }
 
