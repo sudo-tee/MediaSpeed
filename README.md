@@ -168,7 +168,6 @@ Install the dependencies
 yarn install
 ```
 
-
 There are a few defined run scripts, here's a list of them with a description of what they do. To run them, simply execute `npm run <script name>` - e.g. `npm run dev`
 
 * `start`: Used by the production environment to start the app. This will run a compiled version, so you need to execute `build` first.
@@ -182,7 +181,6 @@ There are a few defined run scripts, here's a list of them with a description of
 # License
 
 MIT.
-
 
 # references
 

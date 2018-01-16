@@ -4,7 +4,7 @@ import cors from '@koa/cors';
 import respond from 'koa-respond';
 import bodyParser from 'koa-bodyparser';
 import compress from 'koa-compress';
-import serveStatic from 'koa2-static';
+import serveStatic from 'koa-static-server';
 import { scopePerRequest, loadControllers } from 'awilix-koa';
 import path from 'path';
 
@@ -40,15 +40,15 @@ export async function createServer() {
 
         .use(
             serveStatic({
-                path: '/demo',
-                root: path.join(__dirname, '/../../demo')
+                rootPath: '/demo',
+                rootDir: path.join(__dirname, '/../../demo')
             })
         )
 
         .use(
             serveStatic({
-                path: '/images',
-                root: app.container.resolve('imageDestinationFolder')
+                rootPath: '/images',
+                rootDir: app.container.resolve('imageDestinationFolder')
             })
         )
 
