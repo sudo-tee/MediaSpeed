@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Media Speed Demo</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="vibrant.js"></script>
+</head>
+<body>
+
+    <div class="tab">
+
+    </div>
+    <div class="overlay">    </div>
+    <div class="container" id="posters">
+
+    </div>
+</body>
+<script>
+
+    const qs = (function(a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i)
+        {
+            var p=a[i].split('=', 2);
+            if (p.length == 1)
+                b[p[0]] = "";
+            else
+                b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split('&'));
+
+    _fetch = async function (url) {
+        var response = await fetch(url);
+        return await response.json();
+    };
+
+    _drawLibrary = function (event, uid) {
+        window.location.href = '/demo/index.html?uid=' + uid;
+    };
+
+    _drawShows = async function (uid) {
+        const body = document.querySelector('body');
+        const cards = document.querySelector('#posters');
+        const shows = await _fetch('/api/tv/shows?library_uid=' + uid);
+
+        const randomItem = shows[Math.floor(Math.random()*shows.length)];
+        body.style.setProperty('--main-bg-image', "url(/images/"+randomItem.uid+"_backdrop.jpg)");
+
+        const cardHtml =
+            shows.map(show => {
+                return `<div class="grid-item show">
+                    <a href="/demo/show.html?uid=${show.uid}"><img class="poster" src="/images/${show.uid}_poster.jpg" /></a>
+                </div>`
+            }).join('');
+
+        cards.innerHTML = cardHtml;
+    };
+
+    _drawMovies = async function (uid) {
+        const body = document.querySelector('body');
+        const cards = document.querySelector('#posters');
+        const movies = await _fetch('/api/movies?library_uid=' + uid);
+
+        const randomItem = movies[Math.floor(Math.random()*movies.length)];
+        body.style.setProperty('--main-bg-image', "url(/images/"+randomItem.uid+"_backdrop.jpg)");
+
+        Vibrant.from("/images/" + randomItem.uid + "_backdrop.jpg").getPalette((err, palette) => {
+            console.log(err);
+            body.style.setProperty('--transparency-accent-color', palette.LightVibrant._rgb.join(','));
+            body.style.setProperty('--transparency-dark-color', palette.DarkMuted._rgb.join(','));
+            console.log(palette)
+        });
+
+        const cardHtml =
+            movies.map(movie => {
+                return `<div class="grid-item">
+                    <a href="/demo/movie.html?uid=${movie.uid}"><img class="poster" src="/images/${movie.uid}_poster.jpg" /></a>
+                </div>`
+            }).join('');
+
+        cards.innerHTML = cardHtml;
+    };
+
+    _drawLibraries = async function (libs, selected) {
+
+        const cards = document.querySelector('.tab');
+
+        const cardHtml =
+            libs.map(lib => {
+                return `<button class="tablinks ${selected === lib.uid ? 'active': ''}" onclick="_drawLibrary(event, '${lib.uid}')">${lib.name}</button>`
+            }).join('');
+
+        cards.innerHTML = cardHtml;
+
+        return libs.f;
+    };
+
+    _load = function () {
+        console.log('load');
+
+        const e = document.querySelector('#videoId');
+        const videoId = e.options [e.selectedIndex] .value;
+
+        window.hls.loadSource(videoId);
+    };
+
+    _seek = function () {
+        console.log('seeking to 10 minutes')
+        const video = document.querySelector('#player');
+
+        video.currentTime = 600;
+    };
+
+    (async function () {
+
+
+        const libs = await _fetch('/api/libraries');
+        const selected = qs['uid'] || libs[0].uid;
+        const selectedLibrary = libs.find(lib => lib.uid === selected);
+
+        await _drawLibraries(libs, selected);
+
+        if(selectedLibrary.type === 'movie') {
+            await _drawMovies(selected);
+        }
+
+        if(selectedLibrary.type === 'episode') {
+            await _drawShows(selected);
+        }
+
+    })();
+
+</script>
+</html>
+

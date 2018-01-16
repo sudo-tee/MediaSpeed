@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Media Speed Demo</title>
+    <link rel="stylesheet" href="details.css">
+</head>
+<body>
+<div class="tab">
+
+</div>
+<div class="overlay"></div>
+<div class="content">
+    <div class="row media-details">
+
+    </div>
+</div>
+</body>
+
+<script src="vibrant.js"></script>
+<script>
+
+    const qs = (function (a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i) {
+            var p = a[i].split('=', 2);
+            if (p.length == 1)
+                b[p[0]] = "";
+            else
+                b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split('&'));
+
+    _fetch = async function (url) {
+        const response = await fetch(url);
+        return await response.json();
+    };
+
+    _drawBack = function (item) {
+        const tab = document.querySelector('.tab');
+        tab.innerHTML = `<button class="tablinks active" onclick="_goBack(event, '${item.library_uid}')">< Back</button>`;
+    };
+
+    _goBack = function (e, uid) {
+        window.location.href = '/demo/index.html?uid=' + uid;
+    };
+
+    _drawMovie = async function (uid) {
+        const body = document.querySelector('body');
+        body.style.setProperty('--main-bg-image', "url(/images/" + uid + "_backdrop.jpg)");
+
+
+        Vibrant.from("/images/" + uid + "_poster.jpg").getPalette((err, palette) => {
+            body.style.setProperty('--transparency-accent-color', palette.LightVibrant._rgb.join(','));
+            body.style.setProperty('--transparency-dark-color', palette.DarkMuted._rgb.join(','));
+        });
+
+
+        const movieDetails = document.querySelector('.media-details');
+        const movie = await _fetch('/api/movies/' + uid);
+
+        _drawBack(movie);
+
+
+        const movieDetailsHtml = `<div class="column _20 poster fixed">
+            <img src="/images/${movie.uid}_poster.jpg" />
+        </div>
+        <div class="column _75 right outer">
+            <div class="scrollable-content">
+                <h1>${movie.title}</h1>
+                <div class="row playback-buttons"><button onClick="_play('${uid}');">Play</button><button onClick="_play('${uid}',10);">Resume</button></div>
+                <p class="overview">
+                    ${movie.overview}
+                </p>
+            `;
+
+        movieDetails.innerHTML = movieDetailsHtml;
+    };
+
+    _play = function(uid, resumePoint) {
+
+        window.location.href = '/demo/play.html?uid=' + uid + '&type=movie&session=' + _getUniqueId('play-');
+    };
+
+    _getUniqueId = function (prefix) {
+        let d = new Date().getTime();
+        d += (parseInt(Math.random() * 100)).toString();
+        if (undefined === prefix) {
+            prefix = 'uid-';
+        }
+        d = prefix + d;
+        return d;
+    };
+
+    (async function () {
+
+        const item = qs['uid'];
+
+        _drawMovie(item);
+
+    })();
+
+</script>
+</html>
+

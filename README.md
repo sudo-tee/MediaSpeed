@@ -14,7 +14,7 @@ https://github.com/MediaBrowser/Emby
 
 - Everything is still very experimental
 
-- Right now MediaSpeed is only a scraper/indexer with a rest API, there is no gui
+- Right now MediaSpeed is only a scraper/indexer with a rest API
 
 - To create libraries you need to post them with the API
 
@@ -25,6 +25,16 @@ https://github.com/MediaBrowser/Emby
 - The transcoding is really basic
 
 
+## GUI
+There is a small gui that you can load in the demo folder
+
+ Fire it by loading http://your_url/demo/index.html 
+
+ **This is not the real gui,. it's there for me to test everything, and I thought it would be great to include it as a demo. It's done in vanilla js, and with crappy code**
+
+There will be a gui created un react in the future
+  
+ 
 
 ## Media Directory structure
 
@@ -130,7 +140,7 @@ The goal of mediaspeed is not transcoding, so for now this method is what I call
 
 The dash transcoder is very experimental and seeking only works in player like vlc
 It is inspired by how Plex does it, but due to some missing flags in ffmpeg (starting segment number) (segment time shift) 
-The seek does not work an probably will never until ffmpeg add theses option (which are in teh Plex transcoder)
+The seek does not work and probably never will... until ffmpeg add theses option (which are in the Plex transcoder)
 The seek works in VLC but will make MPV crash. So it's not recommended for now
 
 The code is there as a reference, there is no "session handling" so you can't start 2 transcoding process of the same file

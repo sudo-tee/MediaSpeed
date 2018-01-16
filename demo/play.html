@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Media Speed Demo</title>
+    <link rel="stylesheet" href="plyr.css">
+    <link rel="stylesheet" href="details.css">
+</head>
+<body>
+<div class="tab">
+
+</div>
+<div class="video-container">
+    <video preload="none" id="player" controls crossorigin></video>
+</div>
+</body>
+
+
+<script src="plyr.js"></script>
+<script src="hls.js"></script>
+<script src="vibrant.js"></script>
+<script>
+
+    const qs = (function (a) {
+        if (a == "") return {};
+        var b = {};
+        for (var i = 0; i < a.length; ++i) {
+            var p = a[i].split('=', 2);
+            if (p.length == 1)
+                b[p[0]] = "";
+            else
+                b[p[0]] = decodeURIComponent(p[1].replace(/\+/g, " "));
+        }
+        return b;
+    })(window.location.search.substr(1).split('&'));
+
+    _fetch = async function (url) {
+        const response = await fetch(url);
+        return await response.json();
+    };
+
+    _fetchMedia = async function (uid, type) {
+
+        let url = '/api/tv/episodes/' + uid;
+        if(type === 'movie') {
+            url = '/api/movies/' + uid;
+        }
+        return await _fetch(url);
+    };
+
+    _drawBack = function (item) {
+        const tab = document.querySelector('.tab');
+        tab.innerHTML = `<button class="tablinks active" onclick="_goBack(event, '${item.library_uid}')">< Back</button>`;
+    };
+
+    _goBack = function (e, uid) {
+        window.location.href = '/demo/index.html?uid=' + uid;
+    };
+
+    _startPlayer = async function (uid, type) {
+        const body = document.querySelector('body');
+
+        const media = await _fetchMedia(uid, type);
+
+        console.log((media.show_uid || uid));
+        body.style.setProperty('--main-bg-image', "url(/images/" + (media.show_uid || uid) + "_backdrop.jpg)");
+        body.style.setProperty('--main-poster-image', "url(/images/" + (media.show_uid || uid) + "_poster.jpg)");
+
+        Vibrant.from("/images/" + (media.show_uid || uid) + "_poster.jpg").getPalette((err, palette) => {
+            body.style.setProperty('--transparency-accent-color', palette.LightVibrant._rgb.join(','));
+            body.style.setProperty('--transparency-dark-color', palette.DarkMuted._rgb.join(','));
+        });
+
+        _drawBack(media);
+
+        const video = document.querySelector('#player');
+
+        if (Hls.isSupported()) {
+            window.hls = new Hls({debug: true, maxBufferLength:9, manifestLoadingTimeOut:15000});
+            window.hls.attachMedia(video);
+            window.hls.loadSource(`/hls/${type}/${uid}/index.m3u8?session=${qs['session']}`);
+
+            window.hls.on(Hls.Events.MANIFEST_PARSED,function() {
+                video.play();
+            });
+        }
+        plyr.setup(video, {iconUrl: 'plyr.svg'});
+    };
+
+
+    (async function () {
+
+        const uid = qs['uid'];
+        const type = qs['type'] || 'movie';
+
+        await _startPlayer(uid, type);
+
+    })();
+
+</script>
+</html>
+
