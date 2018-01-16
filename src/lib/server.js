@@ -13,7 +13,7 @@ import { configureContainer } from './container';
 import { notFoundHandler } from '../middleware/not-found';
 import { errorHandler } from '../middleware/error-handler';
 
-/**
+/** npm
  * Creates and returns a new Koa application.
  * Does *NOT* call `listen`!
  *
