@@ -13,5 +13,5 @@ class TranscodeApi extends StreamApi {
 }
 
 export default createController(TranscodeApi)
-    .prefix('/stream/transcode')
+    .prefix('/transcode')
     .get('/:type/:id', 'stream');

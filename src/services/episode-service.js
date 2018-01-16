@@ -13,7 +13,7 @@ const props = [
     'season_number',
     'name',
     'tmdb_show_id',
-    'id',
+    'tmdb_id',
     'overview',
     'vote_average',
     'vote_count',

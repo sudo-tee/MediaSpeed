@@ -4,7 +4,9 @@ import cors from '@koa/cors';
 import respond from 'koa-respond';
 import bodyParser from 'koa-bodyparser';
 import compress from 'koa-compress';
+import serveStatic from 'koa2-static';
 import { scopePerRequest, loadControllers } from 'awilix-koa';
+import path from 'path';
 
 import { logger } from './logger';
 import { configureContainer } from './container';
@@ -23,6 +25,7 @@ export async function createServer() {
 
     // Container is configured with our services and whatnot.
     const container = (app.container = await configureContainer());
+
     app
         // Top middleware is the error handler.
         .use(errorHandler)
@@ -34,9 +37,25 @@ export async function createServer() {
         .use(cors())
         // Parses request bodies.
         .use(bodyParser())
+
+        .use(
+            serveStatic({
+                path: '/demo',
+                root: path.join(__dirname, '/../../demo')
+            })
+        )
+
+        .use(
+            serveStatic({
+                path: '/images',
+                root: app.container.resolve('imageDestinationFolder')
+            })
+        )
+
         // Creates an Awilix scope per request. Check out the awilix-koa
         // docs for details: https://github.com/jeffijoe/awilix-koa
         .use(scopePerRequest(container))
+
         // Load routes (API "controllers")
         .use(loadControllers('../routes/*.js', { cwd: __dirname }))
         // Default handler when nothing stopped the chain.

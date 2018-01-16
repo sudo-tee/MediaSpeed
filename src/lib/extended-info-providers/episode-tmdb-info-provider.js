@@ -37,7 +37,6 @@ const episodeFields = [
     'crew',
     'guest_stars',
     'overview',
-    'id',
     'production_code',
     'still_path',
     'vote_average',

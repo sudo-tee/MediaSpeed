@@ -2,21 +2,28 @@
 
 An experimental mini media server like plex/emby. It tries to be fast light and easy.
 
-MediaSpeed was inspired by this cool little node media servers:
+MediaSpeed was inspired by
 
 https://github.com/OwenRay/Remote-MediaServer
 
 https://github.com/jansmolders86/mediacenterjs
 
+https://github.com/MediaBrowser/Emby
+
 ## Status
 
-Everything is still very experimental
+- Everything is still very experimental
 
-Right now MediaSpeed is only a scraper/indexer with a rest API, there is no gui
+- Right now MediaSpeed is only a scraper/indexer with a rest API, there is no gui
 
-To create libraries you need to post them with the API
+- To create libraries you need to post them with the API
 
-The Scanner does not start automatically, It can only be triggered by API
+- The scanner does not start automatically, It can only be triggered by API
+
+- The scanning is stupid and will overwrite everything
+
+- The transcoding is really basic
+
 
 
 ## Media Directory structure
@@ -95,15 +102,43 @@ Each GET api uses [node-mongo-querystring](https://github.com/Turistforeningen/n
 ### Stream media file
 - <code>GET</code>    /stream/movie/:uid `Range seekable raw stream for a movie` 
 - <code>GET</code>    /stream/episode/:uid `Range seekable raw stream for an episode` 
-- <code>GET</code>    /stream/transcode/movie/:uid `Experimental live ffmpeg transcoding` 
-- <code>GET</code>    /stream/transcode/episode/:uid `Experimental live ffmpeg transcoding` 
-- <code>GET</code>    /stream/hls/movie/:uid `Experimental live ffmpeg hls transcoding` 
-- <code>GET</code>    /stream/hls/episode/:uid `Experimental live ffmpeg hls transcoding` 
+- <code>GET</code>    /transcode/movie/:uid `Experimental live ffmpeg transcoding` 
+- <code>GET</code>    /transcode/episode/:uid `Experimental live ffmpeg transcoding` 
 
 #### Transcoding
-Right the transcoding is very basic and is not to clever. you can seek through a video by adding the `q` parameter like so `?q=2973.84760964912` it will seek the video file to this timestamp (It will mess up the progress bar in the apps).
+Right the transcoding is very basic and is not to clever. you can seek through a video by adding the `q` parameter like so `?q=2973.84760964912` it will seek the video file to this timestamp 
+(It will mess up the progress bar in the apps like vlc or kodi).
 
-Hls transcoding provide a more native way of seeking with segments.
+
+### Transcoding media file using hls
+- <code>GET</code>    /hls/movie/:uid?session=SESSION_ID `Experimental live ffmpeg hls transcoding` 
+- <code>GET</code>    /hls/episode/:uid?session=SESSION_ID `Experimental live ffmpeg hls transcoding` 
+
+The hls transcoder is very experimental and seeking sometime cause locking in the web player (hls.js and shaka.js)
+
+It is inspired by how Emby does it. In fact it produce almost the same ffmpeg commands as Emby... They are the only ones working well for me.
+It creates a fake VOD m3u8 playlist with all the predicted segments and forces key frames with ffmpeg
+If the codec is not h264 it will transcode video and audio
+If the codec is h264 it will streamcopy the video but still encode the audio. (This can cause the webplayer to lock if you seek to much, because keyframes are not constant)
+
+The goal of mediaspeed is not transcoding, so for now this method is what I call "Good enough" for streaming with a web player
+
+
+### Stream media file using dash
+- <code>GET</code>    /dash/movie/:uid `Experimental live ffmpeg dash transcoding` 
+- <code>GET</code>    /dash/episode/:uid `Experimental live ffmpeg dash transcoding` 
+
+The dash transcoder is very experimental and seeking only works in player like vlc
+It is inspired by how Plex does it, but due to some missing flags in ffmpeg (starting segment number) (segment time shift) 
+The seek does not work an probably will never until ffmpeg add theses option (which are in teh Plex transcoder)
+The seek works in VLC but will make MPV crash. So it's not recommended for now
+
+The code is there as a reference, there is no "session handling" so you can't start 2 transcoding process of the same file
+
+#### Known limitations of transcoding
+- There is no client detection right now so pick the right url to stream your video
+- The codec detection only works in hls right now the other methods are there as a reference for later
+- The codec detection is really bad and basic a simple if h264 ... I will add them later if needed
 
 
 ## To start the project

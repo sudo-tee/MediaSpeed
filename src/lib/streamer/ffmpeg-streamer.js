@@ -5,6 +5,9 @@ export default class FFMpegStreamer extends BasicStreamer {
     constructor(ffmpegApi) {
         super();
         this.ffmpegApi = ffmpegApi;
+        this.headers = {
+            'Accept-Ranges': 'none'
+        };
     }
     getHeaders() {
         return this.headers;
@@ -21,12 +24,7 @@ export default class FFMpegStreamer extends BasicStreamer {
 
         if (seek) command.setStartTime(seek);
         command
-            .outputOptions([
-                '-movflags frag_keyframe+empty_moov',
-                '-deadline realtime',
-                '-preset ultrafast',
-                '-strict experimental'
-            ])
+            .outputOptions(['-movflags frag_keyframe+empty_moov', '-preset ultrafast', '-strict experimental'])
             .format('matroska')
             .audioCodec('aac')
             .videoCodec('libx264');

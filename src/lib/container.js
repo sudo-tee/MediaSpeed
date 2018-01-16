@@ -17,6 +17,8 @@ import imageDownloader from 'image-downloader';
 import basicStreamer from './streamer/basic-streamer';
 import ffmpegStreamer from './streamer/ffmpeg-streamer';
 import ffmpegHlsStreamer from './streamer/ffmpeg-hls-streamer';
+import ffmpeDashStreamer from './streamer/ffmpeg-dash-streamer';
+import hlsPresetDecision from './streamer/hls/hls-preset-decision';
 import M3u8Generator from './streamer/m3u8-generator';
 import fsExtra from 'fs-extra';
 import path from 'path';
@@ -82,8 +84,10 @@ export async function configureContainer() {
         .register('ffmpegApi', asFunction(ffmpegApi))
         .register('imageDownloader', asValue(imageDownloader))
         .register('m3u8Generator', asClass(M3u8Generator))
+        .register('hlsPresetDecision', asClass(hlsPresetDecision))
         .register('ffmpegStreamer', asClass(ffmpegStreamer))
         .register('ffmpegHlsStreamer', asClass(ffmpegHlsStreamer).singleton())
+        .register('ffmpegDashStreamer', asClass(ffmpeDashStreamer).singleton())
         .register('basicStreamer', asClass(basicStreamer))
         .register('throttledQueue', asValue(throttledQueue))
 
