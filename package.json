@@ -11,7 +11,9 @@
   "scripts": {
     "start": "node dist/bin/www.js",
     "build": "rimraf dist && cross-env NODE_ENV=production babel src -d dist -s",
-    "dev": "nodemon src/bin/www.js",
+    "dev-frontend": "cd frontend && yarn start",
+    "dev-backend": "nodemon src/bin/www.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn dev-backend\" \"yarn dev-frontend\"",
     "test": "cross-env NODE_ENV=test jest",
     "cover": "npm run test -- --coverage",
     "lint": "eslint --fix src && prettier --write \"src/**/*.js\"",
@@ -27,6 +29,7 @@
     "axios": "^0.17.1",
     "bristol": "^0.3.3",
     "camel-case": "^3.0.0",
+    "concurrently": "^3.5.1",
     "epinfer": "^1.1.4",
     "fejl": "^1.0.2",
     "fluent-ffmpeg": "^2.1.2",

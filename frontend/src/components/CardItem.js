@@ -5,14 +5,14 @@ import './CardItem.css';
 class CardItem extends React.Component {
    constructor() {
       super(...arguments);
-      this.img = 'http://belanger.ddns.net:5001/images/' + this.props.media.local_poster;
+      this.img = '/images/' + this.props.media.local_poster;
    }
 
    render() {
-      return <Card>
+      return <Card raised>
          <Image src={this.img} />
-         <Card.Content>
-            <Card.Header>{this.props.media.title}</Card.Header>            
+         <Card.Content extra>
+            {this.props.media.title}
          </Card.Content>
       </Card>
    }

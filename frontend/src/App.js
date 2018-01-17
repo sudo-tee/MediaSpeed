@@ -14,7 +14,7 @@ class App extends Component {
                 src='/logo.png'
                 style={{ marginRight: '1.5em' }}
               />
-              Project Name
+              Media Speed
             </Menu.Item>
             <Menu.Item as='a'>Home</Menu.Item>
 
@@ -38,11 +38,7 @@ class App extends Component {
           </Container>
         </Menu>
 
-        <Container text style={{ marginTop: '7em' }}>
-          <Header as='h1'>Semantic UI React Fixed Template</Header>
-          <p>This is a basic fixed menu template using fixed size containers.</p>
-          <p>A text container is used for the main container, which is useful for single column layouts.</p>
-
+        <Container fluid content style={{ marginTop: '7em' }}>
           <CardList />
         </Container>
 

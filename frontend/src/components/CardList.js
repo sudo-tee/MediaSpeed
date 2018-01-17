@@ -1,16 +1,30 @@
 import React from 'react';
 import CardItem from './CardItem';
+import {Grid} from 'semantic-ui-react';
 
-const MovieList = [
-   {id: 1, title: 'A Magic Christmas', type: "movie", local_screenshot: "Z2lum9p_screenshot.jpg", local_poster: "Z2lum9p_poster.jpg", local_backdrop: "Z2lum9p_backdrop.jpg"},
-   {id: 2, title: 'Back to the Future Part II', type: "movie", local_screenshot: "1634HT_screenshot.jpg", local_poster: "1634HT_poster.jpg", local_backdrop: "1634HT_backdrop.jpg"}
-]
 
-class CardList extends React.Component {   
+
+class CardList extends React.Component {
+    constructor(props){
+        super(props);
+        this.state = {movies: []};
+    }
+
+   async componentDidMount() {
+       const res = await fetch('/api/movies');
+       const movies = await res.json();
+       this.setState({movies: movies})
+
+   }
+
    render() {
-      return MovieList.map((item) => <div>
-         <CardItem media={item} />
-      </div>)
+      return <Grid doubling columns={5}>
+          {this.state.movies.map((item) => {
+             return <Grid.Column>
+               <CardItem key={item.id} media={item} />
+             </Grid.Column>
+          })}
+      </Grid>
    }
 }
 
