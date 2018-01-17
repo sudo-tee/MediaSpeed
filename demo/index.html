@@ -48,12 +48,15 @@
         const shows = await _fetch('/api/tv/shows?library_uid=' + uid);
 
         const randomItem = shows[Math.floor(Math.random()*shows.length)];
-        body.style.setProperty('--main-bg-image', "url(/images/"+randomItem.uid+"_backdrop.jpg)");
+        const backdrop = randomItem.local_backdrop ? '/images/' + randomItem.local_backdrop : '/demo/default-bg.jpg';
+
+        body.style.setProperty('--main-bg-image', "url("+backdrop+")");
 
         const cardHtml =
             shows.map(show => {
+                const poster = show.local_poster  ? '/images/' + show.local_poster : '/demo/default-poster.jpg';
                 return `<div class="grid-item show">
-                    <a href="/demo/show.html?uid=${show.uid}"><img class="poster" src="/images/${show.uid}_poster.jpg" /></a>
+                    <a href="/demo/show.html?uid=${show.uid}"><img class="poster" src="${poster}" /></a>
                 </div>`
             }).join('');
 
@@ -66,9 +69,11 @@
         const movies = await _fetch('/api/movies?library_uid=' + uid);
 
         const randomItem = movies[Math.floor(Math.random()*movies.length)];
-        body.style.setProperty('--main-bg-image', "url(/images/"+randomItem.uid+"_backdrop.jpg)");
+        const backdrop = randomItem.local_backdrop ? '/images/' + randomItem.local_backdrop : '/demo/default-bg.jpg';
 
-        Vibrant.from("/images/" + randomItem.uid + "_backdrop.jpg").getPalette((err, palette) => {
+        body.style.setProperty('--main-bg-image', "url("+backdrop+")");
+
+        Vibrant.from(backdrop).getPalette((err, palette) => {
             console.log(err);
             body.style.setProperty('--transparency-accent-color', palette.LightVibrant._rgb.join(','));
             body.style.setProperty('--transparency-dark-color', palette.DarkMuted._rgb.join(','));
@@ -77,8 +82,9 @@
 
         const cardHtml =
             movies.map(movie => {
+                const poster = movie.local_poster  ? '/images/' + movie.local_poster : '/demo/default-poster.jpg';
                 return `<div class="grid-item">
-                    <a href="/demo/movie.html?uid=${movie.uid}"><img class="poster" src="/images/${movie.uid}_poster.jpg" /></a>
+                    <a href="/demo/movie.html?uid=${movie.uid}"><img class="poster" src="${poster}" /></a>
                 </div>`
             }).join('');
 
@@ -97,22 +103,6 @@
         cards.innerHTML = cardHtml;
 
         return libs.f;
-    };
-
-    _load = function () {
-        console.log('load');
-
-        const e = document.querySelector('#videoId');
-        const videoId = e.options [e.selectedIndex] .value;
-
-        window.hls.loadSource(videoId);
-    };
-
-    _seek = function () {
-        console.log('seeking to 10 minutes')
-        const video = document.querySelector('#player');
-
-        video.currentTime = 600;
     };
 
     (async function () {

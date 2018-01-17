@@ -13,7 +13,9 @@ const props = [
     'season_number',
     'name',
     'tmdb_show_id',
+    'tmdb_season_id',
     'tmdb_id',
+    'tmdb_still_path',
     'overview',
     'vote_average',
     'vote_count',
@@ -25,7 +27,9 @@ const props = [
     'file_size',
     'bit_rate',
     'video_codec',
-    'screenshot_path'
+    'still_path',
+    'local_screenshot',
+    'local_still'
 ];
 
 export default class EpisodeService extends BaseService {

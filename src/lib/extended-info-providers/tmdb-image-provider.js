@@ -4,22 +4,12 @@ const BASE_URL = 'http://image.tmdb.org/t/p';
 const WIDTH = {
     poster: 'w342',
     backdrop: 'w1920',
-    poster_small: 'w150'
+    still: 'w1920'
 };
 
 export default class TmdbImageProvider {
-    constructor(
-        movieService,
-        showService,
-        seasonService,
-        imageDownloader,
-        imageDestinationFolder,
-        logger,
-        eventEmitter
-    ) {
-        this.movieService = movieService;
-        this.showService = showService;
-        this.seasonService = seasonService;
+    constructor(serviceFactory, imageDownloader, imageDestinationFolder, logger, eventEmitter) {
+        this.serviceFactory = serviceFactory;
         this.logger = logger;
         this.eventEmitter = eventEmitter;
         this.imageDownloader = imageDownloader;
@@ -32,28 +22,42 @@ export default class TmdbImageProvider {
     async execute(media) {
         const images = [];
 
-        if (media.poster_path) {
+        if (media.tmdb_poster_path) {
             images.push({
-                url: BASE_URL + '/' + WIDTH['poster'] + media.poster_path,
+                type: 'poster',
+                url: BASE_URL + '/' + WIDTH['poster'] + media.tmdb_poster_path,
                 dest: this.imageDestinationFolder + '/' + media.uid + '_poster.jpg'
-            });
-
-            images.push({
-                url: BASE_URL + '/' + WIDTH['poster_small'] + media.poster_path,
-                dest: this.imageDestinationFolder + '/' + media.uid + '_poster_small.jpg'
             });
         }
 
-        if (media.backdrop_path) {
+        if (media.tmdb_backdrop_path) {
             images.push({
-                url: BASE_URL + '/' + WIDTH['backdrop'] + media.backdrop_path,
+                type: 'backdrop',
+                url: BASE_URL + '/' + WIDTH['backdrop'] + media.tmdb_backdrop_path,
                 dest: this.imageDestinationFolder + '/' + media.uid + '_backdrop.jpg'
             });
         }
 
-        images.forEach(image => {
-            this.logger.debug('Downlading image ' + image.url);
-            this.imageDownloader.image(image);
+        if (media.tmdb_still_path) {
+            images.push({
+                type: 'still',
+                url: BASE_URL + '/' + WIDTH['still'] + media.tmdb_still_path,
+                dest: this.imageDestinationFolder + '/' + media.uid + '_still.jpg'
+            });
+        }
+
+        images.forEach(async image => {
+            try {
+                this.logger.debug('Downlading image ' + image.url);
+                await this.imageDownloader.image(image);
+
+                media['local_' + image.type] = media.uid + '_' + image.type + '.jpg';
+                this.serviceFactory
+                    .get(media.type)
+                    .update(media.uid, { [`local_${image.type}`]: media.uid + '_' + image.type + '.jpg' });
+            } catch (e) {
+                this.logger.debug('Failed image download ' + e.message);
+            }
         });
     }
 }

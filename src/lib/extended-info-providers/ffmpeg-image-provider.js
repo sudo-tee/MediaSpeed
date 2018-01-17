@@ -21,7 +21,7 @@ export default class FFMpegImageProvider {
 
     async execute(media) {
         this.logger.debug('Creating ffmpeg image from media ' + media.filePath);
-        media.screenshot_path = await this.executeffMpeg(media);
+        media.local_screenshot = await this.executeffMpeg(media);
 
         if (media.type === 'movie') {
             await this.movieService.update(media.uid, media);

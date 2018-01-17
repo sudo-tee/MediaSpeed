@@ -11,19 +11,18 @@ const props = [
     'year',
     'container',
     'title',
-    'tmdb_movie_id',
+    'tmdb_id',
+    'tmdb_poster_path',
+    'tmdb_backdrop_path',
     'adult',
-    'backdrop_path',
     'budget',
     'genres',
     'homepage',
-    'id',
     'imdb_id',
     'original_language',
     'original_title',
     'overview',
     'popularity',
-    'poster_path',
     'production_companies',
     'production_countries',
     'release_date',
@@ -40,7 +39,9 @@ const props = [
     'file_size',
     'bit_rate',
     'video_codec',
-    'screenshot_path'
+    'local_screenshot',
+    'local_poster',
+    'local_backdrop'
 ];
 
 export default class MovieService extends BaseService {

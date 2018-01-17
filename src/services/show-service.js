@@ -7,7 +7,9 @@ const props = [
     'uid',
     'type',
     'name',
-    'backdrop_path',
+    'tmdb_id',
+    'tmdb_backdrop_path',
+    'tmdb_poster_path',
     'created_by',
     'first_air_date',
     'genres',
@@ -16,8 +18,6 @@ const props = [
     'languages',
     'last_air_date',
     'networks',
-    'number_of_episodes',
-    'number_of_seasons',
     'origin_country',
     'original_language',
     'original_name',
@@ -28,7 +28,8 @@ const props = [
     'status',
     'vote_average',
     'vote_count',
-    'tmdb_id'
+    'local_poster',
+    'local_backdrop'
 ];
 
 export default class ShowService extends BaseService {

@@ -49,21 +49,22 @@
     };
 
     _drawMovie = async function (uid) {
+        const movie = await _fetch('/api/movies/' + uid);
         const body = document.querySelector('body');
-        body.style.setProperty('--main-bg-image', "url(/images/" + uid + "_backdrop.jpg)");
 
+        const backdrop = movie.local_backdrop ? '/images/' + movie.local_backdrop : '/default-bg.jpg';
+        const poster = movie.local_poster ? '/images/' + movie.local_poster : '/default-bg.jpg';
 
-        Vibrant.from("/images/" + uid + "_poster.jpg").getPalette((err, palette) => {
+        body.style.setProperty('--main-bg-image', "url("+backdrop+")");
+
+        Vibrant.from(poster).getPalette((err, palette) => {
             body.style.setProperty('--transparency-accent-color', palette.LightVibrant._rgb.join(','));
             body.style.setProperty('--transparency-dark-color', palette.DarkMuted._rgb.join(','));
         });
 
-
-        const movieDetails = document.querySelector('.media-details');
-        const movie = await _fetch('/api/movies/' + uid);
-
         _drawBack(movie);
 
+        const movieDetails = document.querySelector('.media-details');
 
         const movieDetailsHtml = `<div class="column _20 poster fixed">
             <img src="/images/${movie.uid}_poster.jpg" />

@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <title>Media Speed Demo</title>
-    <link rel="stylesheet" href="plyr.css">
     <link rel="stylesheet" href="details.css">
 </head>
 <body>
@@ -18,18 +17,6 @@
     </div>
 </div>
 </body>
-<!-- /#wrap -->
-
-
-<!--<video preload="none" id="player" autoplay controls crossorigin></video>
-
-
-Episodes :
-<select id="videoId">
-
-</select>
-<button type="button" value="load" onClick="_load()">load</button>
-<button type="button" value="seek" onClick="_seek()">seek 10</button>-->
 
 <script src="plyr.js"></script>
 <script src="hls.js"></script>
@@ -64,8 +51,14 @@ Episodes :
     };
 
     _drawShow = async function (uid, activeSeason) {
+        const show = await _fetch('/api/tv/shows/' + uid);
+        const seasons = await _fetch('/api/tv/shows/' + uid + '/seasons');
+        activeSeason = activeSeason || parseInt(qs['season']) || seasons[0].season_number || 1;
+
         const body = document.querySelector('body');
-        body.style.setProperty('--main-bg-image', "url(/images/" + uid + "_backdrop.jpg)");
+        const backdrop = show.local_backdrop ? '/images/' + show.local_backdrop : '/demo/default-bg.jpg';
+
+        body.style.setProperty('--main-bg-image', "url("+backdrop+")");
 
 
         Vibrant.from("/images/" + uid + "_poster.jpg").getPalette((err, palette) => {
@@ -75,11 +68,6 @@ Episodes :
 
 
         const showDetails = document.querySelector('.media-details');
-        const show = await _fetch('/api/tv/shows/' + uid);
-        const seasons = await _fetch('/api/tv/shows/' + uid + '/seasons');
-        activeSeason = activeSeason || parseInt(qs['season']) || seasons[0].season_number || 1;
-
-
         const episodes = await _fetch('/api/tv/shows/' + uid + '/seasons/' + activeSeason + '/episodes');
 
         _drawBack(show);
@@ -107,15 +95,24 @@ Episodes :
                     <p class="season-overview">${season.overview}</p>
                     <div class="row episodes ${parseInt(season.season_number) === activeSeason ? 'active' : ''}">
                     ${episodes.filter(ep => ep.season_uid === season.uid).sort((a, b) => Number(a.episode_number) - Number(b.episode_number)).map(episode => {
-                return `<div class="episode-poster">
-                            <div class="episode-image">
-                                <img class="poster" src="/images/${episode.uid}_screenshot.jpg" />
-                                <div class="play" onClick="_play('${episode.uid}')"></div>
-                            </div>
-                            <div class="episode-number"><strong>Episode ${episode.episode_number}</strong></div>
-                            <div class="episode-name"><strong>${episode.name}</strong></div>
-                        </div>`
-            }).join('')}
+                        let still = '/demo/default-episode-backdrop.jpg';
+
+                        if(episode.local_still) {
+                            still = '/images/' + episode.local_still;
+                        } else if(episode.local_screenshot) {
+                            still = '/images/' + episode.local_screenshot;
+                        }
+
+
+                        return `<div class="episode-poster">
+                                            <div class="episode-image">
+                                                <img class="poster" src="${still}" />
+                                                <div class="play" onClick="_play('${episode.uid}')"></div>
+                                            </div>
+                                            <div class="episode-number"><strong>Episode ${episode.episode_number}</strong></div>
+                                            <div class="episode-name"><strong>${episode.name}</strong></div>
+                                        </div>`
+                            }).join('')}
                     </div>
                 </div>
             </div>

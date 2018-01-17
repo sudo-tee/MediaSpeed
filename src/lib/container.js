@@ -2,6 +2,7 @@ import { createContainer, Lifetime, ResolutionMode, asValue, asFunction, asClass
 import { logger } from './logger';
 import movieDbApi from '../lib/moviedb';
 import database from '../lib/database';
+import serviceFactory from '../services/service-factory';
 import recursiveDirectoryReader from './scanner/recursive-directory-reader';
 import tnp from 'torrent-name-parser';
 import epinfer from 'epinfer';
@@ -70,6 +71,7 @@ export async function configureContainer() {
             formatName: 'camelCase'
         })
         .register('logger', asValue(logger))
+        .register('serviceFactory', asClass(serviceFactory))
         .register('movieDbApi', asFunction(movieDbApi).singleton())
         .register('db', await asValue(db))
         .register('libraryScanner', asClass(libraryScanner).singleton())

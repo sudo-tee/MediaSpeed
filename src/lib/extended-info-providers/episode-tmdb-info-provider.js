@@ -1,47 +1,5 @@
 import memoize from 'memoized-decorator';
-import { pick } from 'lodash';
 import EventsEnum from '../events-enum';
-
-const showFields = [
-    'backdrop_path',
-    'created_by',
-    'first_air_date',
-    'genres',
-    'homepage',
-    'in_production',
-    'languages',
-    'last_air_date',
-    'name',
-    'networks',
-    'number_of_episodes',
-    'number_of_seasons',
-    'origin_country',
-    'original_language',
-    'original_name',
-    'overview',
-    'popularity',
-    'poster_path',
-    'production_companies',
-    'status',
-    'vote_average',
-    'vote_count'
-];
-
-const seasonFields = ['air_date', 'name', 'overview', 'poster_path', 'season_number'];
-
-const episodeFields = [
-    'episode_number',
-    'season_number',
-    'name',
-    'air_date',
-    'crew',
-    'guest_stars',
-    'overview',
-    'production_code',
-    'still_path',
-    'vote_average',
-    'vote_count'
-];
 
 export default class EpisodeTmdbInfoProvider {
     constructor(movieDbApi, eventEmitter, episodeService, showService, seasonService, logger) {
@@ -72,20 +30,62 @@ export default class EpisodeTmdbInfoProvider {
 
             episode = {
                 ...episode,
-                ...pick(episodeDetails, episodeFields),
-                ...{ tmdb_id: episodeDetails.id }
+                ...{
+                    tmdb_id: episodeDetails.id,
+                    tmdb_still_path: episodeDetails.still_path,
+                    tmdb_show_id: showDetails.id,
+                    tmdb_season_id: seasonDetails.id,
+                    episode_number: episodeDetails.episode_number,
+                    season_number: episodeDetails.season_number,
+                    name: episodeDetails.name,
+                    air_date: episodeDetails.air_date,
+                    crew: episodeDetails.crew,
+                    guest_stars: episodeDetails.guest_stars,
+                    overview: episodeDetails.overview,
+                    vote_average: episodeDetails.vote_average,
+                    vote_count: episodeDetails.vote_count
+                }
             };
 
             show = {
                 ...show,
-                ...pick(showDetails, showFields),
-                ...{ tmdb_id: showDetails.id }
+                ...{
+                    tmdb_id: showDetails.id,
+                    tmdb_backdrop_path: showDetails.backdrop_path,
+                    tmdb_poster_path: showDetails.poster_path,
+                    created_by: showDetails.created_by,
+                    first_air_date: showDetails.first_air_date,
+                    genres: showDetails.genres,
+                    homepage: showDetails.homepage,
+                    in_production: showDetails.in_production,
+                    languages: showDetails.languages,
+                    last_air_date: showDetails.last_air_date,
+                    name: showDetails.name,
+                    networks: showDetails.networks,
+                    origin_country: showDetails.origin_country,
+                    original_language: showDetails.original_language,
+                    original_name: showDetails.original_name,
+                    overview: showDetails.overview,
+                    popularity: showDetails.popularity,
+                    poster_path: showDetails.poster_path,
+                    production_companies: showDetails.production_companies,
+                    status: showDetails.status,
+                    vote_average: showDetails.vote_average,
+                    vote_count: showDetails.vote_count
+                }
             };
 
             season = {
                 ...season,
-                ...pick(seasonDetails, seasonFields),
-                ...{ tmdb_id: seasonDetails.id }
+                ...{
+                    tmdb_id: seasonDetails.id,
+                    tmdb_backdrop_path: seasonDetails.backdrop_path,
+                    tmdb_poster_path: seasonDetails.poster_path,
+                    season_number: seasonDetails.season_number,
+                    air_date: seasonDetails.air_date,
+                    name: seasonDetails.name,
+                    overview: seasonDetails.overview
+                }
             };
 
             await this.episodeService.update(episode.uid, episode);

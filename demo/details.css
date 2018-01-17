@@ -121,7 +121,7 @@ hr {
 }
 
 .episode-poster img, .poster img {
-    width: 425px;
+    width: 404px;
     border-radius: 5px;
     object-fit: cover;
     box-shadow: 5px 5px 7px 0px rgba(0,0,0,0.33);
@@ -158,7 +158,6 @@ hr {
 .play {
     transition: .5s ease;
     opacity: 0;
-    position: absolute;
     position: absolute;
     left: 50%;
     top: 50%;

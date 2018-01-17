@@ -12,7 +12,9 @@ const props = [
     'overview',
     'poster_path',
     'tmdb_id',
-    'show_uid'
+    'show_uid',
+    'local_poster',
+    'local_backdrop'
 ];
 
 export default class SeasonService extends BaseService {
