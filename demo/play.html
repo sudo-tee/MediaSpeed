@@ -42,7 +42,7 @@
 
     _fetchMedia = async function (uid, type) {
 
-        let url = '/api/tv/episodes/' + uid;
+        let url = '/api/episodes/' + uid;
         if(type === 'movie') {
             url = '/api/movies/' + uid;
         }

@@ -34,7 +34,7 @@ class ShowRestApi extends BaseRestApi {
 }
 
 export default createController(ShowRestApi)
-    .prefix('/api/tv/shows')
+    .prefix('/api/shows')
     .get('', 'find')
     .get('/:id', 'get')
     .get('/:id/seasons', 'getSeasons')

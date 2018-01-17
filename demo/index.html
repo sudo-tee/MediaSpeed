@@ -45,7 +45,7 @@
     _drawShows = async function (uid) {
         const body = document.querySelector('body');
         const cards = document.querySelector('#posters');
-        const shows = await _fetch('/api/tv/shows?library_uid=' + uid);
+        const shows = await _fetch('/api/shows?library_uid=' + uid);
 
         const randomItem = shows[Math.floor(Math.random()*shows.length)];
         const backdrop = randomItem.local_backdrop ? '/images/' + randomItem.local_backdrop : '/demo/default-bg.jpg';

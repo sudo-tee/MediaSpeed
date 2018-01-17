@@ -85,29 +85,29 @@ Each GET api uses [node-mongo-querystring](https://github.com/Turistforeningen/n
 - <code>DELETE</code> /api/movies
 
 ### Episodes Shows Resource
-- <code>GET</code>    /api/tv/episodes [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
-- <code>GET</code>    /api/tv/episodes/:uid
-- <code>POST</code>   /api/tv/episodes
-- <code>PUD</code>    /api/tv/episodes
-- <code>DELETE</code> /api/tv/episodes
+- <code>GET</code>    /api/episodes [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
+- <code>GET</code>    /api/episodes/:uid
+- <code>POST</code>   /api/episodes
+- <code>PUD</code>    /api/episodes
+- <code>DELETE</code> /api/episodes
 
 ### Shows Resource
-- <code>GET</code>    /api/tv/shows [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
-- <code>GET</code>    /api/tv/shows/:uid
-- <code>GET</code>    /api/tv/shows/:uid/seasons `Gets all the seasons of a show`               
-- <code>GET</code>    /api/tv/shows/:uid/seasons/:sid `Gets a season for a show the seasons of a show by uid or by number`
-- <code>GET</code>    /api/tv/shows/:uid/seasons/:sid/episodes `Gets episodes for a season in show`
-- <code>GET</code>    /api/tv/shows/:uid/episodes `Gets all episodes for a show`
-- <code>POST</code>   /api/tv/shows
-- <code>PUD</code>    /api/tv/shows
-- <code>DELETE</code> /api/tv/shows
+- <code>GET</code>    /api/shows [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
+- <code>GET</code>    /api/shows/:uid
+- <code>GET</code>    /api/shows/:uid/seasons `Gets all the seasons of a show`               
+- <code>GET</code>    /api/shows/:uid/seasons/:sid `Gets a season for a show the seasons of a show by uid or by number`
+- <code>GET</code>    /api/shows/:uid/seasons/:sid/episodes `Gets episodes for a season in show`
+- <code>GET</code>    /api/shows/:uid/episodes `Gets all episodes for a show`
+- <code>POST</code>   /api/shows
+- <code>PUD</code>    /api/shows
+- <code>DELETE</code> /api/shows
 
 ### Seasons Resource
-- <code>GET</code>    /api/tv/seasons [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
-- <code>GET</code>    /api/tv/seasons/:uid
-- <code>POST</code>   /api/tv/seasons
-- <code>PUD</code>    /api/tv/seasons
-- <code>DELETE</code> /api/tv/seasons
+- <code>GET</code>    /api/seasons [node-mongo-querystring](https://github.com/Turistforeningen/node-mongo-querystring) support
+- <code>GET</code>    /api/seasons/:uid
+- <code>POST</code>   /api/seasons
+- <code>PUD</code>    /api/seasons
+- <code>DELETE</code> /api/seasons
 
 ### Stream media file
 - <code>GET</code>    /stream/movie/:uid `Range seekable raw stream for a movie` 

@@ -12,7 +12,7 @@ class SeasonsRestApi extends BaseRestApi {
 // See the `awilix-router-core` docs for info:
 // https://github.com/jeffijoe/awilix-router-core
 export default createController(SeasonsRestApi)
-    .prefix('/api/tv/seasons')
+    .prefix('/api/seasons')
     .get('', 'find')
     .get('/:id', 'get')
     .post('', 'create')

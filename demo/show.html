@@ -51,8 +51,8 @@
     };
 
     _drawShow = async function (uid, activeSeason) {
-        const show = await _fetch('/api/tv/shows/' + uid);
-        const seasons = await _fetch('/api/tv/shows/' + uid + '/seasons');
+        const show = await _fetch('/api/shows/' + uid);
+        const seasons = await _fetch('/api/shows/' + uid + '/seasons');
         activeSeason = activeSeason || parseInt(qs['season']) || seasons[0].season_number || 1;
 
         const body = document.querySelector('body');
@@ -68,7 +68,7 @@
 
 
         const showDetails = document.querySelector('.media-details');
-        const episodes = await _fetch('/api/tv/shows/' + uid + '/seasons/' + activeSeason + '/episodes');
+        const episodes = await _fetch('/api/shows/' + uid + '/seasons/' + activeSeason + '/episodes');
 
         _drawBack(show);
 
