@@ -154,10 +154,10 @@ The code is there as a reference, there is no "session handling" so you can't st
 ## To start the project
 **Node v8.0 and above!** is required
 
-Copy the config file sample 
+Mediaspeed will create a folder in your home  ~/.media_speed/config.json 
 
 ``` 
-cp config.json.dist config.json
+~/.media_speed/config.json 
 ```
 
 And put your tmdb api key in the file
@@ -173,6 +173,7 @@ There are a few defined run scripts, here's a list of them with a description of
 * `start`: Used by the production environment to start the app. This will run a compiled version, so you need to execute `build` first.
 * `build`: Runs the `babel` CLI to compile the app. Files are emitted to `dist/`.
 * `dev`: Runs the app in development mode - uses `babel-node` to compile on-the-fly. Also uses `nodemon` to automatically restart when 
+
 
 # Author
 
