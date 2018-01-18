@@ -175,6 +175,19 @@ There are a few defined run scripts, here's a list of them with a description of
 * `dev`: Runs the app in development mode - uses `babel-node` to compile on-the-fly. Also uses `nodemon` to automatically restart when 
 
 
+# To add a library 
+
+``` 
+curl -X POST \
+ http://localhost:500/api/libraries -d '{"path": "/media/Movies", "name":"Movies", "type":"movie"}'
+```
+
+# To start a scan
+
+``` 
+curl -X POST http://localhost:500/api/libraries/scan
+``` 
+
 # Author
 
 * Francis Bélanger - inkubux

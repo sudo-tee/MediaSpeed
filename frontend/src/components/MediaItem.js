@@ -1,8 +1,8 @@
 import React from 'react';
 import {Card, Image} from 'semantic-ui-react';
-import './CardItem.css';
+import './MediaItem.css';
 
-class CardItem extends React.Component {
+class MediaItem extends React.Component {
    constructor() {
       super(...arguments);
       this.img = '/images/' + this.props.media.local_poster;
@@ -18,4 +18,4 @@ class CardItem extends React.Component {
    }
 }
 
-export default CardItem;
+export default MediaItem;

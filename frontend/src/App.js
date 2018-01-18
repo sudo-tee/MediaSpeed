@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Container, Divider, Dropdown, Grid, Header, Image, List, Menu, Segment } from 'semantic-ui-react'
-import CardList from './components/CardList';
+import MovieListContainer from './containers/MovieListContainer';
 
 class App extends Component {
   render() {
     return (
       <div>
         <Menu fixed='top' inverted>
-          <Container>
+          <Container fluid>
             <Menu.Item as='a' header>
               <Image
                 size='mini'
@@ -38,8 +38,8 @@ class App extends Component {
           </Container>
         </Menu>
 
-        <Container fluid content style={{ marginTop: '7em' }}>
-          <CardList />
+        <Container fluid  style={{ marginTop: '7em' }}>
+          <MovieListContainer />
         </Container>
 
         <Segment
