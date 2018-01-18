@@ -154,7 +154,7 @@ The code is there as a reference, there is no "session handling" so you can't st
 ## To start the project
 **Node v8.0 and above!** is required
 
-Mediaspeed will create a folder in your home  ~/.media_speed/config.json 
+Mediaspeed will create a folder in your home  ~/.media_speed/  open the config file
 
 ``` 
 ~/.media_speed/config.json 
