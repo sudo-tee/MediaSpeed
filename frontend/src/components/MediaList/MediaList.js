@@ -1,6 +1,7 @@
 import React from 'react';
-import MediaItem from './MediaItem';
+import MediaItem from '../MediaItem/MediaItem';
 import {Grid} from 'semantic-ui-react';
+import './MediaList.css';
 
 const MediaList = ({ medias }) =>
     <Grid doubling columns={5}>

@@ -7,10 +7,24 @@ export default class LokiAdapter {
     }
 
     async find(query) {
-        const qs = new MongoQS();
+        const qs = new MongoQS({ blacklist: { limit: true, sortBy: true, sortType: true } });
         const actualQuery = qs.parse(query);
         this.logger.debug(`Finding ${this.collectionName} by ${JSON.stringify(actualQuery)}`);
-        return this.db.getCollection(this.collectionName).find(actualQuery);
+        let result = this.db
+            .getCollection(this.collectionName)
+            .chain()
+            .find(actualQuery);
+
+        if (query.sortBy) {
+            const isDescending = query.sortType === 'desc';
+            result = result.simplesort(query.sortBy, isDescending);
+        }
+
+        if (query.limit) {
+            result = result.limit(10);
+        }
+
+        return result.data();
     }
 
     async get(uid) {

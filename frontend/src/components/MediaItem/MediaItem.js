@@ -12,7 +12,7 @@ class MediaItem extends React.Component {
       return <Card raised>
          <Image src={this.img} />
          <Card.Content extra>
-            {this.props.media.title}
+            {this.props.media.title  || this.props.media.name}
          </Card.Content>
       </Card>
    }
