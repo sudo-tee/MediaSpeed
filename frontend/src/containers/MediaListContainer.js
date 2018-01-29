@@ -1,12 +1,13 @@
 import React from 'react';
 import MediaList from '../components/MediaList/MediaList';
-import { Dimmer, Loader } from 'semantic-ui-react'
+import {Dimmer, Loader} from 'semantic-ui-react'
+import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom'
 
 
-export default class MoviesListContainer extends React.Component {
+class MediaListContainer extends React.Component {
     constructor() {
         super(...arguments);
-        console.log('ffffff', arguments, this.props);
 
         this.state = {
             loading: true,
@@ -20,10 +21,8 @@ export default class MoviesListContainer extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-
         if(newProps['library-type'] !== this.props['library-type'] ||
            newProps['library-uid'] !== this.props['library-uid']) {
-            console.log('second time rendering');
             this.fetch(newProps['library-type'], newProps['library-uid']);
         }
     }
@@ -50,3 +49,8 @@ export default class MoviesListContainer extends React.Component {
         return <MediaList medias={this.state.data} />
     }
 }
+
+export default withRouter(connect(
+    null,
+    null
+)(MediaListContainer))

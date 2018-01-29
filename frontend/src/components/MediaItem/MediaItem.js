@@ -9,10 +9,15 @@ class MediaItem extends React.Component {
    }
 
    render() {
-      return <Card raised>
+      return <Card>
          <Image src={this.img} />
-         <Card.Content extra>
-            {this.props.media.title  || this.props.media.name}
+         <Card.Content>
+            <Card.Header>{this.props.media.title  || this.props.media.name}</Card.Header>
+            <Card.Meta>
+              <span className='date'>
+                ({this.props.media.year  || new Date(this.props.media.first_air_date).getYear()})
+              </span>
+            </Card.Meta>
          </Card.Content>
       </Card>
    }

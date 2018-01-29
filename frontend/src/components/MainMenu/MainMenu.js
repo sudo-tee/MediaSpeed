@@ -1,59 +1,47 @@
 import React, {Component} from 'react'
-import {Menu, Image} from 'semantic-ui-react'
-import {withRouter} from 'react-router-dom'
-
+import {Menu, Image, Icon, Sidebar} from 'semantic-ui-react'
+import {NavLink} from 'react-router-dom'
+import './MainMenu.css'
 
 class MainMenu extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            activeItem: 'home',
-        };
-    }
 
-    handleItemClick = (e, {library}) => {
+    getUrl = (library) => {
         let url = '/';
         if(library) {
-            this.setState({activeItem: library.uid});
-
             if(library.type === 'episode') {
                 url = `/library/${library.uid}/shows`;
             } else {
                 url = `/library/${library.uid}/${library.type}s`;
             }
-
         }
-        this.props.history.push(url)
+
+        return url
     };
 
     render() {
-        const {activeItem} = this.state;
         const libraries = this.props.libraries || [];
-
         return (
-            <Menu stackable>
-                <Menu.Item as='a' header key='home' library='' onClick={this.handleItemClick}>
-                    <Image
-                        size='mini'
-                        src='/logo.png'
-                    />
-                    Media Speed
-                </Menu.Item>
+            <Sidebar  as={Menu} visible={this.props.visible} vertical>
+                <div className="sidebar-content">
+                    <Menu.Item className="header-logo"><Image src="/logo.png" size="mini"></Image>Media Speed</Menu.Item>
+                    <Menu.Item as={NavLink} exact to="/"><Icon name='home' />Home</Menu.Item>
+                    {libraries.map((lib) => {
+                        console.log('menu', lib);
+                        return <Menu.Item
+                            as={NavLink}
+                            to={this.getUrl(lib)}
+                            key={lib.uid} >
+                            <Icon name={lib.type === 'movie' ? 'film' : 'tv'}/>{lib.name}
+                        </Menu.Item>
+                    })}
+                    <Menu.Header>Manage</Menu.Header>
+                    <Menu.Item as={NavLink} to="/settings"><Icon name='setting'/>Settings</Menu.Item>
 
-                {libraries.map((lib) => {
-                    return <Menu.Item
-                        library={lib}
-                        key={lib.uid}
-                        name={lib.name}
-                        active={activeItem === lib.uid}
-                        onClick={this.handleItemClick}>
-                        {lib.name}
-                    </Menu.Item>
-                })}
-
-            </Menu>
+                </div>
+            </Sidebar>
         )
     }
 }
 
-export default withRouter(MainMenu)
+//Propstype
+export default MainMenu

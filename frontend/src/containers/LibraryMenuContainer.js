@@ -1,29 +1,35 @@
 import React from 'react';
 import MainMenu from '../components/MainMenu/MainMenu';
+import {connect} from "react-redux";
+import {withRouter} from 'react-router-dom'
+import {fetchLibrariesIfNeeded} from '../actions/librariesActions';
 
-export default class LibraryMenuContainer extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            loading: true,
-            error: null,
-            data: []
-        }
-    }
 
-    async componentDidMount() {
-        try {
-            const result = await fetch('/api/libraries');
-            const libraries = await result.json();
-            this.setState({loading:false, data: libraries});
-        } catch (e) {
-            this.setState({loading:false, error: e.message});
-        }
+class LibraryMenuContainer extends React.Component {
+    componentDidMount() {
+        this.props.fetchLibraries();
     }
 
     render() {
-        if(this.state.error) return <div>{this.state.error}..</div>;
-        if(this.state.loading) return <MainMenu />;
-        return <MainMenu libraries={this.state.data} />
+        if(this.props.libraries.isFetching) return <MainMenu selected={this.props.selected} />;
+        return <MainMenu libraries={this.props.libraries.items} selected={this.props.selected} visible={this.props.visible} />
     }
 }
+
+function mapStateToProps (state) {
+    return {
+        libraries: state.libraries,
+        visible: state.mainMenu.visible,
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        fetchLibraries: () => dispatch(fetchLibrariesIfNeeded()),
+    }
+}
+
+export default withRouter(connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LibraryMenuContainer))

@@ -53,6 +53,7 @@
     "p-throttle": "^1.1.0",
     "palin": "^2.2.0",
     "recursive-readdir": "^2.2.1",
+    "redux-thunk": "^2.2.0",
     "shorthash": "0.0.2",
     "throttled-queue": "^1.0.5",
     "torrent-name-parser": "^0.6.5",
@@ -111,6 +112,9 @@
     ]
   },
   "nodemonConfig": {
+    "ignore": [
+      "frontend/*"
+    ],
     "execMap": {
       "js": "babel-node"
     }
