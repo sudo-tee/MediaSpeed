@@ -1,4 +1,4 @@
-import {SELECT_MENU_ITEM, TOGGLE_MENU} from '../actions/mainMenuActions';
+import {TOGGLE_MENU} from '../actions/mainMenuActions';
 
 const initialState = {
     visible: true

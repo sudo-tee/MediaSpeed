@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import Home from '../../components/Home';
 import {Switch, Route, withRouter} from 'react-router-dom';
-import MediaListContainer from "../../containers/MediaListContainer";
+import MovieListContainer from "../../containers/MovieListContainer";
+import ShowListContainer from "../../containers/ShowListContainer";
+import HomeContainer from "../../containers/HomeContainer";
 
 class MainContent extends Component {
     render() {
@@ -10,12 +11,12 @@ class MainContent extends Component {
         return (
             <div className={classNames}>
                 <Switch>
-                    <Route exact path='/' render={(props) => <Home library-type='movies'/>}/>
+                    <Route exact path='/' render={(props) => <HomeContainer />}/>
                     <Route path='/library/:id/movies'
-                           render={(props) => <MediaListContainer library-uid={props.match.params.id}
+                           render={(props) => <MovieListContainer library-uid={props.match.params.id}
                                                                   library-type='movies'/>}/>
                     <Route path='/library/:id/shows'
-                           render={(props) => <MediaListContainer library-uid={props.match.params.id}
+                           render={(props) => <ShowListContainer library-uid={props.match.params.id}
                                                                   library-type='shows'/>}/>
                 </Switch>
             </div>

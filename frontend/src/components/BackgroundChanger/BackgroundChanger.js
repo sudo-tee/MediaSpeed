@@ -1,5 +1,4 @@
-import React, {Component} from 'react';
-
+import {Component} from 'react';
 
 class BackgroundChanger extends Component {
     constructor() {
@@ -11,16 +10,16 @@ class BackgroundChanger extends Component {
     }
 
     componentWillMount() {
-        console.log('mount', this.props['medias']);
-
         this.changeBackground(this.props['medias'])
     }
 
     componentWillReceiveProps(newProps) {
-        console.log('props', newProps['medias']);
-
         if(newProps['medias'] !== this.props['medias'])
             this.changeBackground(newProps['medias']);
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.handle);
     }
 
     changeBackground(medias) {
@@ -36,9 +35,8 @@ class BackgroundChanger extends Component {
     render() {
         const {img} = this.state;
         const rootElement = document.querySelector(this.props['root-element']);
-        console.log(rootElement);
         rootElement.style.background = img;
-        return '';//<div id="background-image" style={{background: img}}></div>;
+        return '';
     }
 
     setImage(images) {
@@ -46,14 +44,14 @@ class BackgroundChanger extends Component {
         const base = "/images/";
         const randomItem = images[Math.floor(Math.random() * images.length)];
 
+        if (!randomItem) return;
+
         const img = new Image();
         img.src = base + randomItem;
         img.onload =  () => {
-            console.log('yo', randomItem);
             this.setState({img:"url(" + base + randomItem + ") no-repeat fixed"});
         };
         this.handle = setTimeout(() => this.setImage(images), (this.props['delay'] || 5) * 1000);
-
 
     }
 }
