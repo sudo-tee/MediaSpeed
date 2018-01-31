@@ -33,3 +33,7 @@ export default function librariesReducer(state = initialState, action) {
             return state
     }
 };
+
+export function latestMoviesByLibraries(state) {
+    state.libraries.map()
+}

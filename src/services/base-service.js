@@ -6,7 +6,6 @@ const assertId = BadRequest.makeAssert('No id given');
 
 /**
  * Library Service.
- * Gets a todo store injected.
  */
 export default class BaseService {
     constructor(store, props) {

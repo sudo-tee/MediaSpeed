@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {fetchShowsIfNeeded} from '../actions/showsActions';
 import {selectLibrary} from '../actions/librariesActions';
-import {showsByLibraryUid} from '../reducers/showsReducer';
+import {selectLibraryShows} from '../reducers';
 
 
 class MovieListContainer extends React.Component {
@@ -29,7 +29,7 @@ class MovieListContainer extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        shows: showsByLibraryUid(state)
+        shows: selectLibraryShows(state)
     }
 }
 

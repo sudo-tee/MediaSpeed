@@ -1,9 +1,8 @@
 import React from 'react'
 import BackgroundChanger from "./BackgroundChanger/BackgroundChanger";
 
-const Home = ({shows, movies}) => (
+const Home = ({shows, movies, libraries}) => (
     <div>
-        <BackgroundChanger medias={[...shows, ...movies]} root-element="body"/>
         <h1>Welcome to Media Speed</h1>
     </div>
 );

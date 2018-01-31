@@ -6,7 +6,9 @@ import reducers from '../reducers'
 const loggerMiddleware = createLogger();
 
 export default function configureStore() {
-    return createStore(reducers, applyMiddleware(
+    return createStore(reducers,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+    applyMiddleware(
         thunkMiddleware, // lets us dispatch() functions
         loggerMiddleware // neat middleware that logs actions
     ));

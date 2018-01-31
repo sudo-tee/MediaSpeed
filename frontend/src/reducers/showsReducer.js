@@ -28,8 +28,3 @@ export default function showsReducer(state = initialState, action) {
             return state
     }
 };
-
-
-export function showsByLibraryUid(state) {
-    return state.shows.items.filter((show) => show.library_uid === state.libraries.selectedLibrary);
-}

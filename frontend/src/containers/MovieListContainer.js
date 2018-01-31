@@ -4,7 +4,7 @@ import {Dimmer, Loader} from 'semantic-ui-react'
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {fetchMoviesIfNeeded} from '../actions/moviesActions';
-import {moviesByLibraryUid} from '../reducers/moviesReducer';
+import {selectLibraryMovies} from '../reducers';
 import {selectLibrary} from '../actions/librariesActions';
 
 
@@ -29,7 +29,7 @@ class MovieListContainer extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        movies: moviesByLibraryUid(state)
+        movies: selectLibraryMovies(state)
     }
 }
 
