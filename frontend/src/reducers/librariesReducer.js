@@ -1,13 +1,18 @@
-import {REQUEST_LIBRARIES, RECEIVE_LIBRARIES, INVALIDATE_LIBRARIES} from '../actions/librariesActions';
+import {REQUEST_LIBRARIES, RECEIVE_LIBRARIES, INVALIDATE_LIBRARIES, SELECT_LIBRARY} from '../actions/librariesActions';
 
 const initialState = {
     isFetching: false,
     didInvalidate: false,
+    selectedLibrary: null,
     items: []
 };
 
 export default function librariesReducer(state = initialState, action) {
     switch (action.type) {
+        case SELECT_LIBRARY:
+            return Object.assign({}, state, {
+                selectedLibrary: action.uid
+            });
         case INVALIDATE_LIBRARIES:
             return Object.assign({}, state, {
                 didInvalidate: true

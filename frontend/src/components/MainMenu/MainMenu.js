@@ -26,7 +26,6 @@ class MainMenu extends Component {
                     <Menu.Item className="header-logo"><Image src="/logo.png" size="mini"></Image>Media Speed</Menu.Item>
                     <Menu.Item as={NavLink} exact to="/"><Icon name='home' />Home</Menu.Item>
                     {libraries.map((lib) => {
-                        console.log('menu', lib);
                         return <Menu.Item
                             as={NavLink}
                             to={this.getUrl(lib)}

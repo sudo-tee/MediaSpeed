@@ -1,5 +1,5 @@
 import { NotFound, BadRequest } from 'fejl';
-import { pick } from 'lodash';
+import { pick, omit } from 'lodash';
 
 // Prefab assert function.
 const assertId = BadRequest.makeAssert('No id given');
@@ -18,13 +18,17 @@ export default class BaseService {
         return pick(data, this.props);
     }
 
+    omitInternalProperties(data) {
+        return omit(data, ['$loki', 'meta.revision', 'meta.version']);
+    }
+
     assertInput() {
         throw new Error('method assertInput needs to be implemented');
     }
 
     async find(params) {
         const result = await this.store.find(params);
-        return result.map(this.filterProperties, this);
+        return result.map(this.omitInternalProperties, this);
     }
 
     async get(uid) {
@@ -32,7 +36,7 @@ export default class BaseService {
         const ret = await this.store
             .get(uid)
             .then(NotFound.makeAssert(`${this.store.collectionName} with id "${uid}" not found`));
-        return this.filterProperties(ret);
+        return this.omitInternalProperties(ret);
     }
 
     async tryGet(uid) {
@@ -43,12 +47,12 @@ export default class BaseService {
             return null;
         }
 
-        return this.filterProperties(ret);
+        return this.omitInternalProperties(ret);
     }
 
     async create(data) {
         this.assertInput(data);
-        return this.filterProperties(await this.store.create(data));
+        return this.omitInternalProperties(await this.store.create(data));
     }
 
     async update(id, data) {

@@ -28,3 +28,7 @@ export default function moviesReducer(state = initialState, action) {
             return state
     }
 };
+
+export function moviesByLibraryUid(state) {
+    return state.movies.items.filter((movie) => movie.library_uid === state.libraries.selectedLibrary);
+}

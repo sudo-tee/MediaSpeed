@@ -2,6 +2,7 @@
 export const REQUEST_LIBRARIES = 'REQUEST_LIBRARIES';
 export const RECEIVE_LIBRARIES = 'RECEIVE_LIBRARIES';
 export const INVALIDATE_LIBRARIES = 'INVALIDATE_LIBRARIES';
+export const SELECT_LIBRARY = 'SELECT_LIBRARY';
 
 export function requestLibraries() {
     return {
@@ -20,6 +21,13 @@ function receiveLibraries(libraries) {
 export function invalidateLibraries() {
     return {
         type: INVALIDATE_LIBRARIES
+    }
+}
+
+export function selectLibrary(uid) {
+    return {
+        type: SELECT_LIBRARY,
+        uid
     }
 }
 

@@ -25,16 +25,39 @@ https://github.com/MediaBrowser/Emby
 - The transcoding is really basic
 
 
+
+## To start the project
+**Node v8.0 and above!** is required
+
+Mediaspeed will create a folder in your home  ~/.media_speed/  open the config file
+
+``` 
+~/.media_speed/config.json 
+```
+
+And put your tmdb api key in the file
+https://developers.themoviedb.org/3
+
+Install the dependencies
+``` 
+yarn install
+```
+
 ## GUI
-There is a small gui that you can load in the demo folder
+There is a REACT GUI in the frontend/ folder
 
- Fire it by loading http://your_url/demo/index.html 
+to start it in dev mode use the following command in the root folder of the project
 
- **This is not the real gui,. it's there for me to test everything, and I thought it would be great to include it as a demo. It's done in vanilla js, and with crappy code**
+``` 
+yarn dev
+```
 
-There will be a gui created un react in the future
-  
- 
+There is still no way to start it in 'prod mode' but there will be one soon 
+
+``` 
+yarn build
+yarn start
+```
 
 ## Media Directory structure
 
@@ -150,23 +173,6 @@ The code is there as a reference, there is no "session handling" so you can't st
 - The codec detection only works in hls right now the other methods are there as a reference for later
 - The codec detection is really bad and basic a simple if h264 ... I will add them later if needed
 
-
-## To start the project
-**Node v8.0 and above!** is required
-
-Mediaspeed will create a folder in your home  ~/.media_speed/  open the config file
-
-``` 
-~/.media_speed/config.json 
-```
-
-And put your tmdb api key in the file
-https://developers.themoviedb.org/3
-
-Install the dependencies
-``` 
-yarn install
-```
 
 There are a few defined run scripts, here's a list of them with a description of what they do. To run them, simply execute `npm run <script name>` - e.g. `npm run dev`
 
