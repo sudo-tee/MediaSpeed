@@ -112,6 +112,7 @@
     ]
   },
   "nodemonConfig": {
+    "signal": "SIGHUP",
     "ignore": [
       "frontend/*"
     ],

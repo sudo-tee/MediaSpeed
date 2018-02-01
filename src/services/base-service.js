@@ -66,7 +66,7 @@ export default class BaseService {
     }
 
     async remove(uid) {
-        // Make sure the library exists by calling `get`.
+        // Make sure the entity exists by calling `get`.
         await this.get(uid);
         return this.store.remove(uid);
     }

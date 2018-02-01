@@ -1,15 +1,27 @@
 export default class LibraryScanner {
-    constructor(directoryScanner, movieScanner, episodeScanner, movieService, libraryService, logger, throttledQueue) {
+    constructor(
+        directoryScanner,
+        movieScanner,
+        episodeScanner,
+        movieService,
+        libraryService,
+        deletedFilesPurger,
+        logger,
+        throttledQueue
+    ) {
         this.directoryScanner = directoryScanner;
         this.movieScanner = movieScanner;
         this.episodeScanner = episodeScanner;
         this.movieService = movieService;
         this.libraryService = libraryService;
+        this.deletedFilesPurger = deletedFilesPurger;
         this.logger = logger;
         this.queue = throttledQueue(3, 1000, true);
     }
 
     async scan(library) {
+        await this.deletedFilesPurger.execute(library);
+
         this.logger.info('Scanning ' + library.path);
 
         library.last_update = Date.now();

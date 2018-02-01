@@ -1,9 +1,10 @@
 import React from 'react'
-import BackgroundChanger from "./BackgroundChanger/BackgroundChanger";
+import LatestMoviesWidgetContainer from "../containers/LatestMoviesWidgetContainer";
+import LatestShowsWidgetContainer from "../containers/LatestShowsWidgetContainer";
 
-const Home = ({shows, movies, libraries}) => (
+const Home = ({libraries}) => (
     <div>
-        <h1>Welcome to Media Speed</h1>
+        {libraries.map((lib) => lib.type === 'movie' ? <LatestMoviesWidgetContainer library={lib} /> :  <LatestShowsWidgetContainer library={lib} />)}
     </div>
 );
 

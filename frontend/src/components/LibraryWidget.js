@@ -1,10 +1,10 @@
 import React from 'react'
 import MediaList from "./MediaList/MediaList";
 
-const LibraryWidget = ({medias, title, maxDisplay}) => (
-    <div>
+const LibraryWidget = ({medias, title, maxDisplay, layout}) => (
+    <div className="widget">
         <h2>{title}</h2>
-        <MediaList medias={medias.splice(0, maxDisplay)} />
+        <MediaList medias={medias.slice(0, maxDisplay)} layout={layout} columns={maxDisplay}/>
     </div>
 );
 

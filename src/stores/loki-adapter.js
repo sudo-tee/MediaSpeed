@@ -46,6 +46,6 @@ export default class LokiAdapter {
     async remove(uid) {
         const doc = await this.get(uid);
         this.logger.debug(`Removing ${this.collectionName} ${uid}`);
-        return this.db.getCollection('movies').update(doc);
+        return this.db.getCollection(this.collectionName).remove(doc);
     }
 }

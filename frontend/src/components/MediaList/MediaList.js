@@ -3,12 +3,12 @@ import MediaItem from '../MediaItem/MediaItem';
 import {Grid} from 'semantic-ui-react';
 import './MediaList.css';
 
-const MediaList = ({ medias }) =>
+const MediaList = ({ medias, layout, columns }) =>
 
-    <Grid doubling columns={6}>
+    <Grid stackable columns={columns || 6}>
         {medias.map((media) => {
             return <Grid.Column key={media.uid}>
-                <MediaItem  media={media} />
+                <MediaItem  media={media} layout={layout}/>
             </Grid.Column>
         })}
     </Grid>;

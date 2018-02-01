@@ -48,12 +48,17 @@ body {
   color: white;
 }
 
+
 #root .main-content {
   padding: 50px;
   padding-left: 80px;
   margin: var(--topbar-height) 1rem 1rem 1rem;
   -webkit-transition: 300ms ease all;
   transition: 300ms ease all;
+}
+
+#root .main-content .widget {
+  margin-bottom: 30px;
 }
 
 #root .main-content.main-menu-visible {
@@ -179,6 +184,7 @@ body {
   border-radius: 0;
   box-shadow: none;
   -webkit-box-shadow: none;
+  width: 100%;
 }
 
 #root .ui.card img, #root .ui.card>:first-child {

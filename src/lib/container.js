@@ -9,6 +9,7 @@ import epinfer from 'epinfer';
 import libraryScanner from './scanner/library-scanner';
 import movieScanner from './scanner/movie-scanner';
 import episodeScanner from './scanner/episode-scanner';
+import deletedFilesPurger from './purger/deleted-files-purger';
 import EventEmitter from 'events';
 import camelCase from 'camel-case';
 import ffmpeg from '@ffmpeg-installer/ffmpeg';
@@ -74,6 +75,7 @@ export async function configureContainer() {
         .register('serviceFactory', asClass(serviceFactory))
         .register('movieDbApi', asFunction(movieDbApi).singleton())
         .register('db', await asValue(db))
+        .register('deletedFilesPurger', asClass(deletedFilesPurger))
         .register('libraryScanner', asClass(libraryScanner).singleton())
         .register('movieScanner', asClass(movieScanner))
         .register('episodeScanner', asClass(episodeScanner))

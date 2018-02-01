@@ -4,7 +4,7 @@ import Home from "../components/Home";
 import {selectLibrary} from '../actions/librariesActions';
 import {fetchMoviesIfNeeded} from '../actions/moviesActions';
 import {fetchShowsIfNeeded} from '../actions/showsActions';
-import {selectLatestMoviesByLibraries, selectLatestShowsByLibraries, selectLibraryList} from '../reducers';
+import {selectLibraryList} from '../reducers';
 
 
 class HomeContainer extends React.Component {
@@ -15,7 +15,7 @@ class HomeContainer extends React.Component {
     }
 
     render() {
-        return <Home shows={this.props.movies} movies={this.props.shows} libraries={this.props.movies.items}/>
+        return <Home libraries={this.props.libraries}/>
     }
 }
 
@@ -27,14 +27,9 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-
 function mapStateToProps (state) {
     return {
-        movies: state.movies,
-        shows: state.shows,
-        libraries: selectLibraryList(state),
-        moviesByLibraries: selectLatestMoviesByLibraries(state),
-        showsByLibraries: selectLatestShowsByLibraries(state),
+        libraries: selectLibraryList(state)
     }
 }
 

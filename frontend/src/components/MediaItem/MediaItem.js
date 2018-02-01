@@ -5,7 +5,14 @@ import './MediaItem.css';
 class MediaItem extends React.Component {
    constructor() {
       super(...arguments);
-      this.img = '/images/' + this.props.media.local_poster;
+
+      if(this.props.layout === "backdrop") {
+          this.img = '/images/' + this.props.media.local_backdrop;
+      } else {
+          this.img = '/images/' + this.props.media.local_poster;
+      }
+
+      this.year = this.props.media.year  || new Date(this.props.media.first_air_date).getFullYear();
    }
 
    render() {
@@ -14,9 +21,7 @@ class MediaItem extends React.Component {
          <Card.Content>
             <Card.Header>{this.props.media.title  || this.props.media.name}</Card.Header>
             <Card.Meta>
-              <span className='date'>
-                ({this.props.media.year  || new Date(this.props.media.first_air_date).getYear()})
-              </span>
+              <span className='date'>({this.year || "No year"})</span>
             </Card.Meta>
          </Card.Content>
       </Card>
