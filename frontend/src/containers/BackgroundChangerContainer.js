@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {selectLibraryMovies, selectLibraryShows, selectLibraryList} from '../reducers';
+import {selectLibraryMovies, selectLibraryShows} from '../reducers';
 import BackgroundChanger from "../components/BackgroundChanger/BackgroundChanger";
 
 

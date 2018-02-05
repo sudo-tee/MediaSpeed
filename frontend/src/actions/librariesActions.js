@@ -89,7 +89,7 @@ export function startLibraryscanScan(uid) {
                 error => console.log('An error occurred.', error)
             )
             .then(json => {
-                    dispatch(checkScanStatus(uid));
+                    setTimeout(() => dispatch(checkScanStatus(uid)), 2000);
                     return dispatch(libraryScanStarted(uid))
                 }
             )

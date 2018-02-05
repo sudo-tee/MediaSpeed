@@ -25,7 +25,6 @@ https://github.com/MediaBrowser/Emby
 - The transcoding is really basic
 
 
-
 ## To start the project
 **Node v8.0 and above!** is required
 
@@ -52,7 +51,9 @@ to start it in dev mode use the following command in the root folder of the proj
 yarn dev
 ```
 
-There is still no way to start it in 'prod mode' but there will be one soon 
+# GUI un prod mode
+
+The gui will be available in the /web url path (there is still no hotlinking support, this means you need to thart the project once from /web before the react router is bootstraped)
 
 ``` 
 yarn build

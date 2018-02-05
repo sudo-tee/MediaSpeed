@@ -47,6 +47,13 @@ export async function createServer() {
 
         .use(
             serveStatic({
+                rootPath: '/web',
+                rootDir: path.join(__dirname, '/../../frontend/build')
+            })
+        )
+
+        .use(
+            serveStatic({
                 rootPath: '/images',
                 rootDir: app.container.resolve('imageDestinationFolder')
             })
