@@ -53,7 +53,7 @@ yarn dev
 
 # GUI un prod mode
 
-The gui will be available in the /web url path (there is still no hotlinking support, this means you need to thart the project once from /web before the react router is bootstraped)
+The gui will be available in the /web url path
 
 ``` 
 yarn build

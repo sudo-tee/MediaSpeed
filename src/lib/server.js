@@ -48,7 +48,8 @@ export async function createServer() {
         .use(
             serveStatic({
                 rootPath: '/web',
-                rootDir: path.join(__dirname, '/../../frontend/build')
+                rootDir: path.join(__dirname, '/../../frontend/build'),
+                notFoundFile: 'index.html'
             })
         )
 
