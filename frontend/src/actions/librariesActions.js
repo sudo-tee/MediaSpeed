@@ -1,8 +1,13 @@
+import {keyBy, isEmpty} from 'lodash'
 
 export const REQUEST_LIBRARIES = 'REQUEST_LIBRARIES';
 export const RECEIVE_LIBRARIES = 'RECEIVE_LIBRARIES';
 export const INVALIDATE_LIBRARIES = 'INVALIDATE_LIBRARIES';
 export const SELECT_LIBRARY = 'SELECT_LIBRARY';
+export const REQUEST_LIBRARY_SCAN = 'REQUEST_LIBRARY_SCAN';
+export const LIBRARY_SCAN_STARTED = 'LIBRARY_SCAN_STARTED';
+export const LIBRARY_SCAN_ENDED = 'LIBRARY_SCAN_ENDED';
+export const CHECK_SCAN_STATUS = 'CHECK_SCAN_STATUS';
 
 export function requestLibraries() {
     return {
@@ -10,10 +15,10 @@ export function requestLibraries() {
     }
 }
 
-function receiveLibraries(libraries) {
+export function receiveLibraries(libraries) {
     return {
         type: RECEIVE_LIBRARIES,
-        libraries: libraries,
+        libraries: keyBy(libraries, 'uid'),
         receivedAt: Date.now()
     }
 }
@@ -31,6 +36,66 @@ export function selectLibrary(uid) {
     }
 }
 
+export function requestLibraryScan(uid) {
+    return {
+        type: REQUEST_LIBRARY_SCAN,
+        uid
+    }
+}
+
+export function libraryScanStarted(uid) {
+    return {
+        type: LIBRARY_SCAN_STARTED,
+        uid
+    }
+}
+
+export function libraryScanEnded(uid) {
+    return {
+        type: LIBRARY_SCAN_ENDED,
+        uid
+    }
+}
+
+export function checkScanStatus(uid) {
+    let handle;
+    return function (dispatch) {
+        return fetch('/api/libraries/' + uid)
+            .then(
+                response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(json => {
+                    if (json.scanning === false) {
+                        clearTimeout(handle);
+                        return dispatch(libraryScanEnded(uid))
+                    } else {
+                        handle = setTimeout(() => dispatch(checkScanStatus(uid)), 2000)
+                    }
+                }
+            )
+    }
+}
+
+export function startLibraryscanScan(uid) {
+
+    return function (dispatch) {
+
+        dispatch(requestLibraryScan(uid));
+
+        return fetch('/api/libraries/' + uid + "/scan", {method: 'POST'})
+            .then(
+                response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(json => {
+                    dispatch(checkScanStatus(uid));
+                    return dispatch(libraryScanStarted(uid))
+                }
+            )
+    }
+}
+
 export function fetchLibraries() {
 
     return function (dispatch) {
@@ -40,10 +105,6 @@ export function fetchLibraries() {
         return fetch('/api/libraries')
             .then(
                 response => response.json(),
-                // Do not use catch, because that will also catch
-                // any errors in the dispatch and resulting render,
-                // causing a loop of 'Unexpected batch number' errors.
-                // https://github.com/facebook/react/issues/6895
                 error => console.log('An error occurred.', error)
             )
             .then(json =>
@@ -57,7 +118,7 @@ export function shouldFetchLibraries(state) {
 
     if (libraries.isFetching) {
         return false
-    } else if (libraries.items.length === 0) {
+    } else if (isEmpty(libraries.items)) {
         return true
     } else {
         return libraries.didInvalidate

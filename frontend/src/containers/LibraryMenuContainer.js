@@ -3,6 +3,7 @@ import MainMenu from '../components/MainMenu/MainMenu';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {fetchLibrariesIfNeeded} from '../actions/librariesActions';
+import {selectLibraryList} from "../reducers/index";
 
 
 class LibraryMenuContainer extends React.Component {
@@ -12,13 +13,13 @@ class LibraryMenuContainer extends React.Component {
 
     render() {
         if(this.props.libraries.isFetching) return <MainMenu/>;
-        return <MainMenu libraries={this.props.libraries.items} visible={this.props.visible} />
+        return <MainMenu libraries={this.props.libraries} visible={this.props.visible} />
     }
 }
 
 function mapStateToProps (state) {
     return {
-        libraries: state.libraries,
+        libraries: selectLibraryList(state),
         visible: state.mainMenu.visible,
     }
 }

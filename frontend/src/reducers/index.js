@@ -5,6 +5,7 @@ import mainMenu from "./mainMenuReducer";
 import movies from "./moviesReducer";
 import shows from "./showsReducer";
 import {createSelector} from 'reselect';
+import {values} from 'lodash';
 
 export default combineReducers({
     libraries,
@@ -20,10 +21,14 @@ const groupBy = function(list, key) {
     }, {});
 };
 
-export const selectCurrentLibrary = (state) => state.libraries.items.find((lib) => lib.uid === state.libraries.selectedLibrary);
-export const selectMovieList = (state) => state.movies.items;
-export const selectShowList = (state) => state.shows.items;
-export const selectLibraryList = (state) => state.libraries.items;
+export const selectMovieHash = (state) => state.movies.items;
+export const selectShowHash = (state) => state.shows.items;
+export const selectLibraryHash = (state) => state.libraries.items;
+
+export const selectCurrentLibrary = (state) => state.libraries.items[state.selectedLibrary];
+export const selectMovieList = createSelector(selectMovieHash, (movieHash) => values(movieHash));
+export const selectShowList = createSelector(selectShowHash, (showHash) => values(showHash));
+export const selectLibraryList = createSelector(selectLibraryHash, (libraryHash) => values(libraryHash));
 
 export const selectLibraryMovies = createSelector(
     selectCurrentLibrary, selectMovieList,
@@ -36,16 +41,16 @@ export const selectLibraryShows = createSelector(
 );
 
 export const selectLatestMoviesByLibraries = createSelector(
-    selectLibraryList, selectMovieList,
-    (libraries, movieList) => {
+    selectMovieList,
+    (movieList) => {
         const sorted = [...movieList].sort((a, b) => new Date(b.meta.created) - new Date(a.meta.created));
         return groupBy(sorted, 'library_uid');
     }
 );
 
 export const selectLatestShowsByLibraries = createSelector(
-    selectLibraryList, selectShowList,
-    (libraries, showList) => {
+    selectShowList,
+    (showList) => {
         const sorted = [...showList].sort((a, b) => new Date(b.meta.created) - new Date(a.meta.created));
         return groupBy(sorted, 'library_uid');
     }

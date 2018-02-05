@@ -16,7 +16,7 @@ class MediaItem extends React.Component {
    }
 
    render() {
-      return <Card>
+      return <Card className="media-item">
          <Image src={this.img} />
          <Card.Content>
             <Card.Header>{this.props.media.title  || this.props.media.name}</Card.Header>

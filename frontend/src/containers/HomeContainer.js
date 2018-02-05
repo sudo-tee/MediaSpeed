@@ -2,16 +2,13 @@ import React from 'react';
 import {connect} from "react-redux";
 import Home from "../components/Home";
 import {selectLibrary} from '../actions/librariesActions';
-import {fetchMoviesIfNeeded} from '../actions/moviesActions';
-import {fetchShowsIfNeeded} from '../actions/showsActions';
+
 import {selectLibraryList} from '../reducers';
 
 
 class HomeContainer extends React.Component {
     componentDidMount() {
         this.props.selectLibrary(null);
-        this.props.fetchMovies();
-        this.props.fetchShows();
     }
 
     render() {
@@ -22,8 +19,6 @@ class HomeContainer extends React.Component {
 function mapDispatchToProps(dispatch) {
     return {
         selectLibrary: (uid) => dispatch(selectLibrary(uid)),
-        fetchMovies: () => dispatch(fetchMoviesIfNeeded()),
-        fetchShows: () => dispatch(fetchShowsIfNeeded()),
     }
 }
 

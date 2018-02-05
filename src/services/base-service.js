@@ -62,6 +62,7 @@ export default class BaseService {
 
         // Prevent overposting.
         const picked = this.filterProperties(data);
+
         return this.store.update(id, picked);
     }
 

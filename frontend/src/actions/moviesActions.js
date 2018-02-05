@@ -1,3 +1,5 @@
+import {keyBy, isEmpty} from 'lodash'
+
 
 export const REQUEST_MOVIES = 'REQUEST_MOVIES';
 export const RECEIVE_MOVIES = 'RECEIVE_MOVIES';
@@ -12,7 +14,7 @@ export function requestMovies() {
 function receiveMovies(movies) {
     return {
         type: RECEIVE_MOVIES,
-        movies: movies,
+        movies: keyBy(movies, 'uid'),
         receivedAt: Date.now()
     }
 }
@@ -49,7 +51,7 @@ export function shouldFetchMovies(state) {
 
     if (movies.isFetching) {
         return false
-    } else if (movies.items.length === 0) {
+    } else if (isEmpty(movies.items)) {
         return true
     } else {
         return movies.didInvalidate

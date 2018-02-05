@@ -39,7 +39,8 @@ export default class LokiAdapter {
     async update(uid, data) {
         const doc = await this.get(uid);
         this.logger.debug(`Updated ${this.collectionName} ${uid}`);
-        const merged = { ...data, ...doc };
+        const merged = { ...doc, ...data };
+
         return this.db.getCollection(this.collectionName).update(merged);
     }
 

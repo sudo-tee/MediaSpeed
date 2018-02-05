@@ -3,6 +3,7 @@ import {Switch, Route, withRouter} from 'react-router-dom';
 import MovieListContainer from "../../containers/MovieListContainer";
 import ShowListContainer from "../../containers/ShowListContainer";
 import HomeContainer from "../../containers/HomeContainer";
+import SettingsContainer from "../../containers/SettingsContainer";
 
 class MainContent extends Component {
     render() {
@@ -18,6 +19,7 @@ class MainContent extends Component {
                     <Route path='/library/:id/shows'
                            render={(props) => <ShowListContainer library-uid={props.match.params.id}
                                                                   library-type='shows'/>}/>
+                    <Route exact path='/settings' render={(props) => <SettingsContainer />}/>
                 </Switch>
             </div>
         )

@@ -1,3 +1,4 @@
+import {keyBy, isEmpty} from 'lodash'
 
 export const REQUEST_SHOWS = 'REQUEST_SHOWS';
 export const RECEIVE_SHOWS = 'RECEIVE_SHOWS';
@@ -12,7 +13,7 @@ export function requestShows() {
 function receiveShows(shows) {
     return {
         type: RECEIVE_SHOWS,
-        shows: shows,
+        shows: keyBy(shows, 'uid'),
         receivedAt: Date.now()
     }
 }
@@ -49,7 +50,7 @@ export function shouldFetchShows(state) {
 
     if (shows.isFetching) {
         return false
-    } else if (shows.items.length === 0) {
+    } else if (isEmpty(shows.items)) {
         return true
     } else {
         return shows.didInvalidate

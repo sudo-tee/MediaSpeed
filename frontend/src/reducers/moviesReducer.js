@@ -3,7 +3,7 @@ import {REQUEST_MOVIES, RECEIVE_MOVIES, INVALIDATE_MOVIES} from '../actions/movi
 const initialState = {
     isFetching: false,
     didInvalidate: false,
-    items: []
+    items: {}
 };
 
 export default function moviesReducer(state = initialState, action) {
@@ -21,7 +21,7 @@ export default function moviesReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 didInvalidate: false,
-                items: action.movies,
+                items:  {...state.items, ...action.movies},
                 lastUpdated: action.receivedAt
             });
         default:

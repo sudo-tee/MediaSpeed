@@ -3,7 +3,7 @@ import {REQUEST_SHOWS, RECEIVE_SHOWS, INVALIDATE_SHOWS} from '../actions/showsAc
 const initialState = {
     isFetching: false,
     didInvalidate: false,
-    items: []
+    items: {}
 };
 
 export default function showsReducer(state = initialState, action) {
@@ -21,7 +21,7 @@ export default function showsReducer(state = initialState, action) {
             return Object.assign({}, state, {
                 isFetching: false,
                 didInvalidate: false,
-                items: action.shows,
+                items:  {...state.items, ...action.shows},
                 lastUpdated: action.receivedAt
             });
         default:

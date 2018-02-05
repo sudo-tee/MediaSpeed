@@ -4,7 +4,8 @@ import fs from 'fs';
 import shorthash from 'shorthash';
 
 // Prevent overposting.
-const props = ['uid', 'name', 'path', 'type', 'last_update'];
+// @todo move the scanning progress in a task worker later..
+const props = ['uid', 'name', 'path', 'type', 'scanning', 'scanning_progress'];
 
 const types = ['movie', 'episode'];
 /**
@@ -16,7 +17,6 @@ export default class LibraryService extends BaseService {
     }
 
     async create(data) {
-        console.log(data);
         BadRequest.assert(fs.existsSync(data.path), 'path does not exist');
         data.uid = data.uid || shorthash.unique(data.path);
         this.assertInput(data);
