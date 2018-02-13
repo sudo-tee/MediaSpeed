@@ -12,8 +12,13 @@ class LibraryMenuContainer extends React.Component {
     }
 
     render() {
+
         if(this.props.libraries.isFetching) return <MainMenu/>;
         return <MainMenu libraries={this.props.libraries} visible={this.props.visible} />
+    }
+
+    shouldComponentUpdate ( ) {
+        return true
     }
 }
 

@@ -7,7 +7,10 @@ export const SELECT_LIBRARY = 'SELECT_LIBRARY';
 export const REQUEST_LIBRARY_SCAN = 'REQUEST_LIBRARY_SCAN';
 export const LIBRARY_SCAN_STARTED = 'LIBRARY_SCAN_STARTED';
 export const LIBRARY_SCAN_ENDED = 'LIBRARY_SCAN_ENDED';
-export const CHECK_SCAN_STATUS = 'CHECK_SCAN_STATUS';
+export const LIBRARY_SCAN_STATUS_UPDATED = 'LIBRARY_SCAN_STATUS_UPDATED';
+export const UPDATED_LIBRARY_STARTED = 'UPDATED_LIBRARY_STARTED';
+export const UPDATED_LIBRARY_ENDED = 'UPDATED_LIBRARY_ENDED';
+
 
 export function requestLibraries() {
     return {
@@ -57,6 +60,13 @@ export function libraryScanEnded(uid) {
     }
 }
 
+export function libraryScanStatusUpdated(library) {
+    return {
+        type: LIBRARY_SCAN_STATUS_UPDATED,
+        library
+    }
+}
+
 export function checkScanStatus(uid) {
     let handle;
     return function (dispatch) {
@@ -70,6 +80,7 @@ export function checkScanStatus(uid) {
                         clearTimeout(handle);
                         return dispatch(libraryScanEnded(uid))
                     } else {
+                        dispatch(libraryScanStatusUpdated(json));
                         handle = setTimeout(() => dispatch(checkScanStatus(uid)), 2000)
                     }
                 }
@@ -77,7 +88,8 @@ export function checkScanStatus(uid) {
     }
 }
 
-export function startLibraryscanScan(uid) {
+
+export function startLibraryScan(uid) {
 
     return function (dispatch) {
 
@@ -94,6 +106,45 @@ export function startLibraryscanScan(uid) {
                 }
             )
     }
+}
+
+export function updateLibrary(library, properties) {
+    return function (dispatch) {
+        const updatedLibrary =  {...library, ...properties};
+        dispatch(updateLibraryStarted(updatedLibrary));
+
+        return fetch('/api/libraries/' + library.uid, {
+            method: 'PATCH',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(updatedLibrary)
+        })
+            .then(
+                response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(json => {
+                    return dispatch(updateLibraryEnded(json))
+                }
+            )
+    }
+}
+
+export function updateLibraryStarted(library) {
+    return {
+        type: UPDATED_LIBRARY_STARTED,
+        library
+    }
+}
+
+export function updateLibraryEnded(library) {
+    return function (dispatch) {
+        dispatch(invalidateLibraries());
+        return dispatch({
+            type: UPDATED_LIBRARY_ENDED,
+            library
+        })
+    }
+
 }
 
 export function fetchLibraries() {

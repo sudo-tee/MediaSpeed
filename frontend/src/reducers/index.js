@@ -4,6 +4,7 @@ import libraries from "./librariesReducer";
 import mainMenu from "./mainMenuReducer";
 import movies from "./moviesReducer";
 import shows from "./showsReducer";
+import fileSystem from "./fileSystemReducer";
 import {createSelector} from 'reselect';
 import {values} from 'lodash';
 
@@ -11,7 +12,8 @@ export default combineReducers({
     libraries,
     movies,
     shows,
-    mainMenu
+    mainMenu,
+    fileSystem
 });
 
 const groupBy = function(list, key) {
@@ -23,12 +25,14 @@ const groupBy = function(list, key) {
 
 export const selectMovieHash = (state) => state.movies.items;
 export const selectShowHash = (state) => state.shows.items;
-export const selectLibraryHash = (state) => state.libraries.items;
+export const selectLibraryHash = (state) => {console.log(state); return state.libraries.items};
+export const selectFoldersSubPath = (state) => state.fileSystem.folders;
+export const selectSelectedFolder = (state) => state.fileSystem.selectedFolder;
 
 export const selectCurrentLibrary = (state) => state.libraries.items[state.selectedLibrary];
 export const selectMovieList = createSelector(selectMovieHash, (movieHash) => values(movieHash));
 export const selectShowList = createSelector(selectShowHash, (showHash) => values(showHash));
-export const selectLibraryList = createSelector(selectLibraryHash, (libraryHash) => values(libraryHash));
+export const selectLibraryList = createSelector([selectLibraryHash], (libraryHash) => values(libraryHash));
 
 export const selectLibraryMovies = createSelector(
     selectCurrentLibrary, selectMovieList,

@@ -47,14 +47,6 @@ export async function createServer() {
 
         .use(
             serveStatic({
-                rootPath: '/web',
-                rootDir: path.join(__dirname, '/../../frontend/build'),
-                notFoundFile: 'index.html'
-            })
-        )
-
-        .use(
-            serveStatic({
                 rootPath: '/images',
                 rootDir: app.container.resolve('imageDestinationFolder')
             })
@@ -68,6 +60,17 @@ export async function createServer() {
         .use(loadControllers('../routes/*.js', { cwd: __dirname }))
         // Default handler when nothing stopped the chain.
         .use(notFoundHandler);
+
+    console.log(process.env.NODE_ENV);
+    if (process.env.NODE_ENV !== ' development') {
+        app.use(
+            serveStatic({
+                rootPath: '/web',
+                rootDir: path.join(__dirname, '/../../frontend/build'),
+                notFoundFile: 'index.html'
+            })
+        );
+    }
 
     // Creates a http server ready to listen.
     const server = http.createServer(app.callback());

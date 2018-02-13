@@ -5583,6 +5583,12 @@ semantic-ui-css@^2.2.12:
   dependencies:
     jquery x.*
 
+semantic-ui-forest-themes@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/semantic-ui-forest-themes/-/semantic-ui-forest-themes-1.0.3.tgz#cead7116ff34edeacf7f7fb68f6ff3e3ae66cdfd"
+  dependencies:
+    jquery x.*
+
 semantic-ui-react@^0.77.2:
   version "0.77.2"
   resolved "https://registry.yarnpkg.com/semantic-ui-react/-/semantic-ui-react-0.77.2.tgz#c4cf0e3cd5590c906f4d655d163ac5969acd359b"

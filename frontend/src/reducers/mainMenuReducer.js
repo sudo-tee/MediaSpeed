@@ -7,9 +7,9 @@ const initialState = {
 export default function mainMenuReducer(state = initialState, action) {
     switch (action.type) {
         case TOGGLE_MENU:
-            return Object.assign({}, state, {
+            return {...state, ...{
                 visible: !state.visible
-            });
+            }};
         default:
             return state
     }

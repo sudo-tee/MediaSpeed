@@ -10,6 +10,7 @@ body::before {
   background-attachment: fixed;
   background-size: cover;
   content: "";
+  transform: scale(1.1);
   -webkit-filter: blur(10px);
   filter: blur(10px);
 }
@@ -22,15 +23,15 @@ body::after {
   z-index: -1;
   width: 100%;
   height: 100%;
-  background-color: rgba(var(--primary-light), 0.5);
+  background-color: rgba(var(--primary-light), 0.2);
 }
 
 body {
   --background-image: 'url(/demo/default-bg.jpg)';
-  --primary-dark : 17, 39, 51;
+  --primary-dark : 38, 54, 70;
   --primary-darker : 15, 35, 46;
-  --primary-dark-accent : 5,50,79;
-  --primary-light: 7, 40, 53;
+  --primary-dark-accent : 78, 93, 108;
+  --primary-light: 78, 93, 107;
   --primary-accent: 3, 216, 245;
   --topbar-height: 70px;
   --left-menu-width: 258px;
@@ -70,7 +71,7 @@ body {
 }
 
 #root .ui.topbar {
-  background-color: rgba(var(--primary-darker), 0.8);
+  background-color: rgba(var(--primary-dark), 0.8);
   border: none;
   min-height: var(--topbar-height);
   max-height: var(--topbar-height);
@@ -125,10 +126,23 @@ body {
   font-size: 1.2rem;
 }
 
+#root .ui.vertical.menu .item:before, #root .ui.menu .item:before {
+  background: transparent;
+}
+
+#root .ui.menu .item, #root .ui.topbar .item.ui {
+  border: none;
+}
+
+#root .ui.menu .item.active i {
+  color: rgb(var(--primary-accent));
+}
+
 #root .ui.menu .item.active {
   border-right: 3px solid rgb(var(--primary-accent));
   color: rgb(var(--primary-accent));
   font-weight: 700;
+  background: transparent;
 }
 
 #root .ui.vertical.menu:before, #root .ui.topbar:before {
@@ -166,6 +180,7 @@ body {
   padding-left: 20px !important;
   padding-right: 0 !important;
   margin-bottom: 30px;
+  min-height: var(--topbar-height);
 }
 
 #root {
@@ -189,6 +204,9 @@ body {
 
 #root .ui.card.media-item img, #root .ui.card.media-item>:first-child {
   border-radius: 0 !important;
+  -webkit-box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
 }
 
 #root .ui.card.media-item .content {
@@ -206,13 +224,8 @@ body {
   color: rgba(255,255,255,.4);
 }
 
-#root .settings .ui.segment .item .content, #root .settings .ui.segment .item .content .header {
-  color: white;
-}
-
-#root .settings .ui.segment .item .content .card {
-  background-color:  transparent;
-
+#root .settings .ui.card, #root .settings .ui.card {
+  margin-right:50px;
 }
 
 #root .settings .ui.card, #root .settings .ui.card .description input {
@@ -220,12 +233,35 @@ body {
   border-color: transparent;
 }
 
-#root .settings .ui.card .description .library-folder {
-  padding: 20px;
-  font-size: 1.8rem;
+#root .settings .ui.card .header, #root .settings .ui.card .meta {
+  text-align: center;
 }
 
 #root .settings .ui.card .description input:hover {
   cursor: pointer;
   border: 1px solid rgba(var(--primary-darker), 0.7);
 }
+
+.ui.page .ui.modal {
+  top: 33%;
+}
+
+.path-selector-trigger input:hover {
+  cursor: pointer;
+  border: 1px solid rgba(var(--primary-darker), 0.7);
+}
+
+.ui.modals .path-selector .path-list {
+  max-height: 30vh;
+  overflow: auto;
+}
+
+.ui.modals .library-edit .item.disabled .header, .ui.modals .library-edit .item.disabled i.icon  {
+  color: rgba(255, 255, 255, 0.1) !important
+}
+
+
+.library-edit .library-type i.icon.tv:before {
+  margin-left: 6px;
+}
+

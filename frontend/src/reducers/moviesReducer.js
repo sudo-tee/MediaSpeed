@@ -1,4 +1,5 @@
 import {REQUEST_MOVIES, RECEIVE_MOVIES, INVALIDATE_MOVIES} from '../actions/moviesActions';
+import {INVALIDATE_LIBRARIES} from '../actions/librariesActions';
 
 const initialState = {
     isFetching: false,
@@ -9,21 +10,22 @@ const initialState = {
 export default function moviesReducer(state = initialState, action) {
     switch (action.type) {
         case INVALIDATE_MOVIES:
-            return Object.assign({}, state, {
+        case INVALIDATE_LIBRARIES:
+            return {...state, ...{
                 didInvalidate: true
-            });
+            }};
         case REQUEST_MOVIES:
-            return Object.assign({}, state, {
+            return {...state, ...{
                 isFetching: true,
                 didInvalidate: false
-            });
+            }};
         case RECEIVE_MOVIES:
-            return Object.assign({}, state, {
+            return {...state, ...{
                 isFetching: false,
                 didInvalidate: false,
                 items:  {...state.items, ...action.movies},
                 lastUpdated: action.receivedAt
-            });
+            }};
         default:
             return state
     }

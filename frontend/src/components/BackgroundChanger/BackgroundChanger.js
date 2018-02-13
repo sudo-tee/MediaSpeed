@@ -28,7 +28,6 @@ class BackgroundChanger extends Component {
 
         const currentMedia = (Array.isArray(medias)) ? medias : [medias];
         const images = currentMedia.map((media) => media.local_backdrop);
-
         this.setImage(images);
     }
 

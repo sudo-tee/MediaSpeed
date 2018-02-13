@@ -7,7 +7,7 @@ import {Provider} from "react-redux";
 import configureStore from './store/store'
 
 import registerServiceWorker from './registerServiceWorker';
-import 'semantic-ui-css/semantic.min.css';
+import "semantic-ui-forest-themes/semantic.superhero.css";
 
 const store = configureStore();
 

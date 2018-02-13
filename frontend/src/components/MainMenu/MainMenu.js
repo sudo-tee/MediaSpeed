@@ -23,15 +23,16 @@ class MainMenu extends Component {
         return (
             <Sidebar  as={Menu} visible={this.props.visible} vertical>
                 <div className="sidebar-content">
-                    <Menu.Item className="header-logo"><Image src="/web/logo.png" size="mini"></Image>Media Speed</Menu.Item>
+                    <Menu.Item className="header-logo"><Image src="/logo.png" size="mini"></Image>Media Speed</Menu.Item>
                     <Menu.Item as={NavLink} exact to="/"><Icon name='home' />Home</Menu.Item>
-                    {libraries.map((lib) => <Menu.Item
+                    {libraries.map((lib) => {
+                       return <Menu.Item
                             as={NavLink}
                             to={this.getUrl(lib)}
-                            key={lib.uid} >
+                            key={lib.uid}>
                             <Icon name={lib.type === 'movie' ? 'film' : 'tv'}/>{lib.name}
                         </Menu.Item>
-                    )}
+                    })}
                     <Menu.Header>Manage</Menu.Header>
                     <Menu.Item as={NavLink} to="/settings"><Icon name='setting'/>Settings</Menu.Item>
 
@@ -41,5 +42,4 @@ class MainMenu extends Component {
     }
 }
 
-//Propstype
 export default MainMenu
