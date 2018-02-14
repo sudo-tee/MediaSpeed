@@ -6,7 +6,7 @@ import movies from "./moviesReducer";
 import shows from "./showsReducer";
 import fileSystem from "./fileSystemReducer";
 import {createSelector} from 'reselect';
-import {values} from 'lodash';
+import {values, groupBy} from 'lodash';
 
 export default combineReducers({
     libraries,
@@ -15,13 +15,6 @@ export default combineReducers({
     mainMenu,
     fileSystem
 });
-
-const groupBy = function(list, key) {
-    return list.reduce(function(returnValue, currentItem) {
-        (returnValue[currentItem[key]] = returnValue[currentItem[key]] || []).push(currentItem);
-        return returnValue;
-    }, {});
-};
 
 export const selectMovieHash = (state) => state.movies.items;
 export const selectShowHash = (state) => state.shows.items;
