@@ -57,14 +57,14 @@ class LibraryEdit extends React.Component {
                     <Modal.Description>
                         <h4>Library type</h4>
                         <List divided horizontal>
-                            <List.Item as='a' disabled={library.type !== 'episode' && library.type}
+                            <List.Item as='a' disabled={(library.type !== 'episode' && library.type !== '')}
                                        onClick={() => this.handleSelectType('episode')}>
                                 <Icon name='tv' size='huge'/>
                                 <List.Content>
                                     <List.Header>TV Shows</List.Header>
                                 </List.Content>
                             </List.Item>
-                            <List.Item as='a' disabled={library.type !== 'movie' && library.type}
+                            <List.Item as='a' disabled={library.type !== 'movie' && library.type !== ''}
                                        onClick={() => this.handleSelectType('movie')}>
                                 <Icon name='film' size='huge'/>
                                 <List.Content>

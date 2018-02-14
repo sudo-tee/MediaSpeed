@@ -29,20 +29,18 @@ export const selectLibraryHash = (state) => state.libraries.items;
 export const selectFoldersSubPath = (state) => state.fileSystem.folders;
 export const selectSelectedFolder = (state) => state.fileSystem.selectedFolder;
 
-export const selectCurrentLibrary = (state) => state.libraries.items[state.selectedLibrary];
+export const selectCurrentLibrary = (state) => state.libraries.items[state.libraries.selectedLibrary];
 export const selectMovieList = createSelector(selectMovieHash, (movieHash) => values(movieHash));
 export const selectShowList = createSelector(selectShowHash, (showHash) => values(showHash));
 export const selectLibraryList = createSelector([selectLibraryHash], (libraryHash) => values(libraryHash));
 
-export const selectLibraryMovies = createSelector(
-    selectCurrentLibrary, selectMovieList,
-    (library, movieList) => library ? movieList.filter(movie => movie.library_uid === library.uid) : movieList
-);
+export const selectLibraryMovies = (state) => {
+    return selectLatestMoviesByLibraries(state)[state.libraries.selectedLibrary] || []
+};
 
-export const selectLibraryShows = createSelector(
-    selectCurrentLibrary, selectShowList,
-    (library, showsList) => library ? showsList.filter(show => show.library_uid === library.uid) : showsList
-);
+export const selectLibraryShows = (state) => {
+    return selectLatestShowsByLibraries(state)[state.libraries.selectedLibrary] || []
+};
 
 export const selectLatestMoviesByLibraries = createSelector(
     selectMovieList,
