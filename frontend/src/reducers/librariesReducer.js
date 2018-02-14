@@ -7,10 +7,13 @@ import {
     LIBRARY_SCAN_STARTED,
     LIBRARY_SCAN_ENDED,
     LIBRARY_SCAN_STATUS_UPDATED,
-    UPDATED_LIBRARY_STARTED,
-    UPDATED_LIBRARY_ENDED
+    UPDATE_LIBRARY_STARTED,
+    UPDATE_LIBRARY_ENDED,
+    CREATE_LIBRARY_ENDED,
+    DELETE_LIBRARY_ENDED
+
 } from '../actions/librariesActions';
-import {update} from '../helpers/immutability'
+import {update, remove} from '../helpers/immutability'
 
 const initialState = {
     isFetching: false,
@@ -18,7 +21,6 @@ const initialState = {
     selectedLibrary: null,
     items: {},
 };
-
 
 
 export default function librariesReducer(state = initialState, action) {
@@ -50,10 +52,13 @@ export default function librariesReducer(state = initialState, action) {
             return update(state, {uid:action.uid, scanning: true, scanning_progress:0});
         case LIBRARY_SCAN_ENDED:
             return update(state, {uid:action.uid, scanning: false, scanning_progress:0});
-        case UPDATED_LIBRARY_STARTED:
-        case UPDATED_LIBRARY_ENDED:
+        case UPDATE_LIBRARY_STARTED:
+        case UPDATE_LIBRARY_ENDED:
         case LIBRARY_SCAN_STATUS_UPDATED:
+        case CREATE_LIBRARY_ENDED:
             return update(state, action.library);
+        case DELETE_LIBRARY_ENDED:
+            return remove(state, action.library.uid);
 
         default:
             return state

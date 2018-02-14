@@ -17,8 +17,9 @@ export default class LibraryService extends BaseService {
     }
 
     async create(data) {
+        console.log(data);
         BadRequest.assert(fs.existsSync(data.path), 'path does not exist');
-        data.uid = data.uid || shorthash.unique(data.path);
+        data.uid = data.uid || shorthash.unique(data.path + data.name);
         this.assertInput(data);
         return this.store.create(this.filterProperties(data));
     }

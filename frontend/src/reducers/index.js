@@ -25,7 +25,7 @@ const groupBy = function(list, key) {
 
 export const selectMovieHash = (state) => state.movies.items;
 export const selectShowHash = (state) => state.shows.items;
-export const selectLibraryHash = (state) => {console.log(state); return state.libraries.items};
+export const selectLibraryHash = (state) => state.libraries.items;
 export const selectFoldersSubPath = (state) => state.fileSystem.folders;
 export const selectSelectedFolder = (state) => state.fileSystem.selectedFolder;
 

@@ -3,14 +3,16 @@ import {Modal, Form, Header, Button, Icon, List} from "semantic-ui-react";
 import PathSelectorContainer from "../containers/PathSelectorContainer";
 
 class LibraryEdit extends React.Component {
-    state = {modalOpen: false, library:{...this.props.library}};
+    defaultLibrary = {name: '', path: '/', type: ''};
+    library = this.props.library || this.defaultLibrary;
+    state = {modalOpen: false, library: {...this.library}};
 
     handleOpen = () => this.setState({modalOpen: true});
 
     handleClose = () => this.setState({modalOpen: false});
 
     handleCancel = () => {
-        this.setState({library: {...this.props.library}});
+        this.setState({library: {...this.defaultLibrary}});
         this.handleClose();
     };
 
@@ -23,7 +25,7 @@ class LibraryEdit extends React.Component {
     };
 
     handleSelectType = (type) => {
-        if (this.props.library.uid) return;
+        if (this.state.library.uid) return;
 
         this.setState({...this.state, ...{library: {...this.state.library, ...{type: type}}}});
     };
@@ -33,14 +35,21 @@ class LibraryEdit extends React.Component {
         this.handleClose();
     };
 
+    canSave() {
+
+        return this.state.library.name.length > 2
+            && this.state.library.path.length >= 1
+            && (this.state.library.type === 'movie' || this.state.library.type === 'episode')
+
+    }
+
     render() {
         let {library} = this.state;
-
         return (
             <Modal className="library-edit"
                    open={this.state.modalOpen}
                    trigger={
-                       <Button icon='edit' color='blue' onClick={this.handleOpen}/>
+                       <Button {...this.props.triggerProperties} onClick={this.handleOpen}/>
                    }
             >
                 <Modal.Header>Edit Library</Modal.Header>
@@ -48,23 +57,26 @@ class LibraryEdit extends React.Component {
                     <Modal.Description>
                         <h4>Library type</h4>
                         <List divided horizontal>
-                            <List.Item as='a' disabled={library.type!=='episode'} onClick={() => this.handleSelectType('episode')}>
+                            <List.Item as='a' disabled={library.type !== 'episode' && library.type}
+                                       onClick={() => this.handleSelectType('episode')}>
                                 <Icon name='tv' size='huge'/>
                                 <List.Content>
                                     <List.Header>TV Shows</List.Header>
                                 </List.Content>
                             </List.Item>
-                            <List.Item as='a' disabled={library.type!=='movie'} onClick={() => this.handleSelectType('movie')}>
+                            <List.Item as='a' disabled={library.type !== 'movie' && library.type}
+                                       onClick={() => this.handleSelectType('movie')}>
                                 <Icon name='film' size='huge'/>
                                 <List.Content>
                                     <List.Header>Movies</List.Header>
                                 </List.Content>
                             </List.Item>
                         </List>
-                        <br />
-                        <br />
+                        <br/>
+                        <br/>
                         <Form>
-                            <Form.Input size='massive' label='Library Name' value={library.name} onChange={(e) => this.handleChangeName(e.target.value)}/>
+                            <Form.Input size='massive' label='Library Name' value={library.name}
+                                        onChange={(e) => this.handleChangeName(e.target.value)}/>
                             <Form.Field>
                                 <label>Path</label>
                                 <PathSelectorContainer path={library.path}
@@ -77,7 +89,7 @@ class LibraryEdit extends React.Component {
                     <Button negative onClick={this.handleCancel}>
                         Cancel
                     </Button>
-                    <Button primary onClick={this.handleSave} positive>
+                    <Button primary onClick={this.handleSave} disabled={!this.canSave()} positive>
                         Save
                     </Button>
 
