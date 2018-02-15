@@ -2,10 +2,9 @@ import React from 'react';
 import MediaList from '../components/MediaList/MediaList';
 import {Dimmer, Loader} from 'semantic-ui-react'
 import {connect} from "react-redux";
-import {withRouter} from 'react-router-dom'
 import {fetchShowsIfNeeded} from '../actions/showsActions';
 import {selectLibrary} from '../actions/librariesActions';
-import {selectLibraryShows} from '../reducers';
+import {selectLibraryShows, selectCurrentLibrary} from '../reducers';
 
 
 class MovieListContainer extends React.Component {
@@ -16,24 +15,20 @@ class MovieListContainer extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log(newProps, this.props);
         if(newProps['library-uid'] !== this.props['library-uid']) {
-            this.props.fetchShows();
+            this.props.selectLibrary(newProps['library-uid']);
         }
     }
 
     render() {
         if(this.props.shows.isFetching) return <Dimmer active><Loader /></Dimmer>;
-        return this.renderList(this.props.shows);
-    }
-
-    renderList(medias) {
-        return <MediaList medias={medias} />
+        return <MediaList medias={this.props.shows} />
     }
 }
 
 function mapStateToProps (state) {
     return {
+        library: selectCurrentLibrary(state),
         shows: selectLibraryShows(state)
     }
 }
@@ -45,7 +40,7 @@ function mapDispatchToProps(dispatch) {
     }
 }
 
-export default withRouter(connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(MovieListContainer))
+)(MovieListContainer)
