@@ -7,9 +7,14 @@ class MediaItem extends React.Component {
       super(...arguments);
 
       if(this.props.layout === "backdrop") {
-          this.img = '/images/' + this.props.media.local_backdrop;
+         let defaultImage = '/web/img/default-backdrop.jpg';
+         let fromMedia = this.props.media.local_backdrop || this.props.media.local_still || this.props.media.local_screenshot;
+         this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
       } else {
-          this.img = '/images/' + this.props.media.local_poster;
+
+         let defaultImage = '/web/img/default-poster.jpg';
+         let fromMedia = this.props.media.local_poster || this.props.media.local_screenshot;
+         this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
       }
 
       this.year = this.props.media.year  || new Date(this.props.media.first_air_date).getFullYear();

@@ -50,27 +50,25 @@ export async function createServer() {
                 rootPath: '/images',
                 rootDir: app.container.resolve('imageDestinationFolder')
             })
-        )
-
-        // Creates an Awilix scope per request. Check out the awilix-koa
-        // docs for details: https://github.com/jeffijoe/awilix-koa
-        .use(scopePerRequest(container))
-
-        // Load routes (API "controllers")
-        .use(loadControllers('../routes/*.js', { cwd: __dirname }))
-        // Default handler when nothing stopped the chain.
-        .use(notFoundHandler);
-
-    console.log(process.env.NODE_ENV);
-    if (process.env.NODE_ENV !== ' development') {
-        app.use(
-            serveStatic({
-                rootPath: '/web',
-                rootDir: path.join(__dirname, '/../../frontend/build'),
-                notFoundFile: 'index.html'
-            })
         );
-    }
+
+    let buildFolder = process.env.NODE_ENV !== ' development' ? '/build' : '';
+    app.use(
+        serveStatic({
+            rootPath: '/web',
+            rootDir: path.join(__dirname, '/../../frontend', buildFolder),
+            notFoundFile: 'index.html'
+        })
+    );
+
+    // Creates an Awilix scope per request. Check out the awilix-koa
+    // docs for details: https://github.com/jeffijoe/awilix-koa
+    app.use(scopePerRequest(container));
+
+    // Load routes (API "controllers")
+    app.use(loadControllers('../routes/*.js', { cwd: __dirname }));
+    // Default handler when nothing stopped the chain.
+    app.use(notFoundHandler);
 
     // Creates a http server ready to listen.
     const server = http.createServer(app.callback());

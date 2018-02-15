@@ -16,6 +16,7 @@ class MovieListContainer extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
+        console.log(newProps, this.props);
         if(newProps['library-uid'] !== this.props['library-uid']) {
             this.props.fetchShows();
         }
@@ -23,7 +24,11 @@ class MovieListContainer extends React.Component {
 
     render() {
         if(this.props.shows.isFetching) return <Dimmer active><Loader /></Dimmer>;
-        return <MediaList medias={this.props.shows} />
+        return this.renderList(this.props.shows);
+    }
+
+    renderList(medias) {
+        return <MediaList medias={medias} />
     }
 }
 

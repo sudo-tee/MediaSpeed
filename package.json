@@ -9,7 +9,7 @@
     "npm": ">=3.8"
   },
   "scripts": {
-    "start": "node dist/bin/www.js",
+    "start": "NODE_ENV=production PORT=5000 node dist/bin/www.js",
     "build-server": "yarn install && rimraf dist && cross-env NODE_ENV=production babel src -d dist -s",
     "build-frontend": "cd frontend && rimraf build && yarn install && yarn build",
     "build": "yarn build-server && yarn build-frontend",
