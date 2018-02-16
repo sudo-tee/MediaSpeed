@@ -42,6 +42,7 @@ body {
   background-size: cover;
   width: 100%;
   min-height: 100%;
+  transition: background-image 1s ease-in-out;
   -moz-transition: background-image 1s ease-in-out;
   -webkit-transition: background-image 1s ease-in-out;
   -ms-transition: background-image 1s ease-in-out;
@@ -204,9 +205,6 @@ body {
 
 #root .ui.card.media-item img, #root .ui.card.media-item>:first-child {
   border-radius: 0 !important;
-  -webkit-box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
-  box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
 }
 
 #root .ui.card.media-item .content {
@@ -222,6 +220,59 @@ body {
 
 #root .card.media-item .content .meta {
   color: rgba(255,255,255,.4);
+}
+
+#root .card.media-item .media-item-image-container {
+  position: relative;
+  -webkit-box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
+  box-shadow: 0.5px 0.5px 0.5px 0px rgba(0,0,0,0.75);
+}
+
+#root .card.media-item .media-item-image-container:hover > div.media-item-hover {
+  opacity: 1;
+}
+
+#root .card.media-item .media-item-hover {
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(var(--primary-light), 0.8);
+  opacity: 0;
+  text-align: center;
+  transition: opacity 0.3s ease;
+}
+
+#root .card.media-item .media-item-hover .media-item-play-icon {
+  position: absolute;
+  display: block;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255, 0.8);
+  color: hsla(0,0%,100%,.7);
+  font-size: 20px;
+  text-align: center;
+}
+
+#root .card.media-item .media-item-hover .media-item-play-icon:hover {
+  border-color: rgba(var(--primary-accent), 0.8);
+  background-color: rgba(var(--primary-accent), 0.8);
+}
+
+#root .card.media-item .media-item-hover .media-item-play-icon .icon, #root .card.media-item .media-item-hover .media-item-play-icon .icon:before {
+  position: absolute;
+  display: block;
+  top: 48%;
+  left: 50%;
+  -webkit-transform: translate(-45%,-45%);
+  transform: translate(-45%,-45%);
 }
 
 #root .settings .ui.card, #root .settings .ui.card {

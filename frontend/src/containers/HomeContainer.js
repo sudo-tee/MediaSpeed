@@ -11,6 +11,10 @@ class HomeContainer extends React.Component {
         this.props.selectLibrary(null);
     }
 
+    componentWillReceiveProps(newProps) {
+        this.props.selectLibrary(null)
+    }
+
     render() {
         return <Home libraries={this.props.libraries}/>
     }

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Card, Image} from 'semantic-ui-react';
+import {Card, Icon, Image} from 'semantic-ui-react';
 import './MediaItem.css';
 
 class MediaItem extends React.Component {
@@ -22,13 +22,19 @@ class MediaItem extends React.Component {
 
    render() {
       return <Card className="media-item">
-         <Image src={this.img} />
+         <div className="media-item-image-container">
+            <Image src={this.img} />
+            <div className="media-item-hover">
+               <div className="media-item-play-icon"><Icon name="play"/></div>
+            </div>
+         </div>
          <Card.Content>
             <Card.Header>{this.props.media.title  || this.props.media.name}</Card.Header>
             <Card.Meta>
               <span className='date'>({this.year || "No year"})</span>
             </Card.Meta>
          </Card.Content>
+
       </Card>
    }
 }

@@ -27,7 +27,7 @@ class BackgroundChanger extends Component {
         clearTimeout(this.handle);
 
         const currentMedia = (Array.isArray(medias)) ? medias : [medias];
-        const images = currentMedia.map((media) => media.local_backdrop);
+        const images = currentMedia.map((media) => media.local_backdrop || media.local_still || media.local_screenshot || media.local_poster);
         this.setImage(images);
     }
 

@@ -29,7 +29,7 @@ class MovieListContainer extends React.Component {
 function mapStateToProps (state) {
     return {
         library: selectCurrentLibrary(state),
-        shows: selectLibraryShows(state)
+        shows: selectLibraryShows(state) || []
     }
 }
 
