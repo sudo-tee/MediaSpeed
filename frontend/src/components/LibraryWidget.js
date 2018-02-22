@@ -1,5 +1,5 @@
 import React from 'react'
-import MediaList from "./MediaList/MediaList";
+import MediaList from "./MediaList";
 
 const LibraryWidget = ({medias, title, maxDisplay, layout}) => (
     <div className="widget">

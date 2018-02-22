@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {Menu, Image, Icon, Sidebar} from 'semantic-ui-react'
 import {NavLink} from 'react-router-dom'
-import './MainMenu.css'
 
 class MainMenu extends Component {
 
@@ -9,9 +8,9 @@ class MainMenu extends Component {
         let url = '/';
         if(library) {
             if(library.type === 'episode') {
-                url = `/library/${library.uid}/shows`;
+                url = `/libraries/${library.uid}/shows`;
             } else {
-                url = `/library/${library.uid}/${library.type}s`;
+                url = `/libraries/${library.uid}/${library.type}s`;
             }
         }
 

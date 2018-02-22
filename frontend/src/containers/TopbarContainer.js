@@ -1,5 +1,5 @@
 import React from 'react';
-import TopBar from '../components/TopBar/TopBar';
+import TopBar from '../components/TopBar';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {toggleMenu} from '../actions/mainMenuActions';

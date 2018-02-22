@@ -1,3 +1,4 @@
+* {margin:0; padding: 0}
 body::before {
   position: fixed;
   top: 0;
@@ -11,8 +12,8 @@ body::before {
   background-size: cover;
   content: "";
   transform: scale(1.1);
-  -webkit-filter: blur(10px);
-  filter: blur(10px);
+  -webkit-filter: blur(20px);
+  filter: blur(20px);
 }
 
 body::after {
@@ -23,7 +24,7 @@ body::after {
   z-index: -1;
   width: 100%;
   height: 100%;
-  background-color: rgba(var(--primary-light), 0.2);
+  background-color: rgba(var(--primary-darker), 0.4);
 }
 
 body {
@@ -35,6 +36,7 @@ body {
   --primary-accent: 3, 216, 245;
   --topbar-height: 70px;
   --left-menu-width: 258px;
+  --text-color: 255, 255, 255;
   background: no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -42,6 +44,7 @@ body {
   background-size: cover;
   width: 100%;
   min-height: 100%;
+  margin:0;
   transition: background-image 1s ease-in-out;
   -moz-transition: background-image 1s ease-in-out;
   -webkit-transition: background-image 1s ease-in-out;
@@ -53,10 +56,10 @@ body {
 
 #root .main-content {
   padding: 50px;
-  padding-left: 80px;
   margin: var(--topbar-height) 1rem 1rem 1rem;
   -webkit-transition: 300ms ease all;
   transition: 300ms ease all;
+  display: inline-block;
 }
 
 #root .main-content .widget {
@@ -91,10 +94,6 @@ body {
   left:var(--left-menu-width);
   width:calc(100vw - var(--left-menu-width));
   max-width: calc(100vw - var(--left-menu-width));
-}
-
-#root .item {
-  color: white;
 }
 
 #root .ui.attached.menu:not(.tabular) {
@@ -184,9 +183,6 @@ body {
   min-height: var(--topbar-height);
 }
 
-#root {
-  color: white;
-}
 
 #root .ui.card.media-item .header {
   text-overflow: ellipsis;
@@ -209,17 +205,15 @@ body {
 
 #root .ui.card.media-item .content {
   padding: 1em 0;
-  color: white;
 }
 
 #root .card.media-item .content .header {
   font-weight: 200;
-  color: white;
   font-size: 1rem;
 }
 
-#root .card.media-item .content .meta {
-  color: rgba(255,255,255,.4);
+#root .meta {
+  color: rgba(var(--text-color),.4);
 }
 
 #root .card.media-item .media-item-image-container {
@@ -316,3 +310,26 @@ body {
   margin-left: 6px;
 }
 
+#root .media-page .media-overview-panel {
+  margin-top: 20px;
+}
+
+#root .media-page .meta-right {
+  text-align: right
+}
+
+#root .media-page .ui.icon.button {
+  position: relative;
+}
+
+#root .ui.menu {
+  background-color: rgba(var(--primary-dark), 0.7);
+}
+
+#root .ui.menu .item:hover{
+  background-color: rgba(var(--primary-light), 0.7);
+}
+
+#root .ui.menu .ui.button {
+  background-color: transparent;
+}

@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
+import React, {PureComponent} from 'react'
 import {Menu, Icon} from 'semantic-ui-react'
 
-class TopBar extends Component {
+class TopBar extends PureComponent {
     handleItemClick = (e) => {
         if(this.props.onToggleMenu) {
             this.props.onToggleMenu(e);

@@ -1,4 +1,4 @@
-import {REQUEST_MOVIES, RECEIVE_MOVIES, INVALIDATE_MOVIES} from '../actions/moviesActions';
+import {MOVIE_SELECTED, REQUEST_MOVIES, RECEIVE_MOVIES, INVALIDATE_MOVIES} from '../actions/moviesActions';
 import {INVALIDATE_LIBRARIES} from '../actions/librariesActions';
 
 const initialState = {
@@ -9,6 +9,10 @@ const initialState = {
 
 export default function moviesReducer(state = initialState, action) {
     switch (action.type) {
+        case MOVIE_SELECTED:
+            return {...state, ...{
+                selectedMovie: action.uid
+            }};
         case INVALIDATE_MOVIES:
         case INVALIDATE_LIBRARIES:
             return {...state, ...{

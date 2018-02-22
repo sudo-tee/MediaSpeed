@@ -1,5 +1,5 @@
 import React from 'react';
-import MainMenu from '../components/MainMenu/MainMenu';
+import MainMenu from '../components/MainMenu';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {fetchLibrariesIfNeeded} from '../actions/librariesActions';

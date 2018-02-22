@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import {Card, Icon, Image} from 'semantic-ui-react';
-import './MediaItem.css';
+import {NavLink} from "react-router-dom";
 
-class MediaItem extends React.Component {
+class MediaItem extends PureComponent {
    constructor() {
       super(...arguments);
 
@@ -17,11 +17,15 @@ class MediaItem extends React.Component {
          this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
       }
 
-      this.year = this.props.media.year  || new Date(this.props.media.first_air_date).getFullYear();
+      this.year = new Date(this.props.media.release_date).getFullYear()  || new Date(this.props.media.first_air_date).getFullYear();
+   }
+
+   getUrl(mediaItem) {
+      return `/libraries/${mediaItem.library_uid}/${mediaItem.type}s/${mediaItem.uid}`;
    }
 
    render() {
-      return <Card className="media-item">
+      return <Card className="media-item" as={NavLink} to={this.getUrl(this.props.media)}>
          <div className="media-item-image-container">
             <Image src={this.img} />
             <div className="media-item-hover">

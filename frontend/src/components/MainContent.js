@@ -1,9 +1,10 @@
 import React, {Component} from 'react'
 import {Switch, Route, withRouter} from 'react-router-dom';
-import MovieListContainer from "../../containers/MovieListContainer";
-import ShowListContainer from "../../containers/ShowListContainer";
-import HomeContainer from "../../containers/HomeContainer";
-import SettingsContainer from "../../containers/SettingsContainer";
+import MovieListContainer from "../containers/MovieListContainer";
+import ShowListContainer from "../containers/ShowListContainer";
+import HomeContainer from "../containers/HomeContainer";
+import SettingsContainer from "../containers/SettingsContainer";
+import MoviePageContainer from "../containers/MoviePageContainer";
 
 class MainContent extends Component {
     render() {
@@ -13,12 +14,18 @@ class MainContent extends Component {
             <div className={classNames}>
                 <Switch>
                     <Route exact path='/' render={(props) => <HomeContainer />}/>
-                    <Route path='/library/:id/movies'
+
+                    <Route path='/libraries/:id/movies/:movieUid'
+                           render={(props) => <MoviePageContainer movie-uid={props.match.params.movieUid}/>}/>
+
+
+                    <Route path='/libraries/:id/movies'
                            render={(props) => <MovieListContainer library-uid={props.match.params.id}
                                                                   library-type='movies'/>}/>
-                    <Route path='/library/:id/shows'
+                    <Route path='/libraries/:id/shows'
                            render={(props) => <ShowListContainer library-uid={props.match.params.id}
                                                                   library-type='shows'/>}/>
+
                     <Route exact path='/settings' render={(props) => <SettingsContainer />}/>
                 </Switch>
             </div>

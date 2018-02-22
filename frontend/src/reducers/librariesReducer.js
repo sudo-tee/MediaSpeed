@@ -18,18 +18,12 @@ import {update, remove} from '../helpers/immutability'
 const initialState = {
     isFetching: false,
     didInvalidate: false,
-    selectedLibrary: null,
     items: {},
 };
-
 
 export default function librariesReducer(state = initialState, action) {
 
     switch (action.type) {
-        case SELECT_LIBRARY:
-            return {...state, ...{
-                selectedLibrary: action.uid
-            }};
         case INVALIDATE_LIBRARIES:
             return {...state, ...{
                 didInvalidate: true

@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {toggleMenu} from '../actions/mainMenuActions';
-import MainContent from "../components/MainContent/MainContent";
+import MainContent from "../components/MainContent";
 import {fetchMoviesIfNeeded} from '../actions/moviesActions';
 import {fetchShowsIfNeeded} from '../actions/showsActions';
 
@@ -20,7 +20,6 @@ class MainMenuContainer  extends React.Component {
 
 function mapStateToProps (state) {
     return {
-        selectedMenuItem: state.mainMenu.selectedItem,
         mainMenuVisible: state.mainMenu.visible,
     }
 }
