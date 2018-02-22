@@ -1,4 +1,4 @@
-import {MOVIE_SELECTED, REQUEST_MOVIES, RECEIVE_MOVIES, INVALIDATE_MOVIES} from '../actions/moviesActions';
+import {REQUEST_MOVIES, RECEIVE_MOVIES, INVALIDATE_MOVIES} from '../actions/moviesActions';
 import {INVALIDATE_LIBRARIES} from '../actions/librariesActions';
 
 const initialState = {
