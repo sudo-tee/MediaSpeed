@@ -1,5 +1,5 @@
 import React from 'react'
-import {Button, Item, Icon, Card} from "semantic-ui-react";
+import {Button, Item, Card} from "semantic-ui-react";
 import LibrarySettingContainer from "../containers/LibrarySettingContainer";
 import LibraryEdit from "./LibraryEdit";
 

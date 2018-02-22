@@ -11,7 +11,6 @@ import {routeChanged} from "./actions/routerAction"
 
 class App extends Component {
     componentWillMount() {
-        console.log('APP STARTED', this.props.match, this.props.history, this.props);
         this.props.routeChanged(this.props.history.location, this.props.match);
         this.props.history.listen(location => this.props.routeChanged(location, this.props.match));
     }

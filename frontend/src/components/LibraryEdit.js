@@ -1,5 +1,5 @@
 import React from 'react'
-import {Modal, Form, Header, Button, Icon, List} from "semantic-ui-react";
+import {Modal, Form, Button, Icon, List} from "semantic-ui-react";
 import PathSelectorContainer from "../containers/PathSelectorContainer";
 
 class LibraryEdit extends React.Component {

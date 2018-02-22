@@ -1,5 +1,3 @@
-import {Component} from 'react';
-
 const BackgroundChanger = ({media, rootElement}) => {
     if (!media) return '';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import MediaList from '../components/MediaList';
 import {connect} from "react-redux";
 import {selectLibraryShows} from '../reducers';

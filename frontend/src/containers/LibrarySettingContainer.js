@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from "react-redux";
 import LibrarySetting from "../components/LibrarySetting";
 import {deleteLibrary, startLibraryScan, updateLibrary} from '../actions/librariesActions';

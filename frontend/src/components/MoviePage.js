@@ -1,6 +1,6 @@
 import React from 'react'
 import MediaPoster from "./MediaPoster";
-import {Button, Dimmer, Dropdown, Grid, Label, Menu} from "semantic-ui-react";
+import {Dimmer, Dropdown, Grid, Menu} from "semantic-ui-react";
 
 const MoviePage = ({movie}) => {
     if (!movie) return <Dimmer>Loading...</Dimmer>;

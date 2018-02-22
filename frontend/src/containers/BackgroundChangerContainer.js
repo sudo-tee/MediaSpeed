@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from "react-redux";
 import {selectCurrentPresentedMedia} from '../reducers';
 import BackgroundChanger from "../BackgroundChanger";

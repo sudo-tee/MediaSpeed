@@ -1,4 +1,3 @@
-import React from 'react';
 import {connect} from "react-redux";
 import {selectLibraryList} from '../reducers';
 import Settings from "../components/Settings";
