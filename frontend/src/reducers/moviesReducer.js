@@ -9,10 +9,6 @@ const initialState = {
 
 export default function moviesReducer(state = initialState, action) {
     switch (action.type) {
-        case MOVIE_SELECTED:
-            return {...state, ...{
-                selectedMovie: action.uid
-            }};
         case INVALIDATE_MOVIES:
         case INVALIDATE_LIBRARIES:
             return {...state, ...{
