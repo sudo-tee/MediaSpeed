@@ -35,6 +35,7 @@ export default class EpisodeScanner extends BaseScanner {
             ...{
                 season_uid: seasonUid,
                 show_uid: showUid,
+                library_uid: library.uid,
                 type: 'episode',
                 show_name: showName,
                 episode_number: episodeInfo.episode,
@@ -52,6 +53,7 @@ export default class EpisodeScanner extends BaseScanner {
 
         let season = {
             uid: seasonUid,
+            library_uid: library.uid,
             type: 'season',
             season_number: seasonNumber,
             show_uid: showUid

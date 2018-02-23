@@ -11,7 +11,7 @@ class ShowRestApi extends BaseRestApi {
     }
 
     async getSeasons(ctx) {
-        let query = { show_uid: ctx.params.id };
+        let query = { ...{ show_uid: ctx.params.id }, ...ctx.query };
 
         if (ctx.params.sid) {
             const seasonIdkey = isNaN(ctx.params.sid) ? 'uid' : 'season_number';
@@ -22,7 +22,7 @@ class ShowRestApi extends BaseRestApi {
     }
 
     async getEpisodes(ctx) {
-        let query = { show_uid: ctx.params.id };
+        let query = { ...{ show_uid: ctx.params.id }, ...ctx.query };
 
         if (ctx.params.sid) {
             const seasonIdkey = isNaN(ctx.params.sid) ? 'season_uid' : 'season_number';

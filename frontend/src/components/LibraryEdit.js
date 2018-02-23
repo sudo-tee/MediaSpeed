@@ -86,7 +86,7 @@ class LibraryEdit extends React.Component {
                     </Modal.Description>
                 </Modal.Content>
                 <Modal.Actions>
-                    <Button negative onClick={this.handleCancel}>
+                    <Button basic color='grey' onClick={this.handleCancel}>
                         Cancel
                     </Button>
                     <Button primary onClick={this.handleSave} disabled={!this.canSave()} positive>

@@ -11,13 +11,13 @@ class MediaItem extends PureComponent {
          let fromMedia = this.props.media.local_backdrop || this.props.media.local_still || this.props.media.local_screenshot;
          this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
       } else {
-
          let defaultImage = '/web/img/default-poster.jpg';
          let fromMedia = this.props.media.local_poster || this.props.media.local_screenshot;
          this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
       }
 
-      this.year = new Date(this.props.media.release_date).getFullYear()  || new Date(this.props.media.first_air_date).getFullYear();
+      const date = this.props.media.release_date || this.props.media.air_date || this.props.media.first_air_date;
+      this.year = new Date(date).getFullYear();
    }
 
    getUrl(mediaItem) {

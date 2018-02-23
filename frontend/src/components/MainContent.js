@@ -5,6 +5,7 @@ import ShowListContainer from "../containers/ShowListContainer";
 import HomeContainer from "../containers/HomeContainer";
 import SettingsContainer from "../containers/SettingsContainer";
 import MoviePageContainer from "../containers/MoviePageContainer";
+import ShowPageContainer from "../containers/ShowPageContainer";
 
 class MainContent extends Component {
     render() {
@@ -17,6 +18,9 @@ class MainContent extends Component {
 
                     <Route path='/libraries/:id/movies/:movieUid'
                            render={(props) => <MoviePageContainer movie-uid={props.match.params.movieUid}/>}/>
+
+                    <Route path='/libraries/:id/shows/:showUid'
+                           render={(props) => <ShowPageContainer show-uid={props.match.params.showUid}/>}/>
 
 
                     <Route path='/libraries/:id/movies'

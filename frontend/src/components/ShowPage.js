@@ -1,26 +1,27 @@
 import React from 'react'
 import MediaPoster from "./MediaPoster";
 import {Dimmer, Dropdown, Grid, Menu, Progress} from "semantic-ui-react";
+import MediaList from "./MediaList";
 
-const MoviePage = ({movie}) => {
-    if (!movie) return <Dimmer>Loading...</Dimmer>;
-    const {hours, minutes} = ((time) => ({hours: Math.trunc(time/60), minutes:time%60}))(movie.runtime);
-    const genres = movie.genres || [];
+const ShowPage = ({show, seasons}) => {
+    console.log('seasons', seasons);
+    if (!show) return <Dimmer>Loading...</Dimmer>;
+    const genres = show.genres || [];
     return (
         <Grid className='media-page' stackable>
             <Grid.Column width={4}>
-                <MediaPoster media={movie}/>
+                <MediaPoster media={show}/>
             </Grid.Column>
             <Grid.Column width={12}>
-                <h2>{movie.title}</h2>
+                <h2>{show.name}</h2>
                 <div className='media-head media-page-segment'>
                     <Grid stackable>
                         <Grid.Column width={4}>
-                            <span>{new Date(movie.release_date).getFullYear()}</span><br />
-                            <span className="runtime meta">{hours}h {minutes} min.</span>
+                            <span>{new Date(show.first_air_date).getFullYear()}</span><br/>
                         </Grid.Column>
                         <Grid.Column width={12} className="meta-right">
-                            {genres.map((genre, index) => <span className={'meta'} key={`genre-${genre.id}`}>{!index || ', ' }{genre.name}</span>)}
+                            {genres.map((genre, index) => <span className={'meta'}
+                                                                key={`genre-${genre.id}`}>{!index || ', '}{genre.name}</span>)}
                         </Grid.Column>
                     </Grid>
                     <Progress percent={50} size='tiny'/>
@@ -40,12 +41,16 @@ const MoviePage = ({movie}) => {
                         </Menu.Item>
                     </Menu>
                 </div>
-                <div className='media-overview media-page-segment'>{movie.overview}</div>
-
+                <div className='media-overview media-page-segment'>{show.overview}</div>
+                <div className='media-seasons media-page-segment'>
+                    <h3>Seasons</h3>
+                    <MediaList medias={seasons}/>
+                </div>
             </Grid.Column>
+
         </Grid>
     );
 };
 
 
-export default MoviePage
+export default ShowPage
