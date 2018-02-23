@@ -17,6 +17,12 @@ class MainMenu extends Component {
         return url
     };
 
+    isActive = (lib) => {
+        return (match, location) => {
+            return lib.uid === this.props.mediaSelection.library
+        };
+    };
+
     render() {
         const libraries = this.props.libraries || [];
         return (
@@ -28,7 +34,9 @@ class MainMenu extends Component {
                        return <Menu.Item
                             as={NavLink}
                             to={this.getUrl(lib)}
-                            key={lib.uid}>
+                            key={lib.uid}
+                            isActive={this.isActive(lib)}
+                       >
                             <Icon name={lib.type === 'movie' ? 'film' : 'tv'}/>{lib.name}
                         </Menu.Item>
                     })}
