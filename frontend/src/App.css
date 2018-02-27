@@ -196,7 +196,6 @@ body {
   border-radius: 0;
   box-shadow: none;
   -webkit-box-shadow: none;
-  width: 100%;
 }
 
 #root .ui.card.media-item img, #root .ui.card.media-item>:first-child {

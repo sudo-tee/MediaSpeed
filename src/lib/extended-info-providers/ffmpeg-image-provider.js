@@ -21,14 +21,14 @@ export default class FFMpegImageProvider {
 
     async execute(media) {
         this.logger.debug('Creating ffmpeg image from media ' + media.filePath);
-        media.local_screenshot = await this.executeffMpeg(media);
+        const localScreenshot = await this.executeffMpeg(media);
 
         if (media.type === 'movie') {
-            await this.movieService.update(media.uid, media);
+            await this.movieService.update(media.uid, { local_screenshot: localScreenshot });
         }
 
         if (media.type === 'episode') {
-            await this.episodeService.update(media.uid, media);
+            await this.episodeService.update(media.uid, { local_screenshot: localScreenshot });
         }
 
         return media;

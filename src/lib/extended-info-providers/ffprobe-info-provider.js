@@ -9,13 +9,13 @@ export default class FFProbeInfoProvider {
         this.logger = logger;
 
         this.eventEmitter.on(EventsEnum.EPISODE_CREATED, async (episode, season, show) => {
-            episode = await this.execute(episode);
-            this.episodeService.update(episode.uid, episode);
+            const ffmpegInfo = await this.execute(episode);
+            this.episodeService.update(episode.uid, ffmpegInfo);
         });
 
         this.eventEmitter.on(EventsEnum.MOVIE_CREATED, async movie => {
-            movie = await this.execute(movie);
-            this.movieService.update(movie.uid, movie);
+            const ffmpegInfo = await this.execute(movie);
+            this.movieService.update(movie.uid, ffmpegInfo);
         });
     }
 
@@ -28,16 +28,29 @@ export default class FFProbeInfoProvider {
                     reject(media.fileName);
                 }
 
-                media.width = metadata.streams[0].width;
-                media.height = metadata.streams[0].height;
-                media.file_duration = parseFloat(metadata.format.duration);
-                media.file_size = parseInt(metadata.format.size);
-                media.bit_rate = metadata.format.bit_rate;
-                media.video_codec = metadata.streams[0].codec_name;
+                const ffmpegInfo = {
+                    width: metadata.streams[0].width,
+                    height: metadata.streams[0].height,
+                    file_duration: parseFloat(metadata.format.duration),
+                    file_size: parseInt(metadata.format.size),
+                    bit_rate: metadata.format.bit_rate,
+                    video_codec: metadata.streams[0].codec_name,
+                    audios: metadata.streams.filter(stream => stream.codec_type === 'audio').map(audio => ({
+                        index: audio.index,
+                        codec_name: audio.codec_name,
+                        channels: audio.channels,
+                        language: audio.tags ? audio.tags.language : undefined
+                    })),
+                    subtitles: metadata.streams.filter(stream => stream.codec_type === 'subtitle').map(sub => ({
+                        index: sub.index,
+                        codec_name: sub.codec_name,
+                        channels: sub.channels,
+                        language: sub.tags ? sub.tags.language : undefined,
+                        forced: sub.tags ? sub.tags.forced : undefined
+                    }))
+                };
 
-                // @todo add audio information (for transcoding later)
-
-                resolve(media);
+                resolve(ffmpegInfo);
             });
         });
     }

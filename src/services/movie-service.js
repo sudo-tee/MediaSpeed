@@ -41,7 +41,9 @@ const props = [
     'video_codec',
     'local_screenshot',
     'local_poster',
-    'local_backdrop'
+    'local_backdrop',
+    'audios',
+    'subtitles'
 ];
 
 export default class MovieService extends BaseService {

@@ -6,6 +6,7 @@ import HomeContainer from "../containers/HomeContainer";
 import SettingsContainer from "../containers/SettingsContainer";
 import MoviePageContainer from "../containers/MoviePageContainer";
 import ShowPageContainer from "../containers/ShowPageContainer";
+import SeasonPageContainer from "../containers/SeasonPageContainer";
 
 class MainContent extends Component {
     render() {
@@ -21,6 +22,9 @@ class MainContent extends Component {
 
                     <Route path='/libraries/:id/shows/:showUid'
                            render={(props) => <ShowPageContainer show-uid={props.match.params.showUid}/>}/>
+
+                    <Route path='/libraries/:id/seasons/:seasonUid'
+                           render={(props) => <SeasonPageContainer season-uid={props.match.params.seasonUid}/>}/>
 
 
                     <Route path='/libraries/:id/movies'

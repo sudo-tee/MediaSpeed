@@ -5,6 +5,7 @@ import mainMenu from "./mainMenuReducer";
 import movies from "./moviesReducer";
 import shows from "./showsReducer";
 import seasons from "./seasonsReducer";
+import episodes from "./episodesReducer";
 import fileSystem from "./fileSystemReducer";
 import mediaSelection from "./mediaSelectionReducer";
 import {createSelector} from 'reselect';
@@ -15,6 +16,7 @@ export default combineReducers({
     movies,
     shows,
     seasons,
+    episodes,
     mainMenu,
     fileSystem,
     mediaSelection
@@ -22,10 +24,11 @@ export default combineReducers({
 
 export const selectMovieHash = (state) => state.movies.items;
 export const selectShowHash = (state) => state.shows.items;
-export const selectSeasonsHash = (state) => state.seasons.items;
-export const selectEpisodesHash = (state) => ({});
+export const selectSeasonHash = (state) => state.seasons.items;
+export const selectEpisodeHash = (state) => state.episodes.items;
 
 export const selectSeasonsUidsByShowsUid = (state) => state.seasons.byShowUid;
+export const selectEpisodesUidsBySeasonUid = (state) => state.episodes.bySeasonUid;
 
 export const selectLibraryHash = (state) => state.libraries.items;
 export const selectFoldersSubPath = (state) => state.fileSystem.folders;
@@ -35,8 +38,8 @@ export const selectCurrentMediaSelection = (state) => state.mediaSelection;
 export const selectMovieList = createSelector(selectMovieHash, (movieHash) => values(movieHash));
 export const selectShowList = createSelector(selectShowHash, (showHash) => values(showHash));
 export const selectLibraryList = createSelector([selectLibraryHash], (libraryHash) => values(libraryHash));
-export const selectSeasonsList = createSelector([selectSeasonsHash], (seasonHash) => values(seasonHash));
-export const selectEpisodesList = (state) => [];
+export const selectSeasonsList = createSelector([selectSeasonHash], (seasonHash) => values(seasonHash));
+export const selectEpisodesList =createSelector([selectEpisodeHash], (episodeHash) => values(episodeHash));
 
 export const selectLibraryMovies = (state) => {
     return selectLatestMoviesByLibraries(state)[state.mediaSelection.library] || []
@@ -62,8 +65,16 @@ export const selectLatestShowsByLibraries = createSelector(
     }
 );
 
+export const selectEpisodesForCurrentSeason = createSelector(
+    selectEpisodeHash, selectEpisodesUidsBySeasonUid, selectCurrentMediaSelection,
+    (episodeHash, episodesBySeasons, currentMediaSelection) => {
+        const episodesUids  = episodesBySeasons[currentMediaSelection.season] || [];
+        return episodesUids.map(episodeUid => episodeHash[episodeUid]);
+    }
+);
+
 export const selectSeasonsForCurrentShow = createSelector(
-    selectSeasonsHash, selectSeasonsUidsByShowsUid, selectCurrentMediaSelection,
+    selectSeasonHash, selectSeasonsUidsByShowsUid, selectCurrentMediaSelection,
     (seasonHash, seasonsByShow, currentMediaSelection) => {
         const seasonsUids  = seasonsByShow[currentMediaSelection.show] || [];
         return seasonsUids.map(seasonUid => seasonHash[seasonUid]);
@@ -71,7 +82,7 @@ export const selectSeasonsForCurrentShow = createSelector(
 );
 
 export const selectCurrentPresentedMedia = createSelector(
-    selectCurrentMediaSelection, selectMovieHash, selectShowHash, selectSeasonsHash, selectEpisodesHash, selectLibraryHash,
+    selectCurrentMediaSelection, selectMovieHash, selectShowHash, selectSeasonHash, selectEpisodeHash, selectLibraryHash,
     (currentMediaSelection, movies, shows, seasons, episodes, libraries) => {
         if (movies[currentMediaSelection.movie]) return movies[currentMediaSelection.movie];
         if (episodes[currentMediaSelection.episode]) return episodes[currentMediaSelection.episode];

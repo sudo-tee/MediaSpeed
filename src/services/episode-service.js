@@ -12,6 +12,7 @@ const props = [
     'episode_number',
     'season_number',
     'name',
+    'air_date',
     'tmdb_show_id',
     'tmdb_season_id',
     'tmdb_id',
@@ -29,7 +30,9 @@ const props = [
     'video_codec',
     'still_path',
     'local_screenshot',
-    'local_still'
+    'local_still',
+    'audios',
+    'subtitles'
 ];
 
 export default class EpisodeService extends BaseService {

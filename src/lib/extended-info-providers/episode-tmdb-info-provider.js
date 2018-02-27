@@ -87,7 +87,6 @@ export default class EpisodeTmdbInfoProvider {
                     overview: seasonDetails.overview
                 }
             };
-
             await this.episodeService.update(episode.uid, episode);
             await this.showService.update(show.uid, show);
             await this.seasonService.update(season.uid, season);
