@@ -60,6 +60,8 @@ body {
   -webkit-transition: 300ms ease all;
   transition: 300ms ease all;
   display: inline-block;
+  width:calc(100vw - var(--left-menu-width));
+  max-width: calc(100vw - var(--left-menu-width));
 }
 
 #root .main-content .widget {

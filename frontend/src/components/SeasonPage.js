@@ -46,8 +46,8 @@ const SeasonPage = ({season, episodes}) => {
                     <h3>Episodes</h3>
                     <Grid>
                         {episodes.map((episode) => {
-                            return <Grid.Column tablet={8} mobile={16} computer={4}>
-                             <EpisodeItem media={episode} layout={'backdrop'} key={episode.uid}/>
+                            return <Grid.Column tablet={8} mobile={16} computer={4}  key={episode.uid}>
+                             <EpisodeItem media={episode} layout={'backdrop'}/>
                             </Grid.Column>
 
                         })}
