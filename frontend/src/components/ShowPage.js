@@ -1,7 +1,7 @@
 import React from 'react'
 import MediaPoster from "./MediaPoster";
 import {Dimmer, Dropdown, Grid, Menu, Progress} from "semantic-ui-react";
-import MediaList from "./MediaList";
+import SeasonItem from "./SeasonItem";
 
 const ShowPage = ({show, seasons}) => {
     console.log('seasons', seasons);
@@ -44,7 +44,14 @@ const ShowPage = ({show, seasons}) => {
                 <div className='media-overview media-page-segment'>{show.overview}</div>
                 <div className='media-seasons media-page-segment'>
                     <h3>Seasons</h3>
-                    <MediaList medias={seasons}/>
+                    <Grid>
+                        {seasons.map((season) => {
+                            return <Grid.Column tablet={8} mobile={16} computer={4} key={season.uid}>
+                                <SeasonItem media={season} layout={'backdrop'}/>
+                            </Grid.Column>
+
+                        })}
+                    </Grid>
                 </div>
             </Grid.Column>
 
