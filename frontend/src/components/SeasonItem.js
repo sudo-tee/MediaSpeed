@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Card, Icon, Image} from 'semantic-ui-react';
+import {Card, Image} from 'semantic-ui-react';
 import {NavLink} from "react-router-dom";
 
 class SeasonItem extends PureComponent {
@@ -21,7 +21,6 @@ class SeasonItem extends PureComponent {
             <div className="media-item-image-container">
                 <Image src={this.img}/>
                 <div className="media-item-hover">
-                    <div className="media-item-play-icon"><Icon name="play"/></div>
                 </div>
             </div>
             <Card.Content>

@@ -28,8 +28,6 @@ const ShowPage = ({show, seasons}) => {
                 </div>
                 <div className='media-menu media-page-segment'>
                     <Menu compact stackable>
-                        <Menu.Item as='a' icon='play' content='Play'/>
-                        <Menu.Item icon='step forward' content='Resume'/>
                         <Menu.Item icon='unhide' content='Mark Watched'/>
                         <Menu.Item>
                             <Dropdown floating button icon='ellipsis horizontal' className='icon'>
@@ -47,7 +45,7 @@ const ShowPage = ({show, seasons}) => {
                     <Grid>
                         {seasons.map((season) => {
                             return <Grid.Column tablet={8} mobile={16} computer={4} key={season.uid}>
-                                <SeasonItem media={season} layout={'backdrop'}/>
+                                <SeasonItem media={season} />
                             </Grid.Column>
 
                         })}

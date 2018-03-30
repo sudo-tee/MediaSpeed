@@ -34,10 +34,18 @@ class HlsApi extends StreamApi {
         const segment = ctx.params.segment;
         ctx.body = await this.streamer.getStream(segment, session);
     }
+
+    async stop(ctx, res) {
+        const session = ctx.query.session;
+        this.streamer.stopStream(session);
+
+        ctx.body = { message: 'ok' };
+    }
 }
 
 export default createController(HlsApi)
     .prefix('/hls')
     .get('/:type/:id/index.m3u8', 'masterPlaylist')
     .get('/:type/:id/video.m3u8', 'playlist')
-    .get('/:type/:id/index:segment.ts', 'stream');
+    .get('/:type/:id/index:segment.ts', 'stream')
+    .post('/:type/:id/stop', 'stop');

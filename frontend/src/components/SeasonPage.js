@@ -1,10 +1,9 @@
 import React from 'react'
 import MediaPoster from "./MediaPoster";
-import {Dimmer, Dropdown, Card, Menu, Progress, Grid} from "semantic-ui-react";
+import {Dimmer, Dropdown, Menu, Progress, Grid, Card} from "semantic-ui-react";
 import EpisodeItem from "./EpisodeItem";
 
-const SeasonPage = ({season, episodes}) => {
-    console.log('episodes', season, episodes);
+const SeasonPage = ({season, episodes, onPlay}) => {
     if (!season) return <Dimmer>Loading...</Dimmer>;
     const genres = season.genres || [];
     return (
@@ -28,8 +27,6 @@ const SeasonPage = ({season, episodes}) => {
                 </div>
                 <div className='media-menu media-page-segment'>
                     <Menu compact stackable>
-                        <Menu.Item as='a' icon='play' content='Play'/>
-                        <Menu.Item icon='step forward' content='Resume'/>
                         <Menu.Item icon='unhide' content='Mark Watched'/>
                         <Menu.Item>
                             <Dropdown floating button icon='ellipsis horizontal' className='icon'>
@@ -44,14 +41,11 @@ const SeasonPage = ({season, episodes}) => {
                 <div className='media-overview media-page-segment'>{season.overview}</div>
                 <div className='media-episodes media-page-segment'>
                     <h3>Episodes</h3>
-                    <Grid>
+                    <Card.Group doubling>
                         {episodes.map((episode) => {
-                            return <Grid.Column tablet={8} mobile={16} computer={4}  key={episode.uid}>
-                             <EpisodeItem media={episode} layout={'backdrop'}/>
-                            </Grid.Column>
-
+                            return <EpisodeItem onPlay={onPlay} media={episode} layout={'backdrop'} key={'episode-' + episode.uid}/>
                         })}
-                    </Grid>
+                    </Card.Group>
                 </div>
             </Grid.Column>
         </Grid>

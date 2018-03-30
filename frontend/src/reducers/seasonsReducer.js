@@ -46,7 +46,7 @@ export default function seasonsReducer(state = initialState, action) {
                     items: {...state.items, ...{[action.season.uid]: action.season}},
                     byShowUid: {
                         ...state.byShowUid,
-                        ... {[action.season.show_uid]: [...(state.byShowUid[action.season.show_uid] || []), [action.season.uid]]}
+                        ...{[action.season.show_uid]: [...(state.byShowUid[action.season.show_uid] || []), [action.season.uid]]}
                     },
                     lastUpdated: action.receivedAt
                 }

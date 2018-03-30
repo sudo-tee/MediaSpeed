@@ -7,6 +7,8 @@ import SettingsContainer from "../containers/SettingsContainer";
 import MoviePageContainer from "../containers/MoviePageContainer";
 import ShowPageContainer from "../containers/ShowPageContainer";
 import SeasonPageContainer from "../containers/SeasonPageContainer";
+import TopbarContainer from "../containers/TopbarContainer";
+import LibraryMenuContainer from "../containers/LibraryMenuContainer";
 
 class MainContent extends Component {
     render() {
@@ -14,6 +16,8 @@ class MainContent extends Component {
         if(this.props.mainMenuVisible) classNames += " main-menu-visible";
         return (
             <div className={classNames}>
+                <TopbarContainer/>
+                <LibraryMenuContainer/>
                 <Switch>
                     <Route exact path='/' render={(props) => <HomeContainer />}/>
 
@@ -29,7 +33,7 @@ class MainContent extends Component {
 
                     <Route path='/libraries/:id/movies'
                            render={(props) => <MovieListContainer library-uid={props.match.params.id}
-                                                                  library-type='movies'/>}/>
+                                                                  library-type='movies' playable={true}/>}/>
                     <Route path='/libraries/:id/shows'
                            render={(props) => <ShowListContainer library-uid={props.match.params.id}
                                                                   library-type='shows'/>}/>

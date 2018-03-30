@@ -4,6 +4,9 @@ import {selectSeasonHash, selectEpisodesForCurrentSeason} from "../reducers/inde
 import SeasonPage from "../components/SeasonPage";
 import {fetchSeasonIfNeeded} from "../actions/seasonsActions";
 import {fetchEpisodesIfNeeded} from "../actions/episodesActions";
+import {withRouter} from "react-router-dom";
+import uuid from 'uuid/v4';
+
 
 
 class SeasonPageContainer extends Component {
@@ -21,7 +24,7 @@ class SeasonPageContainer extends Component {
     }
 
     render() {
-        return <SeasonPage {...this.props} />
+        return <SeasonPage {...this.props}/>
     }
 }
 
@@ -29,6 +32,10 @@ function mapStateToProps (state, ownProps) {
     return {
         season: selectSeasonHash(state)[ownProps['season-uid']],
         episodes: selectEpisodesForCurrentSeason(state),
+        onPlay: (media) => {
+            let session = uuid(Math.random().toString(36).slice(2) + media.uid);
+            ownProps.history.push(`/play/${media.type}s/${media.uid}?session=${session}`)
+        }
     }
 }
 
@@ -40,7 +47,7 @@ function mapDispatchToProps (dispatch, ownProps) {
     }
 }
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(SeasonPageContainer)
+)(SeasonPageContainer))

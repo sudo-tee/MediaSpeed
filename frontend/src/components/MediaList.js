@@ -1,19 +1,12 @@
 import React from 'react';
 import MediaItem from './MediaItem';
-import {Grid} from 'semantic-ui-react';
+import {Card} from 'semantic-ui-react';
 
-const MediaList = ({ medias, layout }) =>
-
-    <Grid>
+const MediaList = ({ medias, layout, playable, onPlay }) =>
+    <Card.Group doubling columns={8}>
         {medias.map((media) => {
-            return <Grid.Column
-                tablet={layout === 'backdrop' ? 16 : 8}
-                mobile={16}
-                computer={layout === 'backdrop' ? 4 : 2}
-                key={media.uid}>
-                <MediaItem  media={media} layout={layout}/>
-            </Grid.Column>
+            return <MediaItem playable={playable} key={media.uid} media={media} layout={layout} onPlay={onPlay}/>
         })}
-    </Grid>;
+    </Card.Group>;
 
 export default MediaList;

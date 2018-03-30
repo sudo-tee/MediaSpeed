@@ -57,4 +57,10 @@ export default class FFMpegHlsStreamer extends BasicStreamer {
 
         return this.sessions[session].getStream(segment);
     }
+
+    async stopStream(session) {
+        if (!this.sessions[session]) throw new Error('Invalid session Id ' + session);
+
+        return this.sessions[session].stop();
+    }
 }

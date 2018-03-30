@@ -8,6 +8,8 @@
     "lodash": "^4.17.4",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-lazyload-img": "^1.0.3",
+    "react-player": "^1.2.1",
     "react-redux": "^5.0.6",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.1.0",
@@ -15,9 +17,11 @@
     "redux-form": "^7.2.1",
     "redux-logger": "^3.0.6",
     "reselect": "^3.0.1",
+    "screenfull": "^3.3.2",
     "semantic-ui-css": "^2.2.12",
     "semantic-ui-forest-themes": "^1.0.3",
-    "semantic-ui-react": "^0.77.2"
+    "semantic-ui-react": "^0.77.2",
+    "uuid": "^3.2.1"
   },
   "scripts": {
     "start": "react-scripts start",

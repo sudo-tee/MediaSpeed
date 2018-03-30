@@ -1,14 +1,29 @@
 import { matchPath } from 'react-router-dom';
+import {startSession} from "./playBackActions";
 export const MEDIA_SELECTED = 'MEDIA_SELECTED';
 
 export function routeChanged(location) {
     return (dispatch) => {
 
-        const mediaMatch = matchPath(location.pathname, {
+        const playerRoute = matchPath(location.pathname, {
+            path: '/play/:libraryType/:entityUid',
+            exact: true,
+            strict: false
+        });
+
+        if(playerRoute) {
+            const params = new URLSearchParams(location.search);
+            const session = params.get('session');
+            dispatch(startSession(session))
+        }
+
+        const mediaRoute = matchPath(location.pathname, {
             path: '/libraries/:libraryUid/:libraryType/:entityUid',
             exact: true,
             strict: false
         });
+
+        const mediaMatch = mediaRoute || playerRoute;
 
         const libraryMatch = matchPath(location.pathname, {
             path: '/libraries/:libraryUid/:libraryType',

@@ -158,8 +158,10 @@ Right the transcoding is very basic and is not to clever. you can seek through a
 
 
 ### Transcoding media file using hls
-- <code>GET</code>    /hls/movie/:uid?session=SESSION_ID `Experimental live ffmpeg hls transcoding` 
-- <code>GET</code>    /hls/episode/:uid?session=SESSION_ID `Experimental live ffmpeg hls transcoding` 
+- <code>GET</code>    /hls/movie/:uid/index.m3u8?session=SESSION_ID `Experimental live ffmpeg hls transcoding` 
+- <code>POST</code>   /hls/movie/:uid/stop?session=SESSION_ID `Stop live ffmpeg hls transcoding` 
+- <code>GET</code>    /hls/episode/:uid/index.m3u8?session=SESSION_ID `Experimental live ffmpeg hls transcoding` 
+- <code>POST</code>   /hls/episode/:uid/stop?session=SESSION_ID `Stop live ffmpeg hls transcoding` 
 
 The hls transcoder is very experimental and seeking sometime cause locking in the web player (hls.js and shaka.js)
 

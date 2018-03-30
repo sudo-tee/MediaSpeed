@@ -54,7 +54,7 @@
 
         const cardHtml =
             shows.map(show => {
-                const poster = show.local_poster  ? '/images/' + show.local_poster : '/demo/default-poster.jpg';
+                const poster = show.local_poster  ? '/images/' + show.local_poster : '/demo/default-poster.png';
                 return `<div class="grid-item show">
                     <a href="/demo/show.html?uid=${show.uid}"><img class="poster" src="${poster}" /></a>
                 </div>`
@@ -82,7 +82,7 @@
 
         const cardHtml =
             movies.map(movie => {
-                const poster = movie.local_poster  ? '/images/' + movie.local_poster : '/demo/default-poster.jpg';
+                const poster = movie.local_poster  ? '/images/' + movie.local_poster : '/demo/default-poster.png';
                 return `<div class="grid-item">
                     <a href="/demo/movie.html?uid=${movie.uid}"><img class="poster" src="${poster}" /></a>
                 </div>`

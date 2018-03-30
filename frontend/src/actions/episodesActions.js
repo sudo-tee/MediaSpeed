@@ -2,6 +2,7 @@ import {keyBy, isEmpty} from 'lodash'
 
 export const REQUEST_EPISODES = 'REQUEST_EPISODES';
 export const RECEIVE_EPISODES = 'RECEIVE_EPISODES';
+export const REQUEST_EPISODE = 'REQUEST_EPISODE';
 export const INVALIDATE_EPISODES = 'INVALIDATE_EPISODES';
 
 export function requestEpisodes() {
@@ -72,6 +73,52 @@ export function fetchEpisodesIfNeeded(show) {
         if (shouldFetchEpisodes(getState(), show)) {
             // Dispatch a thunk from thunk!
             return dispatch(fetchEpisodes(show))
+        } else {
+            // Let the calling code know there's nothing to wait for.
+            return Promise.resolve()
+        }
+    }
+}
+
+export function fetchEpisode(uid) {
+
+    return function (dispatch) {
+        dispatch({type: REQUEST_EPISODE, uid:uid});
+
+        return fetch(`/api/episodes/${uid}`)
+            .then(
+                response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(json =>
+                dispatch({
+                    type: RECEIVE_EPISODES,
+                    episodes: {[json.uid]: json},
+                    receivedAt: Date.now()
+                })
+            )
+    }
+}
+
+export function shouldFetchEpisode(state, uid) {
+    const episodes = state.episodes;
+
+    if (episodes.isFetching) {
+        return false
+    } else if (!episodes.items[uid]) {
+        return true
+    } else if (isEmpty(episodes.items)) {
+        return true
+    } else {
+        return episodes.didInvalidate
+    }
+}
+
+export function fetchEpisodeIfNeeded(uid) {
+    return (dispatch, getState) => {
+        if (shouldFetchEpisode(getState(), uid)) {
+            // Dispatch a thunk from thunk!
+            return dispatch(fetchEpisode(uid))
         } else {
             // Let the calling code know there's nothing to wait for.
             return Promise.resolve()

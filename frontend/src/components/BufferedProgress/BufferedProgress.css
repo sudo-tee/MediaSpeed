@@ -1,0 +1,31 @@
+
+.buffered-progress .progress .bar {
+    min-width: 0 !important;
+}
+
+.buffered-progress {
+    width: 100%  !important;
+}
+
+.buffered-progress .progress, .buffered-progress {
+    height: 5px  !important;
+    background: #696969;
+}
+.buffered-progress .progress .bar {
+    height: 5px !important;
+}
+.buffered-progress .progress.buffer {
+    margin-top: -5px  !important;
+}
+
+.buffered-progress .progress.played {
+    z-index: calc(var(--z-index-for-fullscreen) + 1) !important;
+}
+
+.buffered-progress .time-hover {
+    position: absolute;
+    padding: 10px;
+    background-color: rgba(0,0,0, 0.5);
+    color: white;
+    margin-bottom: 10px;
+}

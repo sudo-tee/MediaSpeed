@@ -1,0 +1,59 @@
+.volume-slider input[type=range] {
+    outline: none;
+    -webkit-appearance: none;
+    background-color: silver;
+    height:3px;
+}
+
+.volume-slider .volume-slider-icon {
+   float:left;
+}
+
+.volume-slider .volume-slider-bar {
+    float:left;
+    margin-left:5px;
+    margin-top:-6px;
+}
+
+.volume-slider .volume-progress {
+    pointer-events: none;
+    background-color: rgb(var(--primary-accent));
+    height:3px;
+    display:block;
+    position:relative;
+    top:13px;
+    left:0;
+}
+
+.volume-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 0;
+    height: 0;
+}
+
+.volume-slider:hover input[type="range"]::-webkit-slider-thumb {
+    transition: all 0.2s ease-in-out;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 12px;
+    height: 12px;
+    background-color: rgb(var(--primary-accent));
+    border-radius: 50%;
+}
+
+.volume-slider.muted .volume-progress {
+    background-color: transparent;
+}
+
+.volume-slider.muted input[type="range"] {
+    opacity: 0;
+}
+
+.volume-slider.muted:hover input[type="range"] {
+    opacity: 1;
+}
+
+.volume-slider:hover .volume-progress.muted {
+    background-color: rgb(var(--primary-accent));
+}

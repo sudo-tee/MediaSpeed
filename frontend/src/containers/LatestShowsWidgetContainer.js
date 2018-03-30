@@ -5,7 +5,7 @@ import LibraryWidget from "../components/LibraryWidget";
 
 
 const LatestShowsWidgetContainer = ({library, showsByLibraries}) => (
-    <LibraryWidget medias={showsByLibraries  || []} title={'Latest ' + library.name} maxDisplay={4} layout="backdrop"/>
+    <LibraryWidget medias={showsByLibraries  || []} title={'Latest ' + library.name} maxDisplay={4} />
 );
 
 function mapStateToProps (state, props) {

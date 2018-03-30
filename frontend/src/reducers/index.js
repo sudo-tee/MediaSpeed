@@ -8,6 +8,7 @@ import seasons from "./seasonsReducer";
 import episodes from "./episodesReducer";
 import fileSystem from "./fileSystemReducer";
 import mediaSelection from "./mediaSelectionReducer";
+import playback from "./playBackReducer";
 import {createSelector} from 'reselect';
 import {values, groupBy} from 'lodash';
 
@@ -19,7 +20,8 @@ export default combineReducers({
     episodes,
     mainMenu,
     fileSystem,
-    mediaSelection
+    mediaSelection,
+    playback
 });
 
 export const selectMovieHash = (state) => state.movies.items;

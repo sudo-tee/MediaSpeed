@@ -2,7 +2,7 @@ import React from 'react'
 import MediaPoster from "./MediaPoster";
 import {Dimmer, Dropdown, Grid, Menu, Progress} from "semantic-ui-react";
 
-const MoviePage = ({movie}) => {
+const MoviePage = ({movie, onPlay}) => {
     if (!movie) return <Dimmer>Loading...</Dimmer>;
     const {hours, minutes} = ((time) => ({hours: Math.trunc(time/60), minutes:time%60}))(movie.runtime);
     const genres = movie.genres || [];
@@ -27,7 +27,7 @@ const MoviePage = ({movie}) => {
                 </div>
                 <div className='media-menu media-page-segment'>
                     <Menu compact stackable>
-                        <Menu.Item as='a' icon='play' content='Play'/>
+                        <Menu.Item icon='play' content='Play' onClick={onPlay}/>
                         <Menu.Item icon='step forward' content='Resume'/>
                         <Menu.Item icon='unhide' content='Mark Watched'/>
                         <Menu.Item>

@@ -1,46 +1,53 @@
 import React, {PureComponent} from 'react';
 import {Card, Icon, Image} from 'semantic-ui-react';
-import {NavLink} from "react-router-dom";
+import withRouter from "react-router-dom/es/withRouter";
+
 
 class MediaItem extends PureComponent {
-   constructor() {
-      super(...arguments);
+    constructor() {
+        super(...arguments);
 
-      if(this.props.layout === "backdrop") {
-         let defaultImage = '/web/img/default-backdrop.jpg';
-         let fromMedia = this.props.media.local_backdrop || this.props.media.local_still || this.props.media.local_screenshot;
-         this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
-      } else {
-         let defaultImage = '/web/img/default-poster.jpg';
-         let fromMedia = this.props.media.local_poster || this.props.media.local_screenshot;
-         this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
-      }
+        if (this.props.layout === "backdrop") {
+            let defaultImage = '/web/img/default-backdrop.jpg';
+            let fromMedia = this.props.media.local_backdrop || this.props.media.local_still || this.props.media.local_screenshot;
+            this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
+        } else {
+            let defaultImage = '/web/img/default-poster.png';
+            let fromMedia = this.props.media.local_poster || this.props.media.local_screenshot;
+            this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
+        }
 
-      const date = this.props.media.release_date || this.props.media.air_date || this.props.media.first_air_date;
-      this.year = new Date(date).getFullYear();
-   }
+        const date = this.props.media.release_date || this.props.media.air_date || this.props.media.first_air_date;
+        this.year = new Date(date).getFullYear();
+    };
 
-   getUrl(mediaItem) {
-      return `/libraries/${mediaItem.library_uid}/${mediaItem.type}s/${mediaItem.uid}`;
-   }
+    //@TODO move to a context API ?
+    navigateToInfoPage = () => {
+        this.props.history.push(`/libraries/${this.props.media.library_uid}/${this.props.media.type}s/${this.props.media.uid}`);
+    };
 
-   render() {
-      return <Card className="media-item" as={NavLink} to={this.getUrl(this.props.media)}>
-         <div className="media-item-image-container">
-            <Image src={this.img} />
-            <div className="media-item-hover">
-               <div className="media-item-play-icon"><Icon name="play"/></div>
+    play = (e) => {
+        e.stopPropagation();
+        this.props.onPlay(this.props.media);
+    };
+
+    render() {
+        return <Card style={{width: 200}} className="media-item" onClick={this.navigateToInfoPage}>
+            <div style={{width: 200}} className="media-item-image-container">
+                <Image style={{width: 200}} src={this.img}/>
+                <div className="media-item-hover">
+                    {this.props.playable &&
+                    <div className="media-item-play-icon" onClick={this.play}><Icon name="play"/></div>}
+                </div>
             </div>
-         </div>
-         <Card.Content>
-            <Card.Header>{this.props.media.title  || this.props.media.name}</Card.Header>
-            <Card.Meta>
-              <span className='date'>({this.year || "No year"})</span>
-            </Card.Meta>
-         </Card.Content>
-
-      </Card>
-   }
+            <Card.Content>
+                <Card.Header>{this.props.media.title || this.props.media.name}</Card.Header>
+                <Card.Meta>
+                    <span className='date'>({this.year || "No year"})</span>
+                </Card.Meta>
+            </Card.Content>
+        </Card>
+    }
 }
 
-export default MediaItem;
+export default withRouter(MediaItem);

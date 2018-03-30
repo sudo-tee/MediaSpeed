@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Card, Icon, Image} from 'semantic-ui-react';
-import {NavLink} from "react-router-dom";
+import {withRouter} from "react-router-dom";
 
 class EpisodeItem extends PureComponent {
     constructor() {
@@ -12,16 +12,17 @@ class EpisodeItem extends PureComponent {
 
     }
 
-    getUrl(mediaItem) {
-        return `/libraries/${mediaItem.library_uid}/${mediaItem.type}s/${mediaItem.uid}`;
-    }
+    play = (e) => {
+        e.stopPropagation();
+        this.props.onPlay(this.props.media);
+    };
 
     render() {
-        return <Card className="media-item" as={NavLink} to={this.getUrl(this.props.media)}>
+        return <Card className="media-item" onClick={this.play}>
             <div className="media-item-image-container">
                 <Image src={this.img}/>
                 <div className="media-item-hover">
-                    <div className="media-item-play-icon"><Icon name="play"/></div>
+                    <div className="media-item-play-icon" onClick={this.play}><Icon name="play"/></div>
                 </div>
             </div>
             <Card.Content>
@@ -35,4 +36,4 @@ class EpisodeItem extends PureComponent {
     }
 }
 
-export default EpisodeItem;
+export default withRouter(EpisodeItem);

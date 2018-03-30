@@ -11,7 +11,7 @@ class MediaPoster extends PureComponent {
             this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
         } else {
 
-            let defaultImage = '/web/img/default-poster.jpg';
+            let defaultImage = '/web/img/default-poster.png';
             let fromMedia = this.props.media.local_poster || this.props.media.local_screenshot;
             this.img = fromMedia ? '/images/' + fromMedia : defaultImage;
         }
