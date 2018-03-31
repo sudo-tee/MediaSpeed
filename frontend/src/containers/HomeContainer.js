@@ -1,10 +1,11 @@
 import {connect} from "react-redux";
 import Home from "../components/Home";
-import {selectLibraryList} from '../reducers';
+import {selectLibraryList, selectRandomShowOrMovie} from '../reducers';
 
 function mapStateToProps (state) {
     return {
-        libraries: selectLibraryList(state)
+        libraries: selectLibraryList(state),
+        randomMedia: selectRandomShowOrMovie(state)
     }
 }
 

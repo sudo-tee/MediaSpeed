@@ -83,25 +83,10 @@ export const selectSeasonsForCurrentShow = createSelector(
     }
 );
 
-export const selectCurrentPresentedMedia = createSelector(
-    selectCurrentMediaSelection, selectMovieHash, selectShowHash, selectSeasonHash, selectEpisodeHash, selectLibraryHash,
-    (currentMediaSelection, movies, shows, seasons, episodes, libraries) => {
-        if (movies[currentMediaSelection.movie]) return movies[currentMediaSelection.movie];
-        if (episodes[currentMediaSelection.episode]) return episodes[currentMediaSelection.episode];
-        if (seasons[currentMediaSelection.season]) return seasons[currentMediaSelection.season];
-        if (shows[currentMediaSelection.show]) return shows[currentMediaSelection.show];
-
-        const mediasFromLibraryOrAll = (() => {
-            if (currentMediaSelection.library && libraries[currentMediaSelection.library]) {
-                const library = libraries[currentMediaSelection.library];
-                if (library.type === 'movie') return values(movies).filter(movie => movie.library_uid === library.uid);
-                if (library.type === 'episode') return values(shows).filter(shows => shows.library_uid === library.uid);
-            }
-
-            return [...values(movies), ...values(shows)];
-        })();
-
-        return mediasFromLibraryOrAll[Math.floor(mediasFromLibraryOrAll.length * Math.random())];
+export const selectRandomShowOrMovie = createSelector(
+  selectMovieList, selectShowList,
+    (movies, shows) => {
+      const all = [...movies, ...shows];
+      return all[Math.floor(all.length * Math.random())]
     }
 );
-

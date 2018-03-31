@@ -1,8 +1,19 @@
+import React from 'react'
 import MediaList from '../components/MediaList';
 import {connect} from "react-redux";
 import {selectLibraryMovies} from '../reducers';
 import withRouter from "react-router-dom/es/withRouter";
 import uuid from 'uuid/v4';
+import BackgroundChanger from "../BackgroundChanger";
+
+
+const MovieListContainer = (props) =>
+    <div>
+        <BackgroundChanger media={props.medias[Math.floor(props.medias.length * Math.random())]}/>
+        <MediaList {...props}/>
+    </div>;
+
+
 
 function mapStateToProps (state) {
     return {
@@ -23,5 +34,5 @@ function mapDispatchToProps(dispatch, ownProps) {
 export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(MediaList))
+)(MovieListContainer))
 

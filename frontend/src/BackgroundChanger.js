@@ -1,4 +1,4 @@
-const BackgroundChanger = ({media, rootElement}) => {
+const BackgroundChanger = ({media, rootElement = 'body'}) => {
     if (!media) return '';
 
     const base = "/images/";

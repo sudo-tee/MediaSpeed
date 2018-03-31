@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import './App.css'
 import MainContentContainer from "./containers/MainContentContainer";
-import BackgroundChangerContainer from "./containers/BackgroundChangerContainer";
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from "react-redux";
 import {routeChanged} from "./actions/routerAction"
@@ -22,7 +21,6 @@ class App extends Component {
     render() {
         return (
             <div>
-                <BackgroundChangerContainer rootElement='body'/>
                 <Switch>
                     <Route path='/play/episodes/:uid' render={(props) => <EpisodeVideoPlayerContainer uid={props.match.params.uid}/>}/>
                     <Route path='/play/movies/:uid' render={(props) => <MovieVideoPlayerContainer uid={props.match.params.uid}/>}/>
