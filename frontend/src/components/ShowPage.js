@@ -4,7 +4,6 @@ import {Dimmer, Dropdown, Grid, Menu, Progress} from "semantic-ui-react";
 import SeasonItem from "./SeasonItem";
 
 const ShowPage = ({show, seasons}) => {
-    console.log('seasons', seasons);
     if (!show) return <Dimmer>Loading...</Dimmer>;
     const genres = show.genres || [];
     return (
@@ -52,7 +51,6 @@ const ShowPage = ({show, seasons}) => {
                     </Grid>
                 </div>
             </Grid.Column>
-
         </Grid>
     );
 };

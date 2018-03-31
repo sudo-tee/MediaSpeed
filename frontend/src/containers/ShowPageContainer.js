@@ -7,14 +7,11 @@ import {fetchSeasonsIfNeeded} from "../actions/seasonsActions";
 
 class ShowPageContainer extends Component {
     componentWillMount() {
-        console.log('MOUNT', this.props.show);
         if(this.props.show)
             this.props.fetchSeasons(this.props.show);
     }
     componentWillReceiveProps(nextProps) {
-        console.log('RECDIVEPROPS', nextProps);
         if(nextProps.show !== this.show) {
-            console.log('ssssss');
             this.props.fetchSeasons(nextProps.show);
         }
     }
