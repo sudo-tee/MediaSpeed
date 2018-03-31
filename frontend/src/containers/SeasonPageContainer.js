@@ -10,16 +10,17 @@ import uuid from 'uuid/v4';
 
 
 class SeasonPageContainer extends Component {
-    componentWillMount() {
+
+    componentDidMount() {
         this.props.fetchSeasonIfNeeded();
         if(this.props.season) {
             this.props.fetchEpisodes(this.props.season);
         }
     }
-    componentWillReceiveProps(nextProps) {
-        console.log('SEASON', this.props.season);
-        if(nextProps.season !== this.season) {
-            this.props.fetchEpisodes(nextProps.season);
+
+    componentDidUpdate(prevProps) {
+        if(prevProps.season !== this.props.season) {
+            this.props.fetchEpisodes(this.props.season);
         }
     }
 

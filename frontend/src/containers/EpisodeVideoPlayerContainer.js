@@ -9,15 +9,16 @@ import {withRouter} from "react-router-dom";
 
 
 class EpisodeVideoPlayerContainer extends Component {
-    componentWillMount() {
+
+    componentDidMount() {
         if (this.props.uid) {
             this.props.fetchEpisodeIfNeeded(this.props.uid);
         }
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (nextProps.uid !== this.uid) {
-            this.props.fetchEpisodeIfNeeded(nextProps.uid);
+    componentDidUpdate(prevProps) {
+        if (prevProps.uid !== this.props.uid) {
+            this.props.fetchEpisodeIfNeeded(this.props.uid);
         }
     }
 

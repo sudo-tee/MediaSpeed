@@ -6,13 +6,16 @@ import {fetchSeasonsIfNeeded} from "../actions/seasonsActions";
 
 
 class ShowPageContainer extends Component {
-    componentWillMount() {
-        if(this.props.show)
+
+    componentDidMount() {
+        if (this.props.show) {
             this.props.fetchSeasons(this.props.show);
+        }
     }
-    componentWillReceiveProps(nextProps) {
-        if(nextProps.show !== this.show) {
-            this.props.fetchSeasons(nextProps.show);
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.show !== this.props.show) {
+            this.props.fetchSeasons(this.props.show);
         }
     }
 
@@ -21,14 +24,14 @@ class ShowPageContainer extends Component {
     }
 }
 
-function mapStateToProps (state, ownProps) {
+function mapStateToProps(state, ownProps) {
     return {
         show: selectShowHash(state)[ownProps['show-uid']],
         seasons: selectSeasonsForCurrentShow(state),
     }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
     return {
         fetchSeasons: (show) => dispatch(fetchSeasonsIfNeeded(show))
     }
