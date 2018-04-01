@@ -27,7 +27,7 @@ class ShowPageContainer extends Component {
 function mapStateToProps(state, ownProps) {
     return {
         show: selectShowHash(state)[ownProps['show-uid']],
-        seasons: selectSeasonsForCurrentShow(state),
+        seasons: selectSeasonsForCurrentShow(state, ownProps['show-uid']),
     }
 }
 

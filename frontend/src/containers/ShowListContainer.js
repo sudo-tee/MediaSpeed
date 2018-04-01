@@ -1,7 +1,7 @@
 import React from 'react'
 import MediaList from '../components/MediaList';
 import {connect} from "react-redux";
-import {selectLibraryShows} from '../reducers';
+import {selectLatestShowsByLibraries} from '../reducers';
 import withRouter from "react-router-dom/es/withRouter";
 import BackgroundChanger from "../BackgroundChanger";
 
@@ -12,9 +12,9 @@ const ShowListContainer = (props) =>
         <MediaList {...props}/>
     </div>;
 
-function mapStateToProps (state) {
+function mapStateToProps (state, ownProps) {
     return {
-        medias: selectLibraryShows(state) || []
+        medias: selectLatestShowsByLibraries(state)[ownProps['library-uid']] || []
     }
 }
 

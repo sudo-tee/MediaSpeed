@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from "react-redux";
-import {selectCurrentMediaSelection, selectEpisodeHash} from "../reducers/index";
+import {selectEpisodeHash} from "../reducers/index";
 import {fetchEpisodeIfNeeded} from "../actions/episodesActions";
 import VideoPlayer from "../components/VideoPlayer";
 import {Dimmer} from "semantic-ui-react";
@@ -11,8 +11,18 @@ import {withRouter} from "react-router-dom";
 class EpisodeVideoPlayerContainer extends Component {
 
     componentDidMount() {
+
         if (this.props.uid) {
             this.props.fetchEpisodeIfNeeded(this.props.uid);
+        }
+
+        const params = new URLSearchParams(this.props.location.search.slice(1));
+        const session = params.get('session');
+
+        if (session) {
+            this.props.startSession(session)
+        } else {
+            console.log('TODO')
         }
     }
 
@@ -25,7 +35,6 @@ class EpisodeVideoPlayerContainer extends Component {
     render() {
         const episode = this.props.episode;
         const session = this.props.session;
-        console.log(episode, session)
         if (!episode || !session) return <Dimmer>loading...</Dimmer>;
         return <VideoPlayer
             title={`${episode.show_name}  - S${episode.season_number} E${episode.episode_number}  -  ${episode.name}`}
@@ -41,11 +50,9 @@ class EpisodeVideoPlayerContainer extends Component {
 }
 
 
-function mapStateToProps(state) {
-    const currentSelection = selectCurrentMediaSelection(state);
+function mapStateToProps(state, ownProps) {
     return {
-        currentSelection,
-        episode: selectEpisodeHash(state)[currentSelection.episode],
+        episode: selectEpisodeHash(state)[ownProps['uid']],
         session: state.playback.session
     }
 }

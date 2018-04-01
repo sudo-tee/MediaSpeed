@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import {findDOMNode} from 'react-dom'
 import screenfull from 'screenfull'
-
 import ReactPlayer from 'react-player'
 import Duration from './Duration'
 import {Button, Grid, Icon} from "semantic-ui-react";
@@ -33,7 +32,6 @@ class VideoPlayer extends Component {
     };
 
     componentDidMount() {
-        console.log('did mount', this.props)
         this.loadMedia();
     }
 

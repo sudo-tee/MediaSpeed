@@ -3,7 +3,7 @@ import MainMenu from '../components/MainMenu';
 import {connect} from "react-redux";
 import {withRouter} from 'react-router-dom'
 import {fetchLibrariesIfNeeded} from '../actions/librariesActions';
-import {selectLibraryList, selectCurrentMediaSelection} from "../reducers/index";
+import {selectLibraryList} from "../reducers/index";
 
 
 class LibraryMenuContainer extends React.Component {
@@ -14,7 +14,7 @@ class LibraryMenuContainer extends React.Component {
     render() {
 
         if(this.props.libraries.isFetching) return <MainMenu/>;
-        return <MainMenu libraries={this.props.libraries} visible={this.props.visible} mediaSelection={this.props.mediaSelection}/>
+        return <MainMenu libraries={this.props.libraries} visible={this.props.visible} />
     }
 
     shouldComponentUpdate ( ) {
@@ -26,7 +26,6 @@ function mapStateToProps (state) {
     return {
         libraries: selectLibraryList(state),
         visible: state.mainMenu.visible,
-        mediaSelection: selectCurrentMediaSelection(state)
     }
 }
 

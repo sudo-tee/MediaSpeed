@@ -19,7 +19,7 @@ class MainMenu extends Component {
 
     isActive = (lib) => {
         return (match, location) => {
-            return lib.uid === this.props.mediaSelection.library
+            return location.pathname.startsWith('/libraries/' + lib.uid);
         };
     };
 

@@ -3,7 +3,6 @@ import './App.css'
 import MainContentContainer from "./containers/MainContentContainer";
 import {Route, Switch, withRouter} from 'react-router-dom'
 import {connect} from "react-redux";
-import {routeChanged} from "./actions/routerAction"
 import EpisodeVideoPlayerContainer from "./containers/EpisodeVideoPlayerContainer";
 import MovieVideoPlayerContainer from "./containers/MovieVideoPlayerContainer";
 import {fetchMoviesIfNeeded} from './actions/moviesActions';
@@ -14,8 +13,6 @@ class App extends Component {
     componentWillMount() {
         this.props.fetchMovies();
         this.props.fetchShows();
-        this.props.routeChanged(this.props.history.location, this.props.match);
-        this.props.history.listen(location => this.props.routeChanged(location, this.props.match));
     }
 
     render() {
@@ -32,21 +29,14 @@ class App extends Component {
     }
 }
 
-function mapStateToProps (state) {
-    return {
-
-    }
-}
-
 function mapDispatchToProps(dispatch) {
     return {
         fetchMovies: () => dispatch(fetchMoviesIfNeeded()),
         fetchShows: () => dispatch(fetchShowsIfNeeded()),
-        routeChanged: (location, match) => dispatch(routeChanged(location, match))
     }
 }
 
 export default withRouter(connect(
-    mapStateToProps,
+    null,
     mapDispatchToProps
 )(App))

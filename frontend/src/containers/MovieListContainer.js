@@ -1,7 +1,7 @@
 import React from 'react'
 import MediaList from '../components/MediaList';
 import {connect} from "react-redux";
-import {selectLibraryMovies} from '../reducers';
+import {selectLatestMoviesByLibraries} from '../reducers';
 import withRouter from "react-router-dom/es/withRouter";
 import uuid from 'uuid/v4';
 import BackgroundChanger from "../BackgroundChanger";
@@ -15,9 +15,9 @@ const MovieListContainer = (props) =>
 
 
 
-function mapStateToProps (state) {
+function mapStateToProps (state, ownProps) {
     return {
-        medias: selectLibraryMovies(state) || []
+        medias: selectLatestMoviesByLibraries(state)[ownProps['library-uid']] || []
     }
 }
 
