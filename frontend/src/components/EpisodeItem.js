@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import {Card, Icon, Image} from 'semantic-ui-react';
+import {Button, Card, Image} from 'semantic-ui-react';
 import {withRouter} from "react-router-dom";
 
 class EpisodeItem extends PureComponent {
@@ -14,7 +14,7 @@ class EpisodeItem extends PureComponent {
 
     play = (e) => {
         e.stopPropagation();
-        this.props.onPlay(this.props.media);
+        this.props.history.push(`/play/episodes/${this.props.media.uid}`);
     };
 
     render() {
@@ -22,7 +22,7 @@ class EpisodeItem extends PureComponent {
             <div className="media-item-image-container">
                 <Image src={this.img}/>
                 <div className="media-item-hover">
-                    <div className="media-item-play-icon" onClick={this.play}><Icon name="play"/></div>
+                    <Button icon="play" className="media-item-play-icon" onClick={this.play} />
                 </div>
             </div>
             <Card.Content>

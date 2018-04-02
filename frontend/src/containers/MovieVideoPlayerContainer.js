@@ -5,18 +5,30 @@ import VideoPlayer from "../components/VideoPlayer";
 import {Dimmer} from "semantic-ui-react";
 import {startSession, stopSession} from "../actions/playBackActions";
 import {withRouter} from 'react-router-dom';
+import uuid from 'uuid/v4';
 
 class MovieVideoPlayerContainer extends Component {
     componentDidMount() {
-        const params = new URLSearchParams(this.props.location.search.slice(1));
-        const session = params.get('session');
-
-        if (session) {
-            this.props.startSession(session)
-        } else {
-            console.log('TODO')
+        if (!this.getSession()) {
+            let session = uuid(Math.random().toString(36).slice(2) + this.props['uid']);
+            this.props.history.replace(`/play/movies/${this.props['uid']}?session=${session}`)
         }
     }
+
+    componentDidUpdate(prevProps) {
+        const session = this.getSession();
+        if(session) this.props.startSession(session)
+    }
+
+    getSession = () => {
+        const params = new URLSearchParams(this.props.location.search.slice(1));
+        return params.get('session');
+    };
+
+    stopSession = (session, media) => {
+        this.props.stopSession(session, media);
+        this.props.history.go(-1);
+    };
 
     render() {
         const movie = this.props.movie;
@@ -25,10 +37,7 @@ class MovieVideoPlayerContainer extends Component {
         return <VideoPlayer
             title={movie.title}
             media={movie}
-            onSessionStopped={(session, media) => {
-                this.props.stopSession(session, media);
-                this.props.history.replace(`/libraries/${movie.library_uid}/movies/${movie.uid}`)
-            }}
+            onSessionStopped={this.stopSession}
             session={session}
 
         />

@@ -4,7 +4,7 @@ import {Dimmer, Dropdown, Menu, Progress, Grid, Card} from "semantic-ui-react";
 import EpisodeItem from "./EpisodeItem";
 import BackgroundChanger from "../BackgroundChanger";
 
-const SeasonPage = ({season, episodes, onPlay}) => {
+const SeasonPage = ({season, episodes}) => {
     if (!season) return <Dimmer>Loading...</Dimmer>;
     const genres = season.genres || [];
     return (
@@ -46,7 +46,7 @@ const SeasonPage = ({season, episodes, onPlay}) => {
                         <h3>Episodes</h3>
                         <Card.Group doubling>
                             {episodes.map((episode) => {
-                                return <EpisodeItem onPlay={onPlay} media={episode} layout={'backdrop'}
+                                return <EpisodeItem media={episode} layout={'backdrop'}
                                                     key={'episode-' + episode.uid}/>
                             })}
                         </Card.Group>

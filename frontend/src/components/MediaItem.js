@@ -21,14 +21,13 @@ class MediaItem extends PureComponent {
         this.year = new Date(date).getFullYear();
     };
 
-    //@TODO move to a context API ?
     navigateToInfoPage = () => {
         this.props.history.push(`/libraries/${this.props.media.library_uid}/${this.props.media.type}s/${this.props.media.uid}`);
     };
 
     play = (e) => {
         e.stopPropagation();
-        this.props.onPlay(this.props.media);
+        this.props.history.push(`/play/${this.props.media.type}s/${this.props.media.uid}`);
     };
 
     render() {

@@ -12,12 +12,12 @@ class SeasonItem extends PureComponent {
 
     }
 
-    getUrl(mediaItem) {
-        return `/libraries/${mediaItem.library_uid}/${mediaItem.type}s/${mediaItem.uid}`;
+    getUrl() {
+        return `/libraries/${this.props.media.library_uid}/${this.props.media.type}s/${this.props.media.uid}`;
     }
 
     render() {
-        return <Card className="media-item" as={NavLink} to={this.getUrl(this.props.media)}>
+        return <Card className="media-item" as={NavLink} to={this.getUrl()}>
             <div className="media-item-image-container">
                 <Image src={this.img}/>
                 <div className="media-item-hover">

@@ -6,23 +6,20 @@ import VideoPlayer from "../components/VideoPlayer";
 import {Dimmer} from "semantic-ui-react";
 import {startSession, stopSession} from "../actions/playBackActions";
 import {withRouter} from "react-router-dom";
+import uuid from 'uuid/v4';
+
 
 
 class EpisodeVideoPlayerContainer extends Component {
 
     componentDidMount() {
-
         if (this.props.uid) {
             this.props.fetchEpisodeIfNeeded(this.props.uid);
         }
 
-        const params = new URLSearchParams(this.props.location.search.slice(1));
-        const session = params.get('session');
-
-        if (session) {
-            this.props.startSession(session)
-        } else {
-            console.log('TODO')
+        if (!this.getSession()) {
+            let session = uuid(Math.random().toString(36).slice(2) + this.props['uid']);
+            this.props.history.replace(`/play/episodes/${this.props['uid']}?session=${session}`)
         }
     }
 
@@ -30,7 +27,20 @@ class EpisodeVideoPlayerContainer extends Component {
         if (prevProps.uid !== this.props.uid) {
             this.props.fetchEpisodeIfNeeded(this.props.uid);
         }
+
+        const session = this.getSession();
+        if(session) this.props.startSession(session)
     }
+
+    getSession = () => {
+        const params = new URLSearchParams(this.props.location.search.slice(1));
+        return params.get('session');
+    };
+
+    stopSession = (session, media) => {
+        this.props.stopSession(session, media);
+        this.props.history.go(-1);
+    };
 
     render() {
         const episode = this.props.episode;
@@ -39,10 +49,7 @@ class EpisodeVideoPlayerContainer extends Component {
         return <VideoPlayer
             title={`${episode.show_name}  - S${episode.season_number} E${episode.episode_number}  -  ${episode.name}`}
             media={this.props.episode}
-            onSessionStopped={(session, media) => {
-                this.props.stopSession(session, media);
-                this.props.history.replace(`/libraries/${episode.library_uid}/seasons/${episode.season_uid}`)
-            }}
+            onSessionStopped={this.stopSession}
             onSessionStarted={(session, media) => this.props.startSession(session, media)}
             session={session}
         />
